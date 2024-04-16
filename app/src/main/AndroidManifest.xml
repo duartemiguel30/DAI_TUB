@@ -1,0 +1,54 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.dai_tub">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:targetApi="31">
+
+        <!-- Meta-data para definir o layout de login para as ações do Google -->
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@layout/login" />
+
+        <!-- Atividade principal (MainActivity) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Atividade de splash screen (SplashActivity) -->
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
+        </activity>
+
+        <!-- Atividade de login (LoginActivity) -->
+        <activity android:name=".LoginActivity" />
+
+        <!-- Atividade de registro (RegistroActivity) -->
+        <activity android:name=".RegistroActivity" />
+
+        <!-- Atividade de registro2 (Registro2Activity) -->
+        <activity android:name=".Registro2Activity" />
+
+        <!-- Atividade do menu principal (MenuPrincipalActivity) -->
+        <activity android:name=".MenuPrincipalActivity" />
+
+        <!-- Atividade do perfil do usuário (PerfilActivity) -->
+        <activity android:name=".PerfilActivity" />
+
+    </application>
+
+</manifest>

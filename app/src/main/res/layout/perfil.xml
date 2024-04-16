@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_blue_to_white">
+
+    <!-- Botão Back -->
+    <TextView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BACK"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_margin="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"/>
+
+    <!-- Saudação -->
+    <TextView
+        android:id="@+id/greetingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Olá, João Silva"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/backButton"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Tabela para informações do perfil -->
+    <LinearLayout
+        android:id="@+id/profileInfoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_below="@id/greetingText"
+        android:layout_centerHorizontal="true">
+
+        <!-- Nome Completo -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome Completo"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:padding="8dp"/>
+
+            <TextView
+                android:id="@+id/fullNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="João Silva"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:padding="8dp"/>
+        </LinearLayout>
+
+        <!-- Email -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:padding="8dp"/>
+
+            <TextView
+                android:id="@+id/emailText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="joao.silva@example.com"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:padding="8dp"/>
+        </LinearLayout>
+
+        <!-- NIF -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NIF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:padding="8dp"/>
+
+            <TextView
+                android:id="@+id/nifText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="123456789"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:padding="8dp"/>
+        </LinearLayout>
+
+        <!-- Numero de Passe -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Número de Passe"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:padding="8dp"/>
+
+            <TextView
+                android:id="@+id/passNumberText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="123456789"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:padding="8dp"/>
+        </LinearLayout>
+
+        <!-- Numero de Viagens Compradas -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Número de Viagens Compradas"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:padding="8dp"/>
+
+            <TextView
+                android:id="@+id/tripsNumberText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:padding="8dp"/>
+        </LinearLayout>
+
+        <!-- Saldo -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saldo"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:padding="8dp"/>
+
+            <TextView
+                android:id="@+id/balanceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R$ 100,00"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:padding="8dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Imagem TUB -->
+    <ImageView
+        android:id="@+id/tubImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logotub"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/profileInfoLayout"
+        android:layout_marginTop="24dp"/>
+
+</RelativeLayout>
