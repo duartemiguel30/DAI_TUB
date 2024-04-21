@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,6 +18,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class PerfilActivity extends AppCompatActivity {
+
+    private DatabaseReference userRef;
+    private TextView balanceText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +33,7 @@ public class PerfilActivity extends AppCompatActivity {
         TextView emailText = findViewById(R.id.emailText);
         TextView nifText = findViewById(R.id.nifText);
         TextView passNumberText = findViewById(R.id.passNumberText);
-        TextView balanceText = findViewById(R.id.balanceText);
-        TextView backButton = findViewById(R.id.backButton);
+        balanceText = findViewById(R.id.balanceText); // Atribua a balanceText
 
         // Obtendo a referência do usuário atual do Firebase
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -38,7 +41,7 @@ public class PerfilActivity extends AppCompatActivity {
             String userId = currentUser.getUid();
 
             // Referência ao nó do usuário no banco de dados do Firebase
-            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
+            userRef = FirebaseDatabase.getInstance().getReference().child("users").child(userId);
 
             // Adicionando um listener para buscar os dados do usuário
             userRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -61,6 +64,9 @@ public class PerfilActivity extends AppCompatActivity {
                             }
                             // Torna o passNumberText visível independente do número de passe estar presente
                             passNumberText.setVisibility(View.VISIBLE);
+
+                            // Exibe o saldo atual buscando-o do Firebase Realtime Database
+                            displayBalanceFromDatabase();
                         }
                     } else {
                         Log.d("PerfilActivity", "No such user exists in database");
@@ -77,11 +83,40 @@ public class PerfilActivity extends AppCompatActivity {
         }
 
         // Adicionando um listener de clique ao botão BACK
-        backButton.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Chame onBackPressed para voltar à atividade anterior
                 onBackPressed();
+            }
+        });
+    }
+
+    // Método para exibir uma mensagem de toast
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    // Método para exibir o saldo do usuário buscando-o do Firebase Realtime Database
+    private void displayBalanceFromDatabase() {
+        userRef.child("saldo").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Integer saldoAtual = dataSnapshot.getValue(Integer.class);
+                    if (saldoAtual != null) {
+                        balanceText.setText(String.valueOf(saldoAtual));
+                    } else {
+                        balanceText.setText("0"); // Se o saldo for nulo, exibe 0
+                    }
+                } else {
+                    Log.d("PerfilActivity", "Saldo do usuário não encontrado no banco de dados");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("PerfilActivity", "Erro ao recuperar o saldo do usuário: " + databaseError.getMessage());
             }
         });
     }

@@ -2,6 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.dai_tub">
 
+    <!-- Adicione a permissão aqui -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -48,6 +51,17 @@
 
         <!-- Atividade do perfil do usuário (PerfilActivity) -->
         <activity android:name=".PerfilActivity" />
+
+        <!-- Atividade de Comprar Viagens -->
+        <activity android:name=".ComprarViagensActivity" />
+
+        <!-- Atividade de Rotas -->
+        <activity android:name=".RotasActivity" />
+
+        <!-- Atividade de Carregar Saldo -->
+        <activity android:name=".CarregarSaldoActivity" />
+
+        <activity android:name=".ConfirmarPagamentoActivity" />
 
     </application>
 

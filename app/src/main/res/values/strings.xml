@@ -3,4 +3,7 @@
     <string name="menu_icon_description">Abrir menu</string>
     <string name="profile_icon_description">Ícone de perfil</string>
     <string name="greeting_text">Olá, %s</string>
+    <string name="balance_text">Saldo: %s</string>
+    <string name="channel_name">Nome do Canal</string>
+    <string name="channel_description">Descrição do Canal</string>
 </resources>

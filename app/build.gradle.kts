@@ -42,6 +42,10 @@ dependencies {
     // Adicionando dependências para a autenticação do Firebase
     implementation("com.google.firebase:firebase-auth:22.3.1")
     implementation("com.google.firebase:firebase-analytics:21.6.1")
+    implementation ("com.google.firebase:firebase-firestore:23.0.0")
+    implementation ("com.google.zxing:core:3.4.1")
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+
 
     // Dependências de teste
     testImplementation(libs.junit)

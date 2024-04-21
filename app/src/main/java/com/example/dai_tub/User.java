@@ -4,7 +4,8 @@ public class User {
     private String name;
     private String email;
     private String nif;
-    private String numeroPasse; // Alterado de passNumber para numeroPasse
+    private String numeroPasse;
+    private int balance; // Adicionando o campo balance
 
     public User() {
         // Construtor vazio necessário para Firebase
@@ -48,5 +49,14 @@ public class User {
 
     public void setNumeroPasse(String numeroPasse) {
         this.numeroPasse = numeroPasse;
+    }
+
+    // Getter e setter para o campo balance
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 }

@@ -1,429 +1,362 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
 
-    <!-- Conteúdo do menu e da página -->
+    <!-- Barra de ferramentas -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <!-- Barra deslizante -->
-    <LinearLayout
-        android:id="@+id/navigationDrawer"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/white"
-        android:orientation="vertical">
+        <!-- Texto para abrir o menu -->
+        <TextView
+            android:id="@+id/menuText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Menu"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:padding="10dp"
+            android:onClick="toggleMenu" />
 
-        <!-- Botões de navegação -->
         <Button
-            android:id="@+id/homeButton"
+            android:id="@+id/profileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Perfil"
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:layout_gravity="end|top"
+            android:textColor="@android:color/white"
+            android:background="@android:color/transparent"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- ScrollView para o conteúdo -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
+        <RelativeLayout
+            android:id="@+id/contentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
+
+            <!-- Soluções rápidas -->
+            <TextView
+                android:id="@+id/solutionsHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Soluções rápidas"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="16dp"/>
+
+            <!-- LinearLayout para botões "Comprar Bilhetes" e "Validar Bilhetes" -->
+            <LinearLayout
+                android:id="@+id/ticketButtonsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/solutionsHeader"
+                android:layout_marginTop="16dp"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/buyTicketButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="Comprar Bilhetes"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/gradient_button" />
+
+                <Button
+                    android:id="@+id/validateTicketButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="Validar Bilhetes"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/gradient_button" />
+            </LinearLayout>
+
+            <!-- Linha separadora -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_below="@id/ticketButtonsLayout"
+                android:layout_marginTop="16dp"/>
+
+            <!-- Barra de pesquisa -->
+            <LinearLayout
+                android:id="@+id/searchBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:layout_below="@id/ticketButtonsLayout"
+                android:layout_marginTop="16dp">
+
+                <EditText
+                    android:id="@+id/searchEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_border"
+                    android:hint="Para onde deseja ir?"
+                    android:padding="10dp"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/searchButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pesquisar"
+                    android:textStyle="bold"
+                    android:background="@drawable/search_button_background"
+                    android:onClick="performSearch"
+                    android:scaleType="center"
+                    android:padding="16dp"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="8dp"/>
+
+            </LinearLayout>
+
+
+            <!-- Notificações -->
+            <TextView
+                android:id="@+id/newsTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notificações"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_below="@id/searchBar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp" />
+
+            <!-- LinearLayout para conter as notificações -->
+            <LinearLayout
+                android:id="@+id/newsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/newsTab"
+                android:layout_marginTop="16dp">
+
+                <!-- Notificação 1 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="@android:color/transparent"
+                    android:padding="16dp">
+
+                    <!-- Imagem da notificação 1 -->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:src="@drawable/imagem_noticia1"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Imagem da Notificação 1" />
+
+                    <!-- Texto da notificação 1 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Título da Notificação 1"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:layout_marginTop="8dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                        android:textSize="14sp"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+                <!-- Notificação 2 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="@android:color/transparent"
+                    android:padding="16dp">
+
+                    <!-- Imagem da notificação 2 -->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:src="@drawable/imagem_noticia2"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Imagem da Notícia 2" />
+
+                    <!-- Texto da notificação 2 -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Título da Notificação 2"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:layout_marginTop="8dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                        android:textSize="14sp"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- LinearLayout com Recompensas e Notícias -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/newsLayout"
+                android:layout_marginTop="16dp"
+                android:gravity="center">
+
+                <!-- Recompensas -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_button_background"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Recompensas"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Espaço entre Recompensas e Notícias -->
+                <View
+                    android:layout_width="16dp"
+                    android:layout_height="match_parent"/>
+
+                <!-- Notícias -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_button_background"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Notícias"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Espaço em branco entre Recompensas e Notícias -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+            <!-- Barra fixa para dividir FAQs e Suporte -->
+            <View
+                android:id="@+id/dividerBarFaqSupport"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_below="@id/newsLayout"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="35dp"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <!-- Menu que se sobrepõe -->
+    <LinearLayout
+        android:id="@+id/menuOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:background="@android:color/white">
+
+        <!-- Adicione itens de menu aqui -->
+        <Button
+            android:id="@+id/menuItemHome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Home"
-            android:textColor="#000000"
-            android:background="@android:color/transparent" />
+            android:padding="16dp"/>
 
         <Button
-            android:id="@+id/routesButton"
+            android:id="@+id/menuItemRoutes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ver Rotas"
-            android:textColor="#000000"
-            android:background="@android:color/transparent" />
-
-        <Button
-            android:id="@+id/passButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Passe"
-            android:textColor="#000000"
-            android:background="@android:color/transparent" />
-
-        <Button
-            android:id="@+id/newsButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Notificações"
-            android:textColor="#000000"
-            android:background="@android:color/transparent" />
+            android:text="Rotas"
+            android:padding="16dp"/>
 
         <Button
             android:id="@+id/loadBalanceButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Carregar Saldo"
-            android:textColor="#000000"
-            android:background="@android:color/transparent" />
+            android:padding="16dp"/>
 
         <Button
-            android:id="@+id/purchasedTicketsButton"
+            android:id="@+id/menuItemNews"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bilhetes Comprados"
-            android:textColor="#000000"
-            android:background="@android:color/transparent" />
+            android:text="Notícias"
+            android:padding="16dp"/>
 
         <Button
-            android:id="@+id/contactsButton"
+            android:id="@+id/menuItemNotifications"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Contactos"
-            android:textColor="#000000"
-            android:background="@android:color/transparent" />
+            android:text="Notificações"
+            android:padding="16dp"/>
 
-        <!-- Linha separadora -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
-
+        <!-- Adicione mais itens de menu conforme necessário -->
 
     </LinearLayout>
 
-    <!-- Conteúdo da página -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!-- Barra de ferramentas -->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:elevation="4dp"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-            <!-- Texto para abrir o menu -->
-            <TextView
-                android:id="@+id/menuText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Menu"
-                android:textSize="18sp"
-                android:textColor="@android:color/white"
-                android:padding="10dp"
-                android:onClick="toggleDrawer" />
-
-            <Button
-                android:id="@+id/profileButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Perfil"
-                android:textSize="16sp"
-                android:padding="10dp"
-                android:layout_gravity="end|top"
-                android:textColor="@android:color/white"
-                android:background="@android:color/transparent"/>
-        </androidx.appcompat.widget.Toolbar>
-
-
-        <!-- ScrollView para o conteúdo -->
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/toolbar">
-
-            <RelativeLayout
-                android:id="@+id/contentLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="16dp">
-
-                <!-- Soluções rápidas -->
-                <TextView
-                    android:id="@+id/solutionsHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="Soluções rápidas"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:layout_marginTop="16dp"/>
-
-                <!-- LinearLayout para botões "Comprar Bilhetes" e "Validar Bilhetes" -->
-                <LinearLayout
-                    android:id="@+id/ticketButtonsLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_below="@id/solutionsHeader"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center">
-
-                    <Button
-                        android:id="@+id/buyTicketButton"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:text="Comprar Bilhetes"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="20dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/gradient_button" />
-
-                    <Button
-                        android:id="@+id/validateTicketButton"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:text="Validar Bilhetes"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="20dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:layout_marginStart="4dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/gradient_button" />
-                </LinearLayout>
-
-                <!-- Linha separadora -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/darker_gray"
-                    android:layout_below="@id/ticketButtonsLayout"
-                    android:layout_marginTop="16dp"/>
-
-                <!-- Barra de pesquisa -->
-                <LinearLayout
-                    android:id="@+id/searchBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="16dp"
-                    android:layout_below="@id/ticketButtonsLayout"
-                    android:layout_marginTop="16dp">
-
-                    <EditText
-                        android:id="@+id/searchEditText"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/edittext_border"
-                        android:hint="Para onde deseja ir?"
-                        android:padding="10dp"
-                        android:textColor="#FFFFFF" />
-
-                    <Button
-                        android:id="@+id/searchButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pesquisar"
-                        android:textStyle="bold"
-                        android:background="@drawable/search_button_background"
-                        android:onClick="performSearch"
-                        android:scaleType="center"
-                        android:padding="16dp"
-                        android:textColor="#FFFFFF"
-                        android:layout_marginStart="8dp"/>
-
-                </LinearLayout>
-
-
-                <!-- Notíficações -->
-                <TextView
-                    android:id="@+id/newsTab"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Notíficações"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:layout_below="@id/searchBar"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="16dp" />
-
-                <!-- LinearLayout para conter as notíficações -->
-                <LinearLayout
-                    android:id="@+id/newsLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_below="@id/newsTab"
-                    android:layout_marginTop="16dp">
-
-                    <!-- Notíficação 1 -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:background="@android:color/transparent"
-                        android:padding="16dp">
-
-                        <!-- Imagem da notíficação 1 -->
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            android:src="@drawable/imagem_noticia1"
-                            android:scaleType="centerCrop"
-                            android:contentDescription="Imagem da Notíficação 1" />
-
-                        <!-- Texto da notíficação 1 -->
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Título da Notíficação 1"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:layout_marginTop="8dp"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                            android:textSize="14sp"
-                            android:layout_marginTop="8dp"/>
-
-                    </LinearLayout>
-
-                    <!-- Notíficação 2 -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:background="@android:color/transparent"
-                        android:padding="16dp">
-
-                        <!-- Imagem da notíficação 2 -->
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            android:src="@drawable/imagem_noticia2"
-                            android:scaleType="centerCrop"
-                            android:contentDescription="Imagem da Notícia 2" />
-
-                        <!-- Texto da notíficação 2 -->
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Título da Notíficação 2"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:layout_marginTop="8dp"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                            android:textSize="14sp"
-                            android:layout_marginTop="8dp"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <!-- LinearLayout com Recompensas e Notícias -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_below="@id/newsLayout"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center">
-
-                    <!-- Recompensas -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="80dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/rounded_button_background"
-                        android:gravity="center"
-                        android:padding="16dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Recompensas"
-                            android:textColor="@android:color/black"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <!-- Espaço entre Recompensas e Notícias -->
-                    <View
-                        android:layout_width="16dp"
-                        android:layout_height="match_parent"/>
-
-                    <!-- Notícias -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="80dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/rounded_button_background"
-                        android:gravity="center"
-                        android:padding="16dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Notícias"
-                            android:textColor="@android:color/black"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:gravity="center"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!-- Espaço em branco entre Recompensas e Notícias -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp" />
-
-                <!-- Barra fixa para dividir FAQs e Suporte -->
-                <View
-                    android:id="@+id/dividerBarFaqSupport"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/darker_gray"
-                    android:layout_below="@id/newsLayout"
-                    android:layout_marginTop="100dp"
-                    android:layout_marginBottom="35dp"/>
-
-
-
-            </RelativeLayout>
-        </ScrollView>
-
-        <!-- Adicione este bloco de código fora da barra de ferramentas -->
-        <RelativeLayout
-            android:id="@+id/faqSupportLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center"
-            android:background="@drawable/border_bottom">
-
-            <Button
-                android:id="@+id/faqsButtonBottom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="FAQs"
-                android:textColor="@color/black"
-                android:background="@android:color/transparent" />
-
-            <Button
-                android:id="@+id/supportButtonBottom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Suporte"
-                android:textColor="@color/black"
-                android:background="@android:color/transparent"
-                android:layout_toRightOf="@id/faqsButtonBottom"
-                android:layout_marginStart="16dp"/>
-        </RelativeLayout>
-    </RelativeLayout>
-</androidx.drawerlayout.widget.DrawerLayout>
+</RelativeLayout>
