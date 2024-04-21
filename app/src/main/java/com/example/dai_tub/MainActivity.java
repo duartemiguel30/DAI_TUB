@@ -48,21 +48,21 @@ public class MainActivity extends AppCompatActivity {
     private List<Rota> criarListaRotas() {
         List<Rota> rotas = new ArrayList<>();
 
-        rotas.add(new Rota("Ponte de Prado", "Ponte de Prado", "Bom Jesus", "Bom Jesus", 0.5, 1.0));
-        rotas.add(new Rota("Avenida Central", "Avenida Central", "Ruães", "Ruães", 1.0, 2.0));
-        rotas.add(new Rota("Dume", "Dume", "Quinta da Capela", "Quinta da Capela", 1.0, 1.0));
-        rotas.add(new Rota("Avenida General Norton de Matos", "Avenida General Norton de Matos", "Gondizalhes/Semelhe", "Gondizalhes/Semelhe", 1.0, 1.0));
-        rotas.add(new Rota("S Mamede d'este", "S Mamede d'este", "Celeirós", "Celeirós", 0.5, 1.0));
-        rotas.add(new Rota("Rua 25 de abril", "Rua 25 de abril", "Sete Fontes", "Sete Fontes", 1.0, 1.0));
-        rotas.add(new Rota("Ruães Nogueira", "Ruães Nogueira", "Barral", "Barral", 0.5, 1.0));
-        rotas.add(new Rota("Avenida Liberdade", "Avenida Liberdade", "Lageosa/Pedralva via Gualtar", "Lageosa/Pedralva via Gualtar", 1.0, 2.0));
-        rotas.add(new Rota("Avenida General Norton de Matos", "Avenida General Norton de Matos", "Lageosa/Pedralva", "Lageosa/Pedralva", 1.0, 2.0));
-        rotas.add(new Rota("Praça Conde de Agrolongo", "Praça Conde de Agrolongo", "Priscos", "Priscos", 1.0, 2.0));
-        rotas.add(new Rota("Rua do Raio", "Rua do Raio", "Pinheiro do Bicho via Esporões", "Pinheiro do Bicho via Esporões", 1.0, 2.0));
-        rotas.add(new Rota("Sequeira", "Sequeira", "Gualtar", "Gualtar", 1.0, 2.0));
-        rotas.add(new Rota("Avenida Central", "Avenida Central", "Hospital", "Hospital", 1.0, 1.0));
-        rotas.add(new Rota("Misericórdia", "Misericórdia", "S.Mamede D'este", "S.Mamede D'este", 0.5, 1.0));
-        rotas.add(new Rota("Avenida Central", "Avenida Central", "Padim de Graça", "Padim de Graça", 1.0, 2.0));
+        rotas.add(new Rota("2", "Ponte de Prado-Bom Jesus", "Ponte de Prado", "Bom Jesus", 0.5, 1.0));
+        rotas.add(new Rota("3", "Avenida Central-Ruães", "Avenida Central", "Ruães", 1.0, 2.0));
+        rotas.add(new Rota("5", "Dume-Quinta da Capela", "Dume", "Quinta da Capela", 1.0, 1.0));
+        rotas.add(new Rota("6", "Avenida General Norton de Matos-Gondizalves/Semelhe", "Avenida General Norton de Matos", "Gondizalhes/Semelhe", 1.0, 1.0));
+        rotas.add(new Rota("7", "S Mamede d'este-Celeirós", "S Mamede d'este", "Celeirós", 0.5, 1.0));
+        rotas.add(new Rota("8", "Rua 25 de abril-Sete Fontes", "Rua 25 de abril", "Sete Fontes", 1.0, 1.0));
+        rotas.add(new Rota("9", "Ruães-Nogueira(Barral)", "Ruães", "Barral", 0.5, 1.0));
+        rotas.add(new Rota("12", "Avenida Liberdade-Lageosa/Pedralva via Gualtar", "Avenida Liberdade", "Lageosa/Pedralva via Gualtar", 1.0, 2.0));
+        rotas.add(new Rota("13", "Avenida General Norton de Matos-Lageosa/Pedralva", "Avenida General Norton de Matos", "Lageosa/Pedralva", 1.0, 2.0));
+        rotas.add(new Rota("14", "Praça Conde de Agrolongo-Priscos", "Praça Conde de Agrolongo", "Priscos", 1.0, 2.0));
+        rotas.add(new Rota("18", "Rua do Raio-Pinheiro do Bicho via Esporões", "Rua do Raio", "Pinheiro do Bicho via Esporões", 1.0, 2.0));
+        rotas.add(new Rota("24", "Sequeira-Gualtar", "Sequeira", "Gualtar", 1.0, 2.0));
+        rotas.add(new Rota("900", "Avenida Central-Hospital", "Avenida Central", "Hospital", 1.0, 1.0));
+        rotas.add(new Rota("907", "Misericórdia-S Mamede d'este", "Misericórdia", "S.Mamede D'este", 0.5, 1.0));
+        rotas.add(new Rota("911", "Avenida Central-Padim da Graça", "Avenida Central", "Padim de Graça", 1.0, 2.0));
 
         return rotas;
     }

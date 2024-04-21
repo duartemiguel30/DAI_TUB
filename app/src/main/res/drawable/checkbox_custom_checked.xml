@@ -1,0 +1,12 @@
+<!-- checkbox_custom_checked.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- Cor de fundo do CheckBox quando marcado -->
+    <solid android:color="#000000"/>
+    <!-- Borda do CheckBox quando marcado -->
+    <stroke
+        android:width="2dp"
+        android:color="#333333"/>
+    <!-- Arredondamento das bordas -->
+    <corners android:radius="4dp"/>
+</shape>

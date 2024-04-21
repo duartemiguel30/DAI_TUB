@@ -1,0 +1,176 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Escolha o Método de Pagamento"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:textColor="#000000" />
+
+    <ScrollView
+        android:id="@+id/paymentOptionsScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleTextView"
+        android:visibility="visible"
+        android:layout_marginTop="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Opção de pagamento: Multibanco -->
+            <RelativeLayout
+                android:id="@+id/multibancoLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:elevation="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/gray_background"
+                android:onClick="onMultibancoClick">
+
+                <ImageView
+                    android:id="@+id/multibancoImageView"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_multibanco"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp" />
+
+                <TextView
+                    android:id="@+id/multibancoCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Multibanco"
+                    android:textSize="18sp"
+                    android:textColor="#000000"
+                    android:layout_toEndOf="@id/multibancoImageView"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp" />
+            </RelativeLayout>
+
+            <!-- Opção de pagamento: MB Way -->
+            <RelativeLayout
+                android:id="@+id/mbwayLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:elevation="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/gray_background"
+                android:onClick="onMbwayClick">
+
+                <ImageView
+                    android:id="@+id/mbwayImageView"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_mbway"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp" />
+
+                <TextView
+                    android:id="@+id/mbwayCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MB Way"
+                    android:textSize="18sp"
+                    android:textColor="#000000"
+                    android:layout_toEndOf="@id/mbwayImageView"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp" />
+            </RelativeLayout>
+
+            <!-- Opção de pagamento: PayPal -->
+            <RelativeLayout
+                android:id="@+id/paypalLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:elevation="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/gray_background"
+                android:onClick="onPayPalClick">
+
+                <ImageView
+                    android:id="@+id/paypalImageView"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_paypal"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp" />
+
+                <TextView
+                    android:id="@+id/paypalCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PayPal"
+                    android:textSize="18sp"
+                    android:textColor="#000000"
+                    android:layout_toEndOf="@id/paypalImageView"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp" />
+            </RelativeLayout>
+
+            <!-- Opção de pagamento: Saldo -->
+            <RelativeLayout
+                android:id="@+id/saldoLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:elevation="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/gray_background"
+                android:onClick="onSaldoClick">
+
+                <ImageView
+                    android:id="@+id/saldoImageView"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_saldo"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp" />
+
+                <TextView
+                    android:id="@+id/saldoCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Saldo"
+                    android:textSize="18sp"
+                    android:textColor="#000000"
+                    android:layout_toEndOf="@id/saldoImageView"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp" />
+            </RelativeLayout>
+
+            <!-- Adicione mais opções de pagamento semelhantes conforme necessário -->
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/continueButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Prosseguir"
+        android:layout_below="@id/paymentOptionsScrollView"
+        android:layout_marginTop="16dp"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:padding="12dp"
+        android:background="@drawable/rounded_button_background" />
+
+</RelativeLayout>
