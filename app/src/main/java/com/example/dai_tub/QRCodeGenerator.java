@@ -12,11 +12,18 @@ import com.google.zxing.common.BitMatrix;
 public class QRCodeGenerator {
     private static final String TAG = QRCodeGenerator.class.getSimpleName();
 
-    public static Bitmap generateQRCode(String data) {
+    public static Bitmap generateQRCode(Bilhete bilhete) {
+        // Montar os dados do bilhete para exibir no código QR
+        String dadosBilhete = "Nome do Usuário: " + bilhete.getNomeUsuario() + "\n" +
+                "Data de Compra: " + bilhete.getDataCompra() + "\n" +
+                "Validade: " + bilhete.getValidade() + "\n" +
+                "Ponto de Partida: " + bilhete.getPontoPartida() + "\n" +
+                "Ponto de Chegada: " + bilhete.getPontoChegada();
+
         int width = 4000; // Defina o tamanho máximo permitido aqui
         int height = 4000; // Defina o tamanho máximo permitido aqui
         try {
-            BitMatrix bitMatrix = new MultiFormatWriter().encode(data, BarcodeFormat.QR_CODE, width, height);
+            BitMatrix bitMatrix = new MultiFormatWriter().encode(dadosBilhete, BarcodeFormat.QR_CODE, width, height);
             int qrCodeWidth = bitMatrix.getWidth();
             int qrCodeHeight = bitMatrix.getHeight();
             int[] pixels = new int[qrCodeWidth * qrCodeHeight];

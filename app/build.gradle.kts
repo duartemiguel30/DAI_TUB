@@ -45,6 +45,8 @@ dependencies {
     implementation ("com.google.firebase:firebase-firestore:23.0.0")
     implementation ("com.google.zxing:core:3.4.1")
     implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+    implementation ("com.itextpdf:itextg:5.5.10")
+
 
 
     // Dependências de teste

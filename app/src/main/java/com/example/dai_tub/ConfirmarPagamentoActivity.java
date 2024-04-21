@@ -1,5 +1,6 @@
 package com.example.dai_tub;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -8,8 +9,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,11 +17,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Environment;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 // Importações omitidas por brevidade
 
@@ -58,19 +55,27 @@ public class ConfirmarPagamentoActivity extends AppCompatActivity {
 
                         // Chame o método gerarCodigoQR com os detalhes do bilhete e o nome do usuário
                         gerarCodigoQR(bilhete, nomeUsuario);
+
+                        // Gerar o PDF com as informações do bilhete e o código QR
+                        gerarPDF(bilhete);
                     } else {
-                        Toast.makeText(ConfirmarPagamentoActivity.this, "Não foi possível encontrar os detalhes do bilhete", Toast.LENGTH_SHORT).show();
+                        showToast("Não foi possível encontrar os detalhes do bilhete");
                     }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(ConfirmarPagamentoActivity.this, "Erro ao recuperar os detalhes do bilhete: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    showToast("Erro ao recuperar os detalhes do bilhete: " + error.getMessage());
                 }
             });
         } else {
-            Toast.makeText(this, "Não foi possível obter o ID do bilhete", Toast.LENGTH_SHORT).show();
+            showToast("Não foi possível obter o ID do bilhete");
         }
+    }
+
+    // Método para exibir mensagens Toast
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     // Método para gerar o código QR com base nos detalhes do bilhete
@@ -94,8 +99,16 @@ public class ConfirmarPagamentoActivity extends AppCompatActivity {
             // Exibir o código QR na ImageView
             qrCodeImageView.setImageBitmap(bitmap);
         } catch (WriterException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Erro ao gerar o código QR: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            showToast("Erro ao gerar o código QR: " + e.getMessage());
         }
     }
+
+    // Método para gerar o PDF com as informações do bilhete e o código QR
+    private void gerarPDF(Bilhete bilhete) {
+        Bitmap qrCodeBitmap = ((BitmapDrawable) qrCodeImageView.getDrawable()).getBitmap();
+        String fileName = "bilhete.pdf";
+        String filePath = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath() + "/" + fileName;
+        generatePDF.generatePDF(this, bilhete, qrCodeBitmap);
+    }
+
 }
