@@ -4,26 +4,18 @@
     android:layout_height="match_parent"
     android:background="@drawable/fundo">
 
-    <!-- Símbolo da tub na parte superior direita -->
-    <ImageView
-        android:id="@+id/imageViewLogoTub"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logotub"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="50dp" />
-
-    <!-- Texto "Bem-vindo" -->
     <TextView
         android:id="@+id/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bem-vindo"
+        android:text="Bem-vindo à TUB!"
         android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="#000000"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp" />
+        android:layout_marginTop="200dp"
+        android:fontFamily="@font/librebaskervillebold" />
+
 
     <!-- Botão de Registro -->
     <Button
@@ -36,7 +28,7 @@
         android:text="Registrar"
         android:textSize="18sp"
         android:textColor="#FFFFFF"
-        android:background="#80BFFF"
+        android:background="@drawable/rounded_button"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:paddingTop="10dp"
@@ -53,12 +45,11 @@
         android:text="Já tem uma conta? Faça login"
         android:textSize="16sp"
         android:textColor="#FFFFFF"
-        android:background="#80BFFF"
+        android:background="@drawable/rounded_button"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp" />
-
 
     <!-- Texto para saltar o passo -->
     <TextView
@@ -70,6 +61,17 @@
         android:textColor="#80BFFF"
         android:layout_below="@id/buttonLogin"
         android:layout_centerHorizontal="true"
+        android:textStyle="bold"
         android:layout_marginTop="20dp" />
+
+    <!-- Símbolo da tub centrado abaixo do texto "Saltar este passo" -->
+    <ImageView
+        android:id="@+id/imageViewLogoTub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textSkip"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/logotub" />
 
 </RelativeLayout>
