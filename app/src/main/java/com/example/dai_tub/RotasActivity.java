@@ -24,10 +24,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.OnFailureListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -124,8 +121,6 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
         });
     }
 
-
-
     private void filtrarRotas(String texto) {
         listaRotasFiltradas.clear();
         for (Rota rota : listaRotas) {
@@ -155,7 +150,8 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
                 if (nomeUsuario == null) {
                     nomeUsuario = emailUsuario; // Use o e-mail se o nome do usuário não estiver disponível
                 }
-                salvarBilhete(rotaSelecionada, nomeUsuario);
+                String userId = currentUser.getUid(); // Obter o ID do usuário autenticado
+                salvarBilhete(rotaSelecionada, nomeUsuario, userId); // Passar userId para o método salvarBilhete
             } else {
                 // Usuário não está autenticado, redirecione para a tela de login
                 Toast.makeText(this, "Você precisa estar logado para confirmar o pagamento", Toast.LENGTH_SHORT).show();
@@ -167,7 +163,7 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
         }
     }
 
-    private void salvarBilhete(Rota rota, String nomeUsuario) {
+    private void salvarBilhete(Rota rota, String nomeUsuario, String userId) {
         // Crie um ID único para o bilhete
         String bilheteId = bilhetesRef.push().getKey();
 
@@ -182,7 +178,8 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
         String dataValidade = dateFormat.format(calendar.getTime());
 
         // Criar um novo objeto Bilhete com as informações necessárias
-        Bilhete bilhete = new Bilhete(bilheteId, nomeUsuario, dataAtual, dataValidade, rota.getPontoPartida(), rota.getPontoChegada());
+        Bilhete bilhete = new Bilhete(bilheteId, userId, nomeUsuario, dataAtual, dataValidade, rota.getPontoPartida(), rota.getPontoChegada(), rota);
+
 
         // Salvar os detalhes do bilhete no Firebase
         bilhetesRef.child(bilheteId).setValue(bilhete).addOnSuccessListener(new OnSuccessListener<Void>() {

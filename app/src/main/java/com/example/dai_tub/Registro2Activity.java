@@ -72,22 +72,29 @@ public class Registro2Activity extends AppCompatActivity {
                                     DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
 
                                     // Salvar os detalhes do usuário no banco de dados
-                                    User newUser = new User(name, email, nif, passNumber);
-                                    userRef.setValue(newUser);
+                                    User newUser = new User(userId, name, email, nif, passNumber, 0); // balance inicializado como 0
+                                    userRef.setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> databaseTask) {
+                                            if (databaseTask.isSuccessful()) {
+                                                Log.d("Registro2Activity", "Detalhes do usuário salvos no banco de dados");
 
-                                    Log.d("Registro2Activity", "Detalhes do usuário salvos no banco de dados");
-
-                                    // Redirecionar para a tela de perfil com os dados
-                                    Intent intent = new Intent(Registro2Activity.this, MenuPrincipalActivity.class);
-                                    intent.putExtra("nome", name);
-                                    intent.putExtra("email", email);
-                                    intent.putExtra("nif", nif);
-                                    if (!passNumber.isEmpty()) { // Verifica se o número do passe não está vazio
-                                        intent.putExtra("numeroPasse", passNumber); // Passa o número do passe
-                                    }
-                                    startActivity(intent);
-                                    finish();
-
+                                                // Redirecionar para a tela de perfil com os dados
+                                                Intent intent = new Intent(Registro2Activity.this, MenuPrincipalActivity.class);
+                                                intent.putExtra("nome", name);
+                                                intent.putExtra("email", email);
+                                                intent.putExtra("nif", nif);
+                                                if (!passNumber.isEmpty()) { // Verifica se o número do passe não está vazio
+                                                    intent.putExtra("numeroPasse", passNumber); // Passa o número do passe
+                                                }
+                                                startActivity(intent);
+                                                finish();
+                                            } else {
+                                                Log.e("Registro2Activity", "Erro ao salvar os detalhes do usuário no banco de dados", databaseTask.getException());
+                                                Toast.makeText(Registro2Activity.this, "Erro ao registrar. Tente novamente.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
                                 } else {
                                     // Falha no registro
                                     Log.e("Registro2Activity", "Erro ao registrar", task.getException());

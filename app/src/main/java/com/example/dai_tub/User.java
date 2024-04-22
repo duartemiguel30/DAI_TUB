@@ -1,24 +1,35 @@
 package com.example.dai_tub;
 
 public class User {
+    private String userId; // Adicionando o campo userId
     private String name;
     private String email;
     private String nif;
     private String numeroPasse;
-    private int balance; // Adicionando o campo balance
+    private double saldo; // Adicionando o campo balance
 
     public User() {
         // Construtor vazio necessário para Firebase
     }
 
-    public User(String name, String email, String nif, String numeroPasse) {
+    public User(String userId, String name, String email, String nif, String numeroPasse, double saldo) {
+        this.userId = userId;
         this.name = name;
         this.email = email;
         this.nif = nif;
         this.numeroPasse = numeroPasse;
+        this.saldo = saldo;
     }
 
     // Métodos getters e setters
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     public String getName() {
         return name;
     }
@@ -51,12 +62,11 @@ public class User {
         this.numeroPasse = numeroPasse;
     }
 
-    // Getter e setter para o campo balance
-    public int getBalance() {
-        return balance;
+    public double getSaldo() {
+        return saldo;
     }
 
-    public void setBalance(int balance) {
-        this.balance = balance;
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
     }
 }

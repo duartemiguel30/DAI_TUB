@@ -103,11 +103,11 @@ public class PerfilActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    Integer saldoAtual = dataSnapshot.getValue(Integer.class);
+                    Double saldoAtual = dataSnapshot.getValue(Double.class);
                     if (saldoAtual != null) {
                         balanceText.setText(String.valueOf(saldoAtual));
                     } else {
-                        balanceText.setText("0"); // Se o saldo for nulo, exibe 0
+                        balanceText.setText("0.0"); // Se o saldo for nulo, exibe 0.0
                     }
                 } else {
                     Log.d("PerfilActivity", "Saldo do usuário não encontrado no banco de dados");
