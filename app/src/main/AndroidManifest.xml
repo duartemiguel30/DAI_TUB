@@ -63,6 +63,15 @@
 
         <activity android:name=".ConfirmarPagamentoActivity" />
 
+        <activity android:name=".MeusBilhetesActivity" />
+
+        <activity android:name=".VisualizarBilheteActivity" />
+
+        <activity android:name=".QRCodeGenerator" />
+
+
+        <activity android:name=".MenuAdministradorActivity" />
+
     </application>
 
 </manifest>

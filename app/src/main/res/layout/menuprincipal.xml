@@ -355,6 +355,14 @@
             android:text="Notificações"
             android:padding="16dp"/>
 
+        <Button
+            android:id="@+id/menuItemMyTickets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Meus Bilhetes"
+            android:padding="16dp"/>
+
+
         <!-- Adicione mais itens de menu conforme necessário -->
 
     </LinearLayout>

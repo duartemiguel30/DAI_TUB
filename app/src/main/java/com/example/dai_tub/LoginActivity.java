@@ -61,20 +61,28 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void authenticateUser(String email, String password) {
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Login bem-sucedido
-                            Intent intent = new Intent(LoginActivity.this, MenuPrincipalActivity.class);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            // Falha no login
-                            Toast.makeText(LoginActivity.this, "Falha no login. Verifique suas credenciais.", Toast.LENGTH_SHORT).show();
+        // Verifica se as credenciais correspondem ao administrador padrão
+        if (email.equals("admin@admin.com") && password.equals("admin")) {
+            Intent intent = new Intent(LoginActivity.this, MenuAdministradorActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            // Tenta autenticar com o Firebase
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Login bem-sucedido
+                                Intent intent = new Intent(LoginActivity.this, MenuPrincipalActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                // Falha no login
+                                Toast.makeText(LoginActivity.this, "Falha no login. Verifique suas credenciais.", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+        }
     }
 }

@@ -1,44 +1,62 @@
-// QRCodeGenerator.java
 package com.example.dai_tub;
 
 import android.graphics.Bitmap;
-import android.util.Log;
+import android.os.Bundle;
+import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
-public class QRCodeGenerator {
-    private static final String TAG = QRCodeGenerator.class.getSimpleName();
+public class QRCodeGenerator extends AppCompatActivity {
 
-    public static Bitmap generateQRCode(Bilhete bilhete) {
-        // Montar os dados do bilhete para exibir no código QR
-        String dadosBilhete = "Nome do Usuário: " + bilhete.getNomeUsuario() + "\n" +
-                "Data de Compra: " + bilhete.getDataCompra() + "\n" +
-                "Validade: " + bilhete.getValidade() + "\n" +
-                "Ponto de Partida: " + bilhete.getPontoPartida() + "\n" +
-                "Ponto de Chegada: " + bilhete.getPontoChegada();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_qr_code_generator);
 
-        int width = 4000; // Defina o tamanho máximo permitido aqui
-        int height = 4000; // Defina o tamanho máximo permitido aqui
+        // Obtenha o bilhete dos extras da Intent
+        Bilhete bilhete = getIntent().getParcelableExtra("bilhete");
+
+        // Gere o código QR para o bilhete
+        Bitmap qrCodeBitmap = gerarCodigoQR(bilhete);
+
+        // Exiba o código QR em um ImageView
+        ImageView qrCodeImageView = findViewById(R.id.qrCodeImageView);
+        qrCodeImageView.setImageBitmap(qrCodeBitmap);
+    }
+
+    private Bitmap gerarCodigoQR(Bilhete bilhete) {
+        // Lógica para gerar o código QR para o bilhete
+        String bilheteData = "Nome do Usuário: " + bilhete.getNomeUsuario() + "\n"
+                + "Data: " + bilhete.getDataCompra() + "\n"
+                + "Validade: " + bilhete.getValidade() + "\n"
+                + "Ponto de Partida: " + bilhete.getPontoPartida() + "\n"
+                + "Ponto de Chegada: " + bilhete.getPontoChegada();
+
+        BitMatrix bitMatrix;
         try {
-            BitMatrix bitMatrix = new MultiFormatWriter().encode(dadosBilhete, BarcodeFormat.QR_CODE, width, height);
-            int qrCodeWidth = bitMatrix.getWidth();
-            int qrCodeHeight = bitMatrix.getHeight();
-            int[] pixels = new int[qrCodeWidth * qrCodeHeight];
-            for (int y = 0; y < qrCodeHeight; y++) {
-                int offset = y * qrCodeWidth;
-                for (int x = 0; x < qrCodeWidth; x++) {
-                    pixels[offset + x] = bitMatrix.get(x, y) ? 0xFF000000 : 0xFFFFFFFF;
-                }
-            }
-            Bitmap bitmap = Bitmap.createBitmap(qrCodeWidth, qrCodeHeight, Bitmap.Config.ARGB_8888);
-            bitmap.setPixels(pixels, 0, qrCodeWidth, 0, 0, qrCodeWidth, qrCodeHeight);
-            return bitmap;
+            bitMatrix = new MultiFormatWriter().encode(bilheteData, BarcodeFormat.QR_CODE, 500, 500);
         } catch (WriterException e) {
-            Log.e(TAG, "Error generating QR code: " + e.getMessage());
+            e.printStackTrace();
             return null;
         }
-    }
-}
+
+        int width = bitMatrix.getWidth();
+        int height = bitMatrix.getHeight();
+        int[] pixels = new int[width * height];
+        for (int y = 0; y < height; y++) {
+            int offset = y * width;
+            for (int x = 0; x < width; x++) {
+                pixels[offset + x] = bitMatrix.get(x, y) ? 0xFF000000 : 0xFFFFFFFF;
+            }
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+        return bitmap;
+    }}
+
