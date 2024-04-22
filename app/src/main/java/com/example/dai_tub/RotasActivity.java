@@ -93,7 +93,10 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
     }
 
     private void carregarTodasRotas() {
-        rotasRef.addValueEventListener(new ValueEventListener() {
+        // Limpar a lista de rotas antes de adicionar novos dados
+        listaRotas.clear();
+
+        rotasRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 List<Rota> rotas = new ArrayList<>();
@@ -106,7 +109,6 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
                 }
 
                 // Atualizar a lista de rotas
-                listaRotas.clear();
                 listaRotas.addAll(rotas);
 
                 // Atualizar a lista de rotas filtradas
@@ -121,6 +123,7 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
             }
         });
     }
+
 
 
     private void filtrarRotas(String texto) {

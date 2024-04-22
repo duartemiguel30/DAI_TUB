@@ -8,8 +8,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
+import android.util.Log;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     private static final int SPLASH_TIMEOUT = 2000; // Tempo de espera em milissegundos (2 segundos)
 
@@ -30,19 +37,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void inserirRotas() {
-        // Cria uma lista com todas as rotas
-        List<Rota> rotas = criarListaRotas();
-
         // Inicializa o Firebase Realtime Database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference rotasRef = database.getReference("rotas");
 
-        // Insere cada rota no Firebase Realtime Database
-        for (Rota rota : rotas) {
-            // Use um identificador único para cada rota, por exemplo, o próprio índice da lista
-            rotasRef.push().setValue(rota);
-        }
+        // Verifica se há dados no nó "rotas"
+        rotasRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    // Se não houver dados, insere as rotas
+                    List<Rota> rotas = criarListaRotas();
+                    for (Rota rota : rotas) {
+                        // Use um identificador único para cada rota, por exemplo, o próprio índice da lista
+                        rotasRef.push().setValue(rota);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Trate o erro, se necessário
+                Log.e(TAG, "Erro ao verificar dados de rotas: " + databaseError.getMessage());
+            }
+        });
     }
+
 
     // Método para criar e retornar a lista de todas as rotas
     private List<Rota> criarListaRotas() {
