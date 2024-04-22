@@ -104,22 +104,6 @@ public class Bilhete implements Parcelable {
         dest.writeString(validade);
         dest.writeString(pontoPartida);
         dest.writeString(pontoChegada);
-
-        // Escrever os atributos da classe Rota se o objeto não for nulo
-        if (rota != null) {
-            dest.writeString(rota.getNumero());
-            dest.writeString(rota.getDescricao());
-            dest.writeString(rota.getPontoPartida());
-            dest.writeString(rota.getPontoChegada());
-            dest.writeDouble(rota.getPrecoNormal());
-            dest.writeDouble(rota.getPrecoEstudante());
-        } else {
-            // Se o objeto rota for nulo, escreva valores padrão ou vazios
-            dest.writeString("");
-            dest.writeString("");
-            dest.writeString("");
-            dest.writeString("");
-            dest.writeDouble(0);
-            dest.writeDouble(0);
-        }
-    }}
+        dest.writeParcelable(rota, flags); // Escrever o objeto Rota no Parcel
+    }
+}

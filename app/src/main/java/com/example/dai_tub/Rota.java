@@ -1,8 +1,9 @@
 package com.example.dai_tub;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Rota implements Serializable {
+public class Rota implements Parcelable {
     private String numero;
     private String descricao;
     private String pontoPartida;
@@ -23,6 +24,26 @@ public class Rota implements Serializable {
         this.precoEstudante = precoEstudante;
     }
 
+    protected Rota(Parcel in) {
+        numero = in.readString();
+        descricao = in.readString();
+        pontoPartida = in.readString();
+        pontoChegada = in.readString();
+        precoNormal = in.readDouble();
+        precoEstudante = in.readDouble();
+    }
+
+    public static final Creator<Rota> CREATOR = new Creator<Rota>() {
+        @Override
+        public Rota createFromParcel(Parcel in) {
+            return new Rota(in);
+        }
+
+        @Override
+        public Rota[] newArray(int size) {
+            return new Rota[size];
+        }
+    };
 
     public String getNumero() {
         return numero;
@@ -70,5 +91,20 @@ public class Rota implements Serializable {
 
     public void setPrecoEstudante(double precoEstudante) {
         this.precoEstudante = precoEstudante;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(numero);
+        dest.writeString(descricao);
+        dest.writeString(pontoPartida);
+        dest.writeString(pontoChegada);
+        dest.writeDouble(precoNormal);
+        dest.writeDouble(precoEstudante);
     }
 }
