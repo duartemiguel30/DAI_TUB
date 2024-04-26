@@ -11,17 +11,22 @@ public class Rota implements Parcelable {
     private double precoNormal;
     private double precoEstudante;
 
+    private String horarioPartida;
+    private String horarioChegada;
+
     public Rota() {
         // Construtor vazio requerido pelo Firebase Realtime Database
     }
 
-    public Rota(String numero, String descricao, String pontoPartida, String pontoChegada, double precoNormal, double precoEstudante) {
+    public Rota(String numero, String descricao, String pontoPartida, String pontoChegada, double precoNormal, double precoEstudante, String horarioPartida, String horarioChegada) {
         this.numero = numero;
         this.descricao = descricao;
         this.pontoPartida = pontoPartida;
         this.pontoChegada = pontoChegada;
         this.precoNormal = precoNormal;
         this.precoEstudante = precoEstudante;
+        this.horarioPartida = horarioPartida;
+        this.horarioChegada = horarioChegada;
     }
 
     protected Rota(Parcel in) {
@@ -31,6 +36,8 @@ public class Rota implements Parcelable {
         pontoChegada = in.readString();
         precoNormal = in.readDouble();
         precoEstudante = in.readDouble();
+        horarioPartida = in.readString();
+        horarioChegada = in.readString();
     }
 
     public static final Creator<Rota> CREATOR = new Creator<Rota>() {
@@ -93,6 +100,22 @@ public class Rota implements Parcelable {
         this.precoEstudante = precoEstudante;
     }
 
+    public String getHorarioPartida() {
+        return horarioPartida;
+    }
+
+    public void setHorarioPartida(String horarioPartida) {
+        this.horarioPartida = horarioPartida;
+    }
+
+    public String getHorarioChegada() {
+        return horarioChegada;
+    }
+
+    public void setHorarioChegada(String horarioChegada) {
+        this.horarioChegada = horarioChegada;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -106,5 +129,7 @@ public class Rota implements Parcelable {
         dest.writeString(pontoChegada);
         dest.writeDouble(precoNormal);
         dest.writeDouble(precoEstudante);
+        dest.writeString(horarioPartida);
+        dest.writeString(horarioChegada);
     }
 }

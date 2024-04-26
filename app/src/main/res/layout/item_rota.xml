@@ -6,17 +6,14 @@
     android:layout_marginBottom="16dp"
     android:background="@drawable/gradient_button">
 
-    <!-- Layout para os detalhes da rota -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
         android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center_vertical">
+        android:layout_marginTop="8dp">
 
-        <!-- Nome da rota -->
         <TextView
             android:id="@+id/numeroTextView"
             android:layout_width="match_parent"
@@ -25,7 +22,6 @@
             android:textSize="18sp"
             android:textStyle="bold"/>
 
-        <!-- Outros detalhes da rota -->
         <TextView
             android:id="@+id/descricaoTextView"
             android:layout_width="match_parent"
@@ -51,21 +47,41 @@
             android:layout_marginTop="4dp"/>
     </LinearLayout>
 
-    <!-- Radio Button para seleção -->
-    <RadioButton
-        android:id="@+id/radioButtonSelecao"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginEnd="16dp"/>
+        android:orientation="horizontal">
 
-    <!-- Botão para ver preços -->
-    <Button
-        android:id="@+id/btnVerPrecos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ver Preços"
-        android:textColor="@android:color/black"
-        android:background="#FFFFFF"
-        android:layout_gravity="center_vertical"/>
+        <RadioButton
+            android:id="@+id/radioButtonSelecao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnVerPrecos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ver Preços"
+                android:textColor="@android:color/black"
+                android:background="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnVerHorarios"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ver Horarios"
+                android:textColor="@android:color/black"
+                android:background="#FFFFFF"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>

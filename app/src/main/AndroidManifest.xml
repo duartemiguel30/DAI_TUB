@@ -72,6 +72,8 @@
 
         <activity android:name=".MenuAdministradorActivity" />
 
+        <activity android:name=".DetalhesRotaActivity" />
+
     </application>
 
 </manifest>

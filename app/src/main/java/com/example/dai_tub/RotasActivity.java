@@ -38,7 +38,8 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
     private DatabaseReference rotasRef;
     private DatabaseReference bilhetesRef;
     private List<Rota> listaRotas;
-    private List<Rota> listaRotasFiltradas;
+    private List<Rota>listaRotasFiltradas;
+
     private Rota rotaSelecionada;
     private Button btnConfirmarPagamento;
 
@@ -53,7 +54,7 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         listaRotas = new ArrayList<>();
         listaRotasFiltradas = new ArrayList<>();
-        adapter = new RotaAdapter(listaRotasFiltradas, this);
+        adapter = new RotaAdapter(this, listaRotasFiltradas, this); // Correção aqui
         recyclerView.setAdapter(adapter);
 
         // Inicializar Firebase Authentication
