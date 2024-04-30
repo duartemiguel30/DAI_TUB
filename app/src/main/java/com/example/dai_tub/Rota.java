@@ -2,55 +2,38 @@ package com.example.dai_tub;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Rota implements Parcelable {
+
     private String numero;
     private String descricao;
     private String pontoPartida;
     private String pontoChegada;
-    private double precoNormal;
-    private double precoEstudante;
-
-    private String horarioPartida;
-    private String horarioChegada;
+    private double precoNormal; // Alterado para double
+    private double precoEstudante; // Alterado para double
+    private List<Horario> horarios;
+    private Horario primeiroHorario;
+    private Horario ultimoHorario;
 
     public Rota() {
-        // Construtor vazio requerido pelo Firebase Realtime Database
+        // Construtor vazio
     }
 
-    public Rota(String numero, String descricao, String pontoPartida, String pontoChegada, double precoNormal, double precoEstudante, String horarioPartida, String horarioChegada) {
+    public Rota(String numero, String descricao, String pontoPartida, String pontoChegada, double precoNormal, double precoEstudante, List<Horario> horarios) {
         this.numero = numero;
         this.descricao = descricao;
         this.pontoPartida = pontoPartida;
         this.pontoChegada = pontoChegada;
         this.precoNormal = precoNormal;
         this.precoEstudante = precoEstudante;
-        this.horarioPartida = horarioPartida;
-        this.horarioChegada = horarioChegada;
+        this.horarios = horarios;
+        configurarHorarios(); // Configura os horários de partida e chegada ao criar a instância
     }
 
-    protected Rota(Parcel in) {
-        numero = in.readString();
-        descricao = in.readString();
-        pontoPartida = in.readString();
-        pontoChegada = in.readString();
-        precoNormal = in.readDouble();
-        precoEstudante = in.readDouble();
-        horarioPartida = in.readString();
-        horarioChegada = in.readString();
-    }
-
-    public static final Creator<Rota> CREATOR = new Creator<Rota>() {
-        @Override
-        public Rota createFromParcel(Parcel in) {
-            return new Rota(in);
-        }
-
-        @Override
-        public Rota[] newArray(int size) {
-            return new Rota[size];
-        }
-    };
+    // Getters e setters para todos os atributos
 
     public String getNumero() {
         return numero;
@@ -100,22 +83,48 @@ public class Rota implements Parcelable {
         this.precoEstudante = precoEstudante;
     }
 
-    public String getHorarioPartida() {
-        return horarioPartida;
+    public List<Horario> getHorarios() {
+        return horarios;
     }
 
-    public void setHorarioPartida(String horarioPartida) {
-        this.horarioPartida = horarioPartida;
+    public void setHorarios(List<Horario> horarios) {
+        this.horarios = horarios;
+        configurarHorarios(); // Configura os horários de partida e chegada ao definir os horários
+    }
+
+    public Horario getPrimeiroHorario() {
+        return primeiroHorario;
+    }
+
+    public Horario getUltimoHorario() {
+        return ultimoHorario;
+    }
+
+    public String getHorarioPartida() {
+        if (primeiroHorario != null) {
+            return primeiroHorario.getHoraPartida() + ":" + primeiroHorario.getMinutoPartida();
+        }
+        return "Não disponível";
     }
 
     public String getHorarioChegada() {
-        return horarioChegada;
+        if (ultimoHorario != null) {
+            return ultimoHorario.getHoraChegada() + ":" + ultimoHorario.getMinutoChegada();
+        }
+        return "Não disponível";
     }
 
-    public void setHorarioChegada(String horarioChegada) {
-        this.horarioChegada = horarioChegada;
+    // Método para configurar os horários de partida e chegada
+    private void configurarHorarios() {
+        if (horarios != null && !horarios.isEmpty()) {
+            // Ordena os horários pelo horário de partida
+            Collections.sort(horarios, Comparator.comparingInt(Horario::getHoraPartida).thenComparingInt(Horario::getMinutoPartida));
+            primeiroHorario = horarios.get(0);
+            ultimoHorario = horarios.get(horarios.size() - 1);
+        }
     }
 
+    // Implementações Parcelable
     @Override
     public int describeContents() {
         return 0;
@@ -129,7 +138,29 @@ public class Rota implements Parcelable {
         dest.writeString(pontoChegada);
         dest.writeDouble(precoNormal);
         dest.writeDouble(precoEstudante);
-        dest.writeString(horarioPartida);
-        dest.writeString(horarioChegada);
+        dest.writeTypedList(horarios);
     }
+
+    protected Rota(Parcel in) {
+        numero = in.readString();
+        descricao = in.readString();
+        pontoPartida = in.readString();
+        pontoChegada = in.readString();
+        precoNormal = in.readDouble();
+        precoEstudante = in.readDouble();
+        horarios = in.createTypedArrayList(Horario.CREATOR);
+        configurarHorarios(); // Configura os horários de partida e chegada ao ler os valores
+    }
+
+    public static final Creator<Rota> CREATOR = new Creator<Rota>() {
+        @Override
+        public Rota createFromParcel(Parcel in) {
+            return new Rota(in);
+        }
+
+        @Override
+        public Rota[] newArray(int size) {
+            return new Rota[size];
+        }
+    };
 }

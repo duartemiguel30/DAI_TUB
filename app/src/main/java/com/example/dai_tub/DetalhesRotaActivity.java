@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.TextView;
+import java.util.List;
 
 public class DetalhesRotaActivity extends AppCompatActivity {
 
@@ -19,8 +20,31 @@ public class DetalhesRotaActivity extends AppCompatActivity {
 
             // Exibir os horários da rota na TextView
             TextView horariosTextView = findViewById(R.id.horariosTextView);
-            horariosTextView.setText("Horário de partida: " + rota.getHorarioPartida() + "\n" +
-                    "Horário de chegada: " + rota.getHorarioChegada());
+
+            // Verificar se a lista de horários da rota é nula
+            if (rota.getHorarios() != null) {
+                // Construir uma string com os horários
+                StringBuilder horarios = new StringBuilder();
+                horarios.append("Horários:\n");
+                List<Horario> listaHorarios = rota.getHorarios();
+                for (Horario horario : listaHorarios) {
+                    horarios.append("Partida: ")
+                            .append(horario.getHoraPartida())
+                            .append(":")
+                            .append(horario.getMinutoPartida())
+                            .append(" - Chegada: ")
+                            .append(horario.getHoraChegada())
+                            .append(":")
+                            .append(horario.getMinutoChegada())
+                            .append("\n");
+                }
+
+                // Exibir os horários na TextView
+                horariosTextView.setText(horarios.toString());
+            } else {
+                // Se a lista de horários for nula, exibir uma mensagem adequada
+                horariosTextView.setText("Não há horários disponíveis para esta rota.");
+            }
         }
     }
 }

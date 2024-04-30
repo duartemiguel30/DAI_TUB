@@ -8,10 +8,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 
 public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder> {
@@ -40,6 +38,13 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
         holder.bind(rota, listener);
 
         holder.radioButton.setChecked(selectedPosition == position);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(rota, position);
+            }
+        });
 
         holder.btnVerHorarios.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,17 +78,6 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
             pontoChegadaTextView = itemView.findViewById(R.id.pontoChegadaTextView);
             radioButton = itemView.findViewById(R.id.radioButtonSelecao);
             btnVerHorarios = itemView.findViewById(R.id.btnVerHorarios);
-
-            // Configura o OnClickListener para o item da lista
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(listaRotas.get(position), position);
-                    }
-                }
-            });
         }
 
         public void bind(final Rota rota, final OnItemClickListener listener) {

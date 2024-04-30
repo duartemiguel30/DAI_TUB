@@ -70,17 +70,22 @@
                 android:layout_weight="1"
                 android:text="Ver Preços"
                 android:textColor="@android:color/black"
-                android:background="#FFFFFF" />
+                android:background="#FFFFFF"
+                />
 
             <Button
                 android:id="@+id/btnVerHorarios"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Ver Horarios"
+                android:text="Ver Horários"
                 android:textColor="@android:color/black"
                 android:background="#FFFFFF"
-                android:layout_marginLeft="8dp" />
+                android:layout_marginLeft="8dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"/>
         </LinearLayout>
     </LinearLayout>
 
