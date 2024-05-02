@@ -10,11 +10,13 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder> {
 
     private List<Rota> listaRotas;
+    private List<Rota> listaRotasCompleta;
     private OnItemClickListener listener;
     private Context context;
     private int selectedPosition = RecyclerView.NO_POSITION;
@@ -22,6 +24,7 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
     public RotaAdapter(Context context, List<Rota> listaRotas, OnItemClickListener listener) {
         this.context = context;
         this.listaRotas = listaRotas;
+        this.listaRotasCompleta = new ArrayList<>(listaRotas); // Inicializar a lista completa
         this.listener = listener;
     }
 
@@ -42,6 +45,9 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                notifyItemChanged(selectedPosition);
+                selectedPosition = position;
+                notifyItemChanged(selectedPosition);
                 listener.onItemClick(rota, position);
             }
         });

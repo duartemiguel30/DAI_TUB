@@ -50,7 +50,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="18dp">
 
         <RadioButton
             android:id="@+id/radioButtonSelecao"
@@ -61,32 +62,43 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnVerPrecos"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Ver Preços"
-                android:textColor="@android:color/black"
-                android:background="#FFFFFF"
-                />
+                android:orientation="vertical"
+                android:gravity="center_vertical">
 
-            <Button
-                android:id="@+id/btnVerHorarios"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Ver Horários"
-                android:textColor="@android:color/black"
-                android:background="#FFFFFF"
-                android:layout_marginLeft="8dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"/>
+                <Button
+                    android:id="@+id/btnVerPrecos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ver Preços"
+                    android:textColor="@android:color/black"
+                    android:layout_marginBottom="8dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:background="@drawable/rounded_button2"
+                    android:radius="30dp"/>
+
+                <Button
+                    android:id="@+id/btnVerHorarios"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ver Horários"
+                    android:textColor="@android:color/black"
+                    android:background="@drawable/rounded_button2"
+                    android:layout_marginBottom="8dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:radius="30dp"/>
+
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>

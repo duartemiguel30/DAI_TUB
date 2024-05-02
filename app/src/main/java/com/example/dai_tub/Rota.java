@@ -8,6 +8,7 @@ import java.util.Comparator;
 
 public class Rota implements Parcelable {
 
+    private String id;
     private String numero;
     private String descricao;
     private String pontoPartida;
@@ -85,6 +86,14 @@ public class Rota implements Parcelable {
 
     public List<Horario> getHorarios() {
         return horarios;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setHorarios(List<Horario> horarios) {

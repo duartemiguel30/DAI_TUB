@@ -5,16 +5,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import androidx.appcompat.widget.SearchView;
+
 import android.widget.Toast;
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +53,32 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         rotasRef = database.getReference("rotas");
 
+        // Obtém o texto da barra de pesquisa da Intent, se houver
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("searchQuery")) {
+            String searchQuery = intent.getStringExtra("searchQuery");
+            // Se houver um texto de pesquisa, filtra as rotas com base nele
+            if (searchQuery != null) {
+                filtrarRotas(searchQuery);
+            }
+        }
+
+        // Configura a barra de pesquisa
+        SearchView searchView = findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Filtra as rotas conforme o texto digitado na barra de pesquisa
+                filtrarRotas(newText);
+                return true;
+            }
+        });
+
         btnConfirmarPagamento = findViewById(R.id.btnConfirmarPagamento);
         btnConfirmarPagamento.setEnabled(false);
         btnConfirmarPagamento.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +102,7 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
                         listaRotas.add(rota);
                     }
                 }
+                // Filtra as rotas com base no texto vazio, exibindo todas inicialmente
                 filtrarRotas("");
                 Log.d(TAG, "Rotas carregadas com sucesso. Total de rotas: " + listaRotas.size());
             }
@@ -86,11 +117,23 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
 
     private void filtrarRotas(String texto) {
         listaRotasFiltradas.clear();
-        for (Rota rota : listaRotas) {
-            if (rota.getPontoPartida().toLowerCase().contains(texto.toLowerCase()) || rota.getPontoChegada().toLowerCase().contains(texto.toLowerCase())) {
-                listaRotasFiltradas.add(rota);
+        if (texto.isEmpty()) {
+            // Se o texto estiver vazio, exibe todas as rotas
+            listaRotasFiltradas.addAll(listaRotas);
+        } else {
+            // Se houver texto, filtra as rotas com base nele
+            for (Rota rota : listaRotas) {
+                // Converte o texto para minúsculas para garantir a comparação sem distinção entre maiúsculas e minúsculas
+                String textoLowerCase = texto.toLowerCase();
+                // Verifica se o ponto de partida, ponto de chegada ou número da rota contêm o texto fornecido, ignorando maiúsculas e minúsculas
+                if (rota.getPontoPartida().toLowerCase().contains(textoLowerCase) ||
+                        rota.getPontoChegada().toLowerCase().contains(textoLowerCase) ||
+                        rota.getNumero().toLowerCase().contains(textoLowerCase)) {
+                    listaRotasFiltradas.add(rota);
+                }
             }
         }
+        // Atualiza o RecyclerView com as rotas filtradas
         adapter.notifyDataSetChanged();
     }
 
