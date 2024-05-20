@@ -3,24 +3,20 @@ package com.example.dai_tub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import androidx.appcompat.widget.SearchView;
-
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
+import android.view.View;
+import android.widget.Button;
 
 public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnItemClickListener {
 
@@ -57,7 +53,7 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("searchQuery")) {
             String searchQuery = intent.getStringExtra("searchQuery");
-            // Se houver um texto de pesquisa, filtra as rotas com base nele
+            // Se houver um texto de pesquisa, filtra as
             if (searchQuery != null) {
                 filtrarRotas(searchQuery);
             }
@@ -115,7 +111,9 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
         });
     }
 
-    private void filtrarRotas(String texto) {
+    public void filtrarRotas(String texto) {
+        texto = texto.trim(); // Remove espaços em branco extras
+        Log.d(TAG, "Texto da pesquisa recebido: " + texto);
         listaRotasFiltradas.clear();
         if (texto.isEmpty()) {
             // Se o texto estiver vazio, exibe todas as rotas
@@ -123,9 +121,10 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
         } else {
             // Se houver texto, filtra as rotas com base nele
             for (Rota rota : listaRotas) {
-                // Converte o texto para minúsculas para garantir a comparação sem distinção entre maiúsculas e minúsculas
+                Log.d(TAG, "Ponto de partida: " + rota.getPontoPartida());
+                Log.d(TAG, "Ponto de chegada: " + rota.getPontoChegada());
+                Log.d(TAG, "Número da rota: " + rota.getNumero());
                 String textoLowerCase = texto.toLowerCase();
-                // Verifica se o ponto de partida, ponto de chegada ou número da rota contêm o texto fornecido, ignorando maiúsculas e minúsculas
                 if (rota.getPontoPartida().toLowerCase().contains(textoLowerCase) ||
                         rota.getPontoChegada().toLowerCase().contains(textoLowerCase) ||
                         rota.getNumero().toLowerCase().contains(textoLowerCase)) {
@@ -135,7 +134,9 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
         }
         // Atualiza o RecyclerView com as rotas filtradas
         adapter.notifyDataSetChanged();
+        Log.d(TAG, "Total de rotas após filtragem: " + listaRotasFiltradas.size());
     }
+
 
     @Override
     public void onItemClick(Rota rota, int position) {

@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         horariosRota2.add(new Horario(6, 45, 7, 30));
         horariosRota2.add(new Horario(7, 15, 8, 0));
         // Adicione os outros horários...
-        rotas.add(new Rota("2", "Descrição da Rota 2", "Ponto de Partida da Rota 2", "Ponto de Chegada da Rota 2", 1.0, 2.0, horariosRota2));
+        rotas.add(new Rota("2", "Descrição da Rota 2", "azurem", "Ponto de Chegada da Rota 2", 1.0, 2.0, horariosRota2));
 
         // Rota 3
         List<Horario> horariosRota3 = new ArrayList<>();
