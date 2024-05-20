@@ -1,4 +1,3 @@
-
 package com.example.dai_tub;
 
 import android.content.Intent;
@@ -21,7 +20,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 
 public class MenuPrincipalActivity extends AppCompatActivity {
 
@@ -52,6 +50,17 @@ public class MenuPrincipalActivity extends AppCompatActivity {
             }
         });
 
+        // Adicione isso no onCreate de MenuPrincipalActivity
+        Button noticiasButton = findViewById(R.id.menuItemNews); // Certifique-se de ter um botão de notícias no seu layout
+        noticiasButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuPrincipalActivity.this, NoticiasActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         // Configuração do botão de pesquisa
         Button searchButton = findViewById(R.id.searchButton);
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +84,6 @@ public class MenuPrincipalActivity extends AppCompatActivity {
                     Toast.makeText(MenuPrincipalActivity.this, "Por favor, insira um texto de pesquisa", Toast.LENGTH_SHORT).show();
                 }
             }
-
         });
 
         // Carregar as notícias da base de dados Firebase
@@ -94,6 +102,11 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         String textoNoticia2 = "Participe do evento de lançamento da nova coleção da marca ABC. Serão apresentadas as últimas tendências da moda e descontos exclusivos para os participantes.";
         int imagemResource2 = R.drawable.ic_paypal; // Obtém o recurso da imagem ic_paypal
 
+        // Notícia 3
+        String tituloNoticia3 = "Conferência de Tecnologia 2024";
+        String textoNoticia3 = "A conferência anual de tecnologia 2024 será realizada em julho, apresentando as inovações mais recentes do setor.";
+        int imagemResource3 = R.drawable.ic_technology; // Assumindo que você tem essa imagem
+
         // Salvando as notícias no banco de dados Firebase
         noticiasRef.child("noticia1").child("titulo").setValue(tituloNoticia1);
         noticiasRef.child("noticia1").child("texto").setValue(textoNoticia1);
@@ -102,6 +115,10 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         noticiasRef.child("noticia2").child("titulo").setValue(tituloNoticia2);
         noticiasRef.child("noticia2").child("texto").setValue(textoNoticia2);
         noticiasRef.child("noticia2").child("imagemResource").setValue(imagemResource2); // Salva o recurso da imagem
+
+        noticiasRef.child("noticia3").child("titulo").setValue(tituloNoticia3);
+        noticiasRef.child("noticia3").child("texto").setValue(textoNoticia3);
+        noticiasRef.child("noticia3").child("imagemResource").setValue(imagemResource3); // Salva o recurso da imagem
     }
 
     // Método para carregar as notícias da base de dados Firebase
@@ -112,16 +129,20 @@ public class MenuPrincipalActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Verificar se existem notícias na base de dados
                 if (dataSnapshot.exists()) {
+                    int count = 0; // Contador para limitar a exibição a duas notícias
+
                     // Iterar sobre os filhos do nó "noticias" (noticia1 e noticia2)
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if (count >= 2) break; // Limitar a exibição a duas notícias
+
                         // Obter os valores das notícias
                         String titulo = snapshot.child("titulo").getValue(String.class);
                         String texto = snapshot.child("texto").getValue(String.class);
                         int imagemResource = snapshot.child("imagemResource").getValue(Integer.class); // Obtém o recurso da imagem
 
                         // Exibir as notícias na UI
-                        if (snapshot.getKey().equals("noticia1")) {
-                            // Atualizar os elementos de UI com os dados da notícia 1
+                        if (count == 0) {
+                            // Atualizar os elementos de UI com os dados da primeira notícia
                             TextView tituloNoticia1TextView = findViewById(R.id.tituloNoticia1TextView);
                             tituloNoticia1TextView.setText(titulo);
 
@@ -132,8 +153,8 @@ public class MenuPrincipalActivity extends AppCompatActivity {
                             ImageView imagemNoticia1ImageView = findViewById(R.id.imagemNoticia1ImageView);
                             Drawable drawable = getResources().getDrawable(imagemResource); // Obtém o recurso da imagem
                             imagemNoticia1ImageView.setImageDrawable(drawable);
-                        } else if (snapshot.getKey().equals("noticia2")) {
-                            // Atualizar os elementos de UI com os dados da notícia 2
+                        } else if (count == 1) {
+                            // Atualizar os elementos de UI com os dados da segunda notícia
                             TextView tituloNoticia2TextView = findViewById(R.id.tituloNoticia2TextView);
                             tituloNoticia2TextView.setText(titulo);
 
@@ -145,6 +166,8 @@ public class MenuPrincipalActivity extends AppCompatActivity {
                             Drawable drawable = getResources().getDrawable(imagemResource); // Obtém o recurso da imagem
                             imagemNoticia2ImageView.setImageDrawable(drawable);
                         }
+
+                        count++;
                     }
                 } else {
                     Log.d("MenuPrincipalActivity", "Nenhuma notícia encontrada na base de dados.");
@@ -152,7 +175,7 @@ public class MenuPrincipalActivity extends AppCompatActivity {
             }
 
             @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Lidar com erro de leitura da base de dados, se necessário
                 Log.e("MenuPrincipalActivity", "Erro ao carregar as notícias: " + databaseError.getMessage());
             }

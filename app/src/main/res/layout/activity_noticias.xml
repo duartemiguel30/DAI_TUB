@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_button"
+    android:padding="16dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Template for a single news item -->
+            <LinearLayout
+                android:id="@+id/newsItem1"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/news_item_background"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tituloNoticia1TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Título Notícia 1"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:background="@drawable/gradient_background"
+                    android:textColor="@android:color/white"
+                    android:padding="8dp"
+                    android:fontFamily="@font/jersey25regular" />
+
+                <ImageView
+                    android:id="@+id/imagemNoticia1ImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/image_border" />
+
+                <TextView
+                    android:id="@+id/textoNoticia1TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Texto da Notícia 1"
+                    android:textSize="20sp"
+                    android:lineSpacingExtra="4dp"
+                    android:fontFamily="@font/librebaskervillebold"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+            <!-- Repeat the above block for other news items (newsItem2 to newsItem6) -->
+
+            <LinearLayout
+                android:id="@+id/newsItem2"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/news_item_background"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tituloNoticia2TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Título Notícia 2"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:background="@drawable/gradient_background"
+                    android:textColor="@android:color/white"
+                    android:padding="8dp"
+                    android:fontFamily="@font/jersey25regular" />
+
+                <ImageView
+                    android:id="@+id/imagemNoticia2ImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/image_border" />
+
+                <TextView
+                    android:id="@+id/textoNoticia2TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Texto da Notícia 2"
+                    android:textSize="20sp"
+                    android:lineSpacingExtra="4dp"
+                    android:fontFamily="@font/librebaskervillebold"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/newsItem3"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/news_item_background"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tituloNoticia3TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Título Notícia 3"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:background="@drawable/gradient_background"
+                    android:textColor="@android:color/white"
+                    android:padding="8dp"
+                    android:fontFamily="@font/jersey25regular" />
+
+                <ImageView
+                    android:id="@+id/imagemNoticia3ImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/image_border" />
+
+                <TextView
+                    android:id="@+id/textoNoticia3TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Texto da Notícia 3"
+                    android:textSize="20sp"
+                    android:lineSpacingExtra="4dp"
+                    android:fontFamily="@font/librebaskervillebold"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/newsItem4"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/news_item_background"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tituloNoticia4TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Título Notícia 4"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:background="@drawable/gradient_background"
+                    android:textColor="@android:color/white"
+                    android:padding="8dp"
+                    android:fontFamily="@font/jersey25regular" />
+
+                <ImageView
+                    android:id="@+id/imagemNoticia4ImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/image_border" />
+
+                <TextView
+                    android:id="@+id/textoNoticia4TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Texto da Notícia 4"
+                    android:textSize="17sp"
+                    android:lineSpacingExtra="4dp"
+                    android:fontFamily="@font/librebaskervillebold"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/newsItem5"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/news_item_background"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tituloNoticia5TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Título Notícia 5"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:background="@drawable/gradient_background"
+                    android:textColor="@android:color/white"
+                    android:padding="8dp"
+                    android:fontFamily="@font/jersey25regular" />
+
+                <ImageView
+                    android:id="@+id/imagemNoticia5ImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/image_border" />
+
+                <TextView
+                    android:id="@+id/textoNoticia5TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Texto da Notícia 5"
+                    android:textSize="17sp"
+                    android:lineSpacingExtra="4dp"
+                    android:fontFamily="@font/librebaskervillebold"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/newsItem6"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/news_item_background"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tituloNoticia6TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Título Notícia 6"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:background="@drawable/gradient_background"
+                    android:textColor="@android:color/white"
+                    android:padding="8dp"
+                    android:fontFamily="@font/jersey25regular" />
+
+                <ImageView
+                    android:id="@+id/imagemNoticia6ImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/image_border" />
+
+                <TextView
+                    android:id="@+id/textoNoticia6TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Texto da Notícia 6"
+                    android:textSize="17sp"
+                    android:lineSpacingExtra="4dp"
+                    android:fontFamily="@font/librebaskervillebold"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

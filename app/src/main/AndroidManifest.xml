@@ -74,6 +74,8 @@
 
         <activity android:name=".DetalhesRotaActivity" />
 
+        <activity android:name=".NoticiasActivity" />
+
     </application>
 
 </manifest>
