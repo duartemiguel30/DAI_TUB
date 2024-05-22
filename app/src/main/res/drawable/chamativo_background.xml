@@ -1,0 +1,6 @@
+<!-- chamativo_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FF4081" /> <!-- Cor de fundo -->
+    <corners android:radius="8dp" /> <!-- Borda arredondada -->
+</shape>

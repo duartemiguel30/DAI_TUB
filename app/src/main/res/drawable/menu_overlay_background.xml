@@ -1,0 +1,5 @@
+<!-- menu_overlay_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#800080" /> <!-- Cor de fundo com transparência -->
+</shape>
