@@ -50,16 +50,6 @@
             android:layout_height="wrap_content"
             android:paddingBottom="16dp">
 
-            <!-- Soluções rápidas -->
-            <TextView
-                android:id="@+id/solutionsHeader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="Soluções rápidas"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_marginTop="16dp"/>
 
             <!-- LinearLayout para botões "Comprar Bilhetes" e "Validar Bilhetes" -->
             <LinearLayout
@@ -67,23 +57,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_below="@id/solutionsHeader"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="3dp"
                 android:gravity="center">
 
                 <Button
                     android:id="@+id/buyTicketButton"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:text="Comprar Bilhetes"
-                    android:textSize="14sp"
+                    android:text="Comprar"
+                    android:textSize="15sp"
                     android:textStyle="bold"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_height="50dp"
+                    android:padding="18dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="8dp"
                     android:background="@drawable/gradient_button" />
 
                 <Button
@@ -91,14 +78,12 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:text="Validar Bilhetes"
-                    android:textSize="14sp"
+                    android:textSize="15sp"
                     android:textStyle="bold"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_height="50dp"
+                    android:padding="18dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginHorizontal="8dp"
                     android:background="@drawable/gradient_button" />
             </LinearLayout>
 
@@ -147,18 +132,21 @@
 
             </LinearLayout>
 
-
-            <!-- Notificações -->
             <TextView
                 android:id="@+id/newsTab"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Notícias"
                 android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="25sp"
+                android:textColor="#FFFFFF"
                 android:layout_below="@id/searchBar"
+                android:gravity="center"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp" />
+                android:background="@drawable/rounded_rectangle"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="5dp" />
+
 
             <!-- LinearLayout para conter as notificações -->
             <LinearLayout
@@ -175,7 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
-                    android:background="@android:color/transparent"
+                    android:background="@drawable/news_border"
                     android:padding="16dp">
 
                     <!-- Imagem da notificação 1 -->
@@ -212,7 +200,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
-                    android:background="@android:color/transparent"
+                    android:background="@drawable/news_border"
                     android:padding="16dp">
 
                     <!-- Imagem da notificação 2 -->
@@ -251,26 +239,22 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_below="@id/newsLayout"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:gravity="center">
 
                 <!-- Recompensas -->
-                <LinearLayout
+                <Button
+                    android:id="@+id/rewardsButton"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button_background"
                     android:gravity="center"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Recompensas"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                    android:padding="16dp"
+                    android:text="Recompensas"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <!-- Espaço entre Recompensas e Notícias -->
                 <View
@@ -278,29 +262,39 @@
                     android:layout_height="match_parent"/>
 
                 <!-- Notícias -->
-                <LinearLayout
+                <Button
+                    android:id="@+id/news2Button"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button_background"
-                    android:gravity="center"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Notícias"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:gravity="center"/>
-                </LinearLayout>
+                    android:padding="16dp"
+                    android:text="Notícias da TUB"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
             </LinearLayout>
 
-            <!-- Espaço em branco entre Recompensas e Notícias -->
-            <View
+            <!-- Texto informativo para os botões -->
+            <TextView
+                android:id="@+id/rewardsDescription"
                 android:layout_width="match_parent"
-                android:layout_height="100dp" />
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@android:color/darker_gray"
+                android:layout_below="@id/rewardsButton"
+                android:gravity="center"/>
+
+            <!-- Texto informativo para os botões -->
+            <TextView
+                android:id="@+id/newsDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@android:color/darker_gray"
+                android:layout_below="@id/news2Button"
+                android:gravity="center"/>
 
             <!-- Barra fixa para dividir FAQs e Suporte -->
             <View
@@ -321,8 +315,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layoutAnimation="@drawable/layout_animation"
         android:visibility="gone"
-        android:background="@android:color/white">
+        android:background="#80ADD8E6">
 
         <!-- Adicione itens de menu aqui -->
         <Button
@@ -330,43 +325,54 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Home"
-            android:padding="16dp"/>
+            android:padding="16dp"
+            android:background="#AA4286F4"
+            android:textColor="@android:color/white"/>
 
         <Button
             android:id="@+id/menuItemRoutes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Rotas"
-            android:padding="16dp"/>
+            android:background="#AA4286F4"
+            android:padding="16dp"
+            android:textColor="@android:color/white"/>
 
         <Button
             android:id="@+id/loadBalanceButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Carregar Saldo"
-            android:padding="16dp"/>
+            android:padding="16dp"
+            android:background="#AA4286F4"
+            android:textColor="@android:color/white"/>
 
         <Button
             android:id="@+id/menuItemNews"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Notícias"
-            android:padding="16dp"/>
+            android:padding="16dp"
+            android:background="#AA4286F4"
+            android:textColor="@android:color/white"/>
 
         <Button
             android:id="@+id/menuItemNotifications"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Notificações"
-            android:padding="16dp"/>
+            android:padding="16dp"
+            android:background="#AA4286F4"
+            android:textColor="@android:color/white"/>
 
         <Button
             android:id="@+id/menuItemMyTickets"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Meus Bilhetes"
-            android:padding="16dp"/>
-
+            android:padding="16dp"
+            android:background="#AA4286F4"
+            android:textColor="@android:color/white"/>
 
         <!-- Adicione mais itens de menu conforme necessário -->
 

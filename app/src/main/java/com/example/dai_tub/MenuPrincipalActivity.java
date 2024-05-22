@@ -21,6 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
+
 public class MenuPrincipalActivity extends AppCompatActivity {
 
     DatabaseReference noticiasRef; // Referência para o nó "noticias" no Realtime Database
@@ -50,8 +52,18 @@ public class MenuPrincipalActivity extends AppCompatActivity {
             }
         });
 
-        // Adicione isso no onCreate de MenuPrincipalActivity
-        Button noticiasButton = findViewById(R.id.menuItemNews); // Certifique-se de ter um botão de notícias no seu layout
+        // Botão para a ConfirmarPagamentoActivity
+        Button comprarBilhetesButton = findViewById(R.id.buyTicketButton);
+        comprarBilhetesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuPrincipalActivity.this, RotasActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Botão para a NoticiasActivity
+        Button noticiasButton = findViewById(R.id.menuItemNews);
         noticiasButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +72,25 @@ public class MenuPrincipalActivity extends AppCompatActivity {
             }
         });
 
+        // Botão para a MeusBilhetesActivity
+        Button meusBilhetesButton = findViewById(R.id.menuItemMyTickets);
+        meusBilhetesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuPrincipalActivity.this, MeusBilhetesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Botão para a CarregarSaldoActivity
+        Button carregarSaldoButton = findViewById(R.id.loadBalanceButton);
+        carregarSaldoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuPrincipalActivity.this, CarregarSaldoActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // Configuração do botão de pesquisa
         Button searchButton = findViewById(R.id.searchButton);
@@ -83,6 +114,26 @@ public class MenuPrincipalActivity extends AppCompatActivity {
                     // Se o texto da pesquisa estiver vazio, exiba uma mensagem de erro
                     Toast.makeText(MenuPrincipalActivity.this, "Por favor, insira um texto de pesquisa", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        // Configuração do botão profileButton para ir para PerfilActivity
+        Button profileButton = findViewById(R.id.profileButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuPrincipalActivity.this, PerfilActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Configuração do botão news2Button para ir para NoticiasActivity
+        Button news2Button = findViewById(R.id.news2Button);
+        news2Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuPrincipalActivity.this, NoticiasActivity.class);
+                startActivity(intent);
             }
         });
 
