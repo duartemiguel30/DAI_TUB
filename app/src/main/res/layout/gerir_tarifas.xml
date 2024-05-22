@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_blue_to_white">
+
+    <!-- Botão Back -->
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BACK"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_margin="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"/>
+
+    <!-- Texto "Gerir Tarifas" -->
+    <TextView
+        android:id="@+id/greetingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gerir Tarifas"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/backButton"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Texto "Escolha o que deseja fazer:" -->
+    <TextView
+        android:id="@+id/chooseOptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Escolha o que deseja fazer:"
+        android:textSize="16sp"
+        android:textColor="#808080"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/greetingText"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
+
+    <LinearLayout
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <!-- Botão para adicionar tarifas -->
+        <Button
+            android:id="@+id/adicionar_tarifas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adicionar Tarifas"
+            android:textSize="16sp"
+            android:background="@drawable/button_background"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:onClick="adicionarTarifas" />
+
+        <!-- Botão para remover tarifas -->
+        <Button
+            android:id="@+id/remover_tarifas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Remover Tarifas"
+            android:textSize="16sp"
+            android:background="@drawable/button_background"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:onClick="removertarifas" />
+
+        <!-- Botão para editar tarifas  -->
+        <Button
+            android:id="@+id/editar_tarifas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar Tarifas"
+            android:textSize="16sp"
+            android:background="@drawable/button_background"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:onClick="editarTarifas" />
+
+        <!-- Botão para visualizar tarifas  -->
+        <Button
+            android:id="@+id/visualizar_tarifas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Visualizar Tarifas"
+            android:textSize="16sp"
+            android:background="@drawable/button_background"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:onClick="visualizarTarifas" />
+
+    </LinearLayout>
+
+    <!-- Imagem TUB -->
+    <ImageView
+        android:id="@+id/tubImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logotub"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/profileInfoLayout"
+        android:layout_marginTop="550dp"/>
+
+</RelativeLayout>
