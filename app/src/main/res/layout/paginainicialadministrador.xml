@@ -64,18 +64,18 @@
             android:layout_marginBottom="10dp"
             android:onClick="gerirViagens" />
 
-        <!-- Botão para gerir a faturação -->
+        <!-- Botão para gerir tarifas -->
         <Button
-            android:id="@+id/gerir_faturacao"
+            android:id="@+id/gerir_tarifas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gerir Faturação"
+            android:text="Gerir Tarifas"
             android:textSize="16sp"
             android:background="@drawable/button_background"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginBottom="10dp"
-            android:onClick="gerirFaturacao" />
+            android:onClick="gerirTarifas" />
 
         <!-- Botão para gerir rotas  -->
         <Button

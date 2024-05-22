@@ -76,6 +76,15 @@
 
         <activity android:name=".NoticiasActivity" />
 
+        <activity android:name=".MenuGerirTarifasActivity" />
+
+        <activity android:name=".AdicionarTarifasActivity" />
+
+        <activity android:name=".RemoverTarifasActivity" />
+
+        <activity android:name=".EditarTarifasActivity" />
+
+
     </application>
 
 </manifest>
