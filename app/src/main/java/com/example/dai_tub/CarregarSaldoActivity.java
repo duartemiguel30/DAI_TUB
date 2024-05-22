@@ -14,9 +14,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class CarregarSaldoActivity extends AppCompatActivity {
 
@@ -41,6 +41,21 @@ public class CarregarSaldoActivity extends AppCompatActivity {
         }
     }
 
+    public void onMultibancoClick(View view) {
+        // Aqui, você pode adicionar código para lidar com a seleção da opção Multibanco,
+        // mas como você quer apenas manter a seleção, não é necessário adicionar nada aqui.
+    }
+
+    public void onMbwayClick(View view) {
+        // Aqui, você pode adicionar código para lidar com a seleção da opção MB Way,
+        // mas como você quer apenas manter a seleção, não é necessário adicionar nada aqui.
+    }
+
+    public void onPayPalClick(View view) {
+        // Aqui, você pode adicionar código para lidar com a seleção da opção PayPal,
+        // mas como você quer apenas manter a seleção, não é necessário adicionar nada aqui.
+    }
+
     public void onLoadBalanceClick(View view) {
         // Obtenha o valor do saldo do EditText
         EditText saldoEditText = findViewById(R.id.loadBalanceEditText);
@@ -62,24 +77,37 @@ public class CarregarSaldoActivity extends AppCompatActivity {
     }
 
     private void salvarSaldo(final int novoSaldo) {
-        // Atualize o saldo no Realtime Database
-        userDatabaseRef.child("saldo").setValue(novoSaldo)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        showToast("Saldo atualizado com sucesso!");
-                        // Redirecione para a página de perfil
-                        Intent intent = new Intent(CarregarSaldoActivity.this, PerfilActivity.class);
-                        startActivity(intent);
-                        finish(); // Finaliza a atividade atual
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        showToast("Erro ao atualizar o saldo no Realtime Database.");
-                    }
-                });
+        // Obtenha o saldo atual do usuário para somar ao novo saldo
+        Query query = userDatabaseRef.child("saldo");
+        query.get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                int saldoAtual = 0;
+                if (dataSnapshot.exists()) {
+                    saldoAtual = dataSnapshot.getValue(Integer.class);
+                }
+                int saldoTotal = saldoAtual + novoSaldo;
+
+                // Atualize o saldo no Realtime Database
+                userDatabaseRef.child("saldo").setValue(saldoTotal)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                showToast("Saldo atualizado com sucesso!");
+                                // Redirecione para a página de perfil
+                                Intent intent = new Intent(CarregarSaldoActivity.this, PerfilActivity.class);
+                                startActivity(intent);
+                                finish(); // Finaliza a atividade atual
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                showToast("Erro ao atualizar o saldo no Realtime Database.");
+                            }
+                        });
+            }
+        });
     }
 
     // Método para exibir uma mensagem de toast

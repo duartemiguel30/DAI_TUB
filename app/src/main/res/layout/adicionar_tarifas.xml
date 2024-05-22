@@ -89,7 +89,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/logotub"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/profileInfoLayout"
+        android:layout_below="@id/profileinfolayout"
         android:layout_marginTop="550dp"/>
 
 </RelativeLayout>

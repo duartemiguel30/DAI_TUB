@@ -144,19 +144,55 @@ public class MenuPrincipalActivity extends AppCompatActivity {
     // Método para adicionar as notícias diretamente no banco de dados Firebase
     private void adicionarNoticiasFirebase() {
         // Notícia 1
-        String tituloNoticia1 = "Novo lançamento: Smartphone XYZ";
-        String textoNoticia1 = "A empresa XYZ acaba de lançar seu mais recente smartphone, com uma tela de alta resolução, câmera de última geração e desempenho excepcional.";
-        int imagemResource1 = R.drawable.ic_profile; // Obtém o recurso da imagem ic_profile
+        String tituloNoticia1 = "Rampa da Falperra- Alteração percurso Linha 23";
+        String textoNoticia1 = "Informam-se todos os clientes dos TUB que, devido à realização do evento Rampa da Falperra, nos dias 18 e 19 de maio, a linha 23 fará percurso alternativo. A partir da Av. da Liberdade, no sentido ida-volta, circula pela Av. João XXI, Av. João Paulo II, Estrada do Bom Jesus, Rua do Rio Mau, fazendo ponto de horário em Espinho Cruzamento.";
+        int imagemResource1 = R.drawable.im_noticia1;
 
         // Notícia 2
-        String tituloNoticia2 = "Evento de lançamento da nova coleção";
-        String textoNoticia2 = "Participe do evento de lançamento da nova coleção da marca ABC. Serão apresentadas as últimas tendências da moda e descontos exclusivos para os participantes.";
-        int imagemResource2 = R.drawable.ic_paypal; // Obtém o recurso da imagem ic_paypal
+        String tituloNoticia2 = "Novo local de paragem: Rua São Martinho (viaduto)";
+        String textoNoticia2 = "Informam-se todos os clientes dos TUB que, a partir de hoje, 16 de maio, disponibilizamos aos nossos clientes, uma nova paragem na Rua de São Martinho, localizada debaixo do viaduto, para as linhas 5, 50, 52, 85, 94 e 949.\n" +
+                "\n";
+        int imagemResource2 = R.drawable.im_noticia2;
 
         // Notícia 3
-        String tituloNoticia3 = "Conferência de Tecnologia 2024";
-        String textoNoticia3 = "A conferência anual de tecnologia 2024 será realizada em julho, apresentando as inovações mais recentes do setor.";
-        int imagemResource3 = R.drawable.ic_technology; // Assumindo que você tem essa imagem
+        String tituloNoticia3 = "Transporte para o futebol: S.C.Braga - FC Porto, sábado, 18 maio, 20h30";
+        String textoNoticia3 = "Partidas às 19:30 de:\tRegresso no final do jogo para:\n" +
+                " \t \n" +
+                "1 - S. Mamede d'Este (Junta de Freguesia)- 19:30\t1 - S. Mamede d'Este (Junta de Freguesia)\n" +
+                "2 - Monsenhor Airosa - 19:15\t2 - Cruzamento de Esporões (Farmácia)\n" +
+                "Cruz.to de Esporões (Farmácia) – 19:30\t3 - Santa Lucrécia de Algeriz\n" +
+                "3 – Santa Lucrécia de Algeriz- 19:00\t4 – Cabreiros\n" +
+                "4 – Cabreiros-19:30\t5 – Avenida da Liberdade\n" +
+                "5 – Avenida Central IV– 19:45\t \n" +
+                "Títulos Válidos:\t \n" +
+                "Tarifário em Vigor\n" +
+                "Bilhete Especial Estádio – 1,00€ (válido para ida e volta)\n" +
+                "Importante: Conservar o título até ao final da viagem de regresso.\t ";
+        int imagemResource3 = R.drawable.im_noticia3;
+
+        // Notícia 4
+        String tituloNoticia4 = "12 de abril (Dia Nacional do Ar)- Transporte gratuito em toda a rede dos TUB";
+        String textoNoticia4 = "De Quarta-feira, 10 abril 2024 a Sexta-feira, 12 abril 2024";
+        int imagemResource4 = R.drawable.im_noticia4;
+
+        // Notícia 5
+        String tituloNoticia5 = "Sexta-feira Santa- Horário Postos de Venda";
+        String textoNoticia5 = "Informam-se os clientes dos TUB que no dia 29 de março de 2024 (feriado), estão em funcionamento os seguintes Pontos de Venda: Rechicho- 09h00 às 12h30 e 14h30 às 18h00 - TUB / Agentes (Payshop).";
+        int imagemResource5 = R.drawable.im_noticia5;
+
+        // Notícia 6
+        String tituloNoticia6 = "23 e 24 de março- Transporte especial para a AGRO";
+        String textoNoticia6 = "Nos dias 21 e 22 de março utilize as nossas linhas regulares e nos dias 23 e 24 (sábado e domingo) vá no nosso shutlle especial.\n" +
+                "\n" +
+                "Shuttle de 20 em 20 minutos, a partir do Eleclerc e Minho Center.\n" +
+                "\n" +
+                "Apresente ainda o seu bilhete TUB e usufrua de 50% do valor da entrada na AGRO.\n" +
+                "\n" +
+                "*oferta exclusiva apenas para os dias 23 e 24 de março.\n" +
+                "\n";
+        int imagemResource6 = R.drawable.im_noticia6;
+
+
 
         // Salvando as notícias no banco de dados Firebase
         noticiasRef.child("noticia1").child("titulo").setValue(tituloNoticia1);
@@ -170,6 +206,18 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         noticiasRef.child("noticia3").child("titulo").setValue(tituloNoticia3);
         noticiasRef.child("noticia3").child("texto").setValue(textoNoticia3);
         noticiasRef.child("noticia3").child("imagemResource").setValue(imagemResource3); // Salva o recurso da imagem
+
+        noticiasRef.child("noticia4").child("titulo").setValue(tituloNoticia4);
+        noticiasRef.child("noticia4").child("texto").setValue(textoNoticia4);
+        noticiasRef.child("noticia4").child("imagemResource").setValue(imagemResource4); // Salva o recurso da imagem
+
+        noticiasRef.child("noticia5").child("titulo").setValue(tituloNoticia5);
+        noticiasRef.child("noticia5").child("texto").setValue(textoNoticia5);
+        noticiasRef.child("noticia5").child("imagemResource").setValue(imagemResource5); // Salva o recurso da imagem
+
+        noticiasRef.child("noticia6").child("titulo").setValue(tituloNoticia6);
+        noticiasRef.child("noticia6").child("texto").setValue(textoNoticia6);
+        noticiasRef.child("noticia6").child("imagemResource").setValue(imagemResource6); // Salva o recurso da imagem
     }
 
     // Método para carregar as notícias da base de dados Firebase

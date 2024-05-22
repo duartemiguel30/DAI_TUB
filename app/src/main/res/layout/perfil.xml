@@ -1,44 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_blue_to_white">
+    android:background="@drawable/gradient_blue_to_white"
+    android:padding="16dp">
 
-    <!-- Botão Back -->
-    <TextView
+    <!-- Botão Voltar -->
+    <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BACK"
-        android:textSize="18sp"
-        android:textColor="#000000"
-        android:layout_margin="16dp"
+        android:text="Voltar"
+        android:textSize="14sp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/button_background"/>
 
-    <!-- Saudação -->
-    <TextView
-        android:id="@+id/greetingText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Olá, João Silva"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/backButton"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="24dp"/>
-
-    <!-- Tabela para informações do perfil -->
+    <!-- Cartão de Saudação e Saldo -->
     <LinearLayout
-        android:id="@+id/profileInfoLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp"
-        android:layout_below="@id/greetingText"
-        android:layout_centerHorizontal="true">
+        android:elevation="4dp"
+        android:background="@drawable/card_background_blue"
+        android:layout_below="@id/backButton"
+        android:layout_marginTop="24dp"
+        android:radius="50dp"
+        android:gravity="center">
+
+        <!-- Saudação -->
+        <TextView
+            android:id="@+id/greetingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Olá, João Silva"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:paddingBottom="16dp"
+            android:gravity="center"/>
+
+        <!-- Cartão de Saldo -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:elevation="4dp"
+            android:background="@drawable/card_background"
+            android:gravity="center_vertical"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_wallet"
+                android:layout_marginEnd="16dp"/>
+
+            <TextView
+                android:id="@+id/balanceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R$ 100,00"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#000000"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Cartão de Informações do Perfil -->
+    <LinearLayout
+        android:id="@+id/profileinfolayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:elevation="4dp"
+        android:background="@drawable/card_background"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="16dp">
 
         <!-- Nome Completo -->
         <LinearLayout
@@ -48,11 +90,11 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Nome Completo"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:textSize="16sp"
                 android:textColor="#000000"
                 android:padding="8dp"/>
 
@@ -74,11 +116,11 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Email"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:textSize="16sp"
                 android:textColor="#000000"
                 android:padding="8dp"/>
 
@@ -100,11 +142,11 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="NIF"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:textSize="16sp"
                 android:textColor="#000000"
                 android:padding="8dp"/>
 
@@ -118,7 +160,7 @@
                 android:padding="8dp"/>
         </LinearLayout>
 
-        <!-- Numero de Passe -->
+        <!-- Número de Passe -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -126,11 +168,11 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Número de Passe"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:textSize="16sp"
                 android:textColor="#000000"
                 android:padding="8dp"/>
 
@@ -144,7 +186,7 @@
                 android:padding="8dp"/>
         </LinearLayout>
 
-        <!-- Numero de Viagens Compradas -->
+        <!-- Número de Viagens Compradas -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -152,11 +194,11 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Número de Viagens Compradas"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:textSize="16sp"
                 android:textColor="#000000"
                 android:padding="8dp"/>
 
@@ -169,33 +211,6 @@
                 android:textColor="#000000"
                 android:padding="8dp"/>
         </LinearLayout>
-
-        <!-- Saldo -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Saldo"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#000000"
-                android:padding="8dp"/>
-
-            <TextView
-                android:id="@+id/balanceText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="R$ 100,00"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:padding="8dp"/>
-        </LinearLayout>
-
     </LinearLayout>
 
     <!-- Imagem TUB -->
@@ -205,7 +220,6 @@
         android:layout_height="wrap_content"
         android:src="@drawable/logotub"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/profileInfoLayout"
-        android:layout_marginTop="24dp"/>
-
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="24dp"/>
 </RelativeLayout>

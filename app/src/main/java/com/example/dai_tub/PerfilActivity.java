@@ -2,13 +2,11 @@ package com.example.dai_tub;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,7 +23,7 @@ public class PerfilActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.perfil);
+        setContentView(R.layout.perfil); // Certifique-se de que este é o nome correto do seu layout XML
 
         // Referências aos elementos do layout
         TextView greetingText = findViewById(R.id.greetingText);
@@ -33,7 +31,13 @@ public class PerfilActivity extends AppCompatActivity {
         TextView emailText = findViewById(R.id.emailText);
         TextView nifText = findViewById(R.id.nifText);
         TextView passNumberText = findViewById(R.id.passNumberText);
-        balanceText = findViewById(R.id.balanceText); // Atribua a balanceText
+        balanceText = findViewById(R.id.balanceText);
+
+        // Verifique se todas as Views foram encontradas
+        if (greetingText == null || fullNameText == null || emailText == null || nifText == null || passNumberText == null || balanceText == null) {
+            Log.e("PerfilActivity", "Uma ou mais Views não foram encontradas");
+            return;
+        }
 
         // Obtendo a referência do usuário atual do Firebase
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -59,10 +63,8 @@ public class PerfilActivity extends AppCompatActivity {
 
                             // Verificar se o número de passe está presente e não está vazio
                             if (user.getNumeroPasse() != null && !user.getNumeroPasse().isEmpty()) {
-                                // Se o número de passe estiver preenchido, exibe-o
                                 passNumberText.setText(user.getNumeroPasse());
                             }
-                            // Torna o passNumberText visível independente do número de passe estar presente
                             passNumberText.setVisibility(View.VISIBLE);
 
                             // Exibe o saldo atual buscando-o do Firebase Realtime Database
@@ -86,7 +88,6 @@ public class PerfilActivity extends AppCompatActivity {
         findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Chame onBackPressed para voltar à atividade anterior
                 onBackPressed();
             }
         });
