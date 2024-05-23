@@ -82,5 +82,5 @@ public class BilheteAdapter extends RecyclerView.Adapter<BilheteAdapter.BilheteV
             intent.putExtra("bilhete", bilhete);
             itemView.getContext().startActivity(intent);
         }
-        }
     }
+}

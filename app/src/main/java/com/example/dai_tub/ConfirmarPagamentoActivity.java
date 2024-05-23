@@ -137,6 +137,3 @@ public class ConfirmarPagamentoActivity extends AppCompatActivity {
     }
 
 }
-
-
-

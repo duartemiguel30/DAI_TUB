@@ -83,5 +83,4 @@ public class Horario implements Parcelable {
         public Horario[] newArray(int size) {
             return new Horario[size];
         }
-    };
-}
+    };}

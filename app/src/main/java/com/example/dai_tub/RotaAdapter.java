@@ -1,30 +1,28 @@
+// RotaAdapter.java
+
 package com.example.dai_tub;
 
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder> {
 
     private List<Rota> listaRotas;
-    private List<Rota> listaRotasCompleta;
     private OnItemClickListener listener;
-    private Context context;
     private int selectedPosition = RecyclerView.NO_POSITION;
 
-    public RotaAdapter(Context context, List<Rota> listaRotas, OnItemClickListener listener) {
-        this.context = context;
+    public RotaAdapter(List<Rota> listaRotas, OnItemClickListener listener) {
         this.listaRotas = listaRotas;
-        this.listaRotasCompleta = new ArrayList<>(listaRotas); // Inicializar a lista completa
         this.listener = listener;
     }
 
@@ -42,22 +40,18 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
 
         holder.radioButton.setChecked(selectedPosition == position);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.btnVerPrecos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                notifyItemChanged(selectedPosition);
-                selectedPosition = position;
-                notifyItemChanged(selectedPosition);
-                listener.onItemClick(rota, position);
-            }
-        });
+                // Obtém os preços da rota
+                double precoNormal = rota.getPrecoNormal();
+                double precoEstudante = rota.getPrecoEstudante();
 
-        holder.btnVerHorarios.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, DetalhesRotaActivity.class);
-                intent.putExtra("rota", rota);
-                context.startActivity(intent);
+                // Constrói a mensagem com os preços
+                String mensagem = "Preço Normal: €" + precoNormal + "\nPreço Estudante: €" + precoEstudante;
+
+                // Mostra a mensagem
+                Toast.makeText(holder.itemView.getContext(), mensagem, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -67,14 +61,14 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
         return listaRotas.size();
     }
 
-    public class RotaViewHolder extends RecyclerView.ViewHolder {
+    public static class RotaViewHolder extends RecyclerView.ViewHolder {
 
         private TextView numeroTextView;
         private TextView descricaoTextView;
         private TextView pontoPartidaTextView;
         private TextView pontoChegadaTextView;
         private RadioButton radioButton;
-        private Button btnVerHorarios;
+        public Button btnVerPrecos;
 
         public RotaViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,7 +77,7 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
             pontoPartidaTextView = itemView.findViewById(R.id.pontoPartidaTextView);
             pontoChegadaTextView = itemView.findViewById(R.id.pontoChegadaTextView);
             radioButton = itemView.findViewById(R.id.radioButtonSelecao);
-            btnVerHorarios = itemView.findViewById(R.id.btnVerHorarios);
+            btnVerPrecos = itemView.findViewById(R.id.btnVerPrecos);
         }
 
         public void bind(final Rota rota, final OnItemClickListener listener) {
@@ -91,6 +85,13 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
             descricaoTextView.setText(rota.getDescricao());
             pontoPartidaTextView.setText("Ponto de Partida: " + rota.getPontoPartida());
             pontoChegadaTextView.setText("Ponto de Chegada: " + rota.getPontoChegada());
+
+            radioButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(rota, getAdapterPosition());
+                }
+            });
         }
     }
 
