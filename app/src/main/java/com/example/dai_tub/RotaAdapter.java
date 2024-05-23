@@ -1,7 +1,7 @@
-// RotaAdapter.java
-
 package com.example.dai_tub;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +20,10 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
     private List<Rota> listaRotas;
     private OnItemClickListener listener;
     private int selectedPosition = RecyclerView.NO_POSITION;
+    private Context context;
 
-    public RotaAdapter(List<Rota> listaRotas, OnItemClickListener listener) {
+    public RotaAdapter(Context context, List<Rota> listaRotas, OnItemClickListener listener) {
+        this.context = context;
         this.listaRotas = listaRotas;
         this.listener = listener;
     }
@@ -54,6 +56,16 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
                 Toast.makeText(holder.itemView.getContext(), mensagem, Toast.LENGTH_SHORT).show();
             }
         });
+
+        holder.btnVerHorarios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navega para a atividade de detalhes da rota, passando a rota inteira
+                Intent intent = new Intent(context, DetalhesRotaActivity.class);
+                intent.putExtra("rota", rota); // Passa a rota inteira
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -68,7 +80,8 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
         private TextView pontoPartidaTextView;
         private TextView pontoChegadaTextView;
         private RadioButton radioButton;
-        public Button btnVerPrecos;
+        private Button btnVerPrecos;
+        private Button btnVerHorarios;
 
         public RotaViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,6 +91,7 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
             pontoChegadaTextView = itemView.findViewById(R.id.pontoChegadaTextView);
             radioButton = itemView.findViewById(R.id.radioButtonSelecao);
             btnVerPrecos = itemView.findViewById(R.id.btnVerPrecos);
+            btnVerHorarios = itemView.findViewById(R.id.btnVerHorarios);
         }
 
         public void bind(final Rota rota, final OnItemClickListener listener) {

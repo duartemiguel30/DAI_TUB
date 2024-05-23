@@ -53,7 +53,7 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         listaRotas = new ArrayList<>();
         listaRotasFiltradas = new ArrayList<>();
-        adapter = new RotaAdapter(listaRotasFiltradas, this);
+        adapter = new RotaAdapter(this, listaRotasFiltradas, this); // Passando o contexto e a atividade como listener
         recyclerView.setAdapter(adapter);
 
         // Inicializar Firebase Authentication
@@ -179,7 +179,6 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
 
         // Criar um novo objeto Bilhete com as informações necessárias
         Bilhete bilhete = new Bilhete(bilheteId, userId, nomeUsuario, dataAtual, dataValidade, rota.getPontoPartida(), rota.getPontoChegada(), rota);
-
 
         // Salvar os detalhes do bilhete no Firebase
         bilhetesRef.child(bilheteId).setValue(bilhete).addOnSuccessListener(new OnSuccessListener<Void>() {
