@@ -4,7 +4,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -43,16 +42,14 @@ public class VisualizarTarifasActivity extends AppCompatActivity {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         String titulo = snapshot.child("titulo").getValue(String.class);
                         String descricao = snapshot.child("descricao").getValue(String.class);
-                        int imagemResource = snapshot.child("imagemResource").getValue(Integer.class);
 
                         View tarifaView = getLayoutInflater().inflate(R.layout.tarifa_item, null);
 
-                        TextView tituloTextView = tarifaView.findViewById(R.id.nomeTarifaTextView);
-                        TextView descricaoTextView = tarifaView.findViewById(R.id.valorTarifaTextView);
+                        TextView nomeTextView = tarifaView.findViewById(R.id.nomeTarifaTextView);
+                        TextView valorTextView = tarifaView.findViewById(R.id.valorTarifaTextView);
 
-                        tituloTextView.setText(titulo);
-                        descricaoTextView.setText(descricao);
-                        Drawable drawable = getResources().getDrawable(imagemResource);
+                        nomeTextView.setText(titulo);
+                        valorTextView.setText(descricao);
 
                         tarifasContainer.addView(tarifaView);
                     }

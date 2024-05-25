@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_blue_to_white">
 
-    <!-- Botão Back -->
+    <!-- BotÃ£o Back -->
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
@@ -49,19 +49,6 @@
             android:orientation="vertical">
         </LinearLayout>
     </ScrollView>
-
-    <!-- Botão para visualizar tarifas -->
-    <Button
-        android:id="@+id/visualizar_tarifas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Visualizar Tarifas"
-        android:textSize="16sp"
-        android:background="@drawable/button_background"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="10dp"
-        android:onClick="visualizarTarifas" />
 
     <!-- Imagem TUB -->
     <ImageView
