@@ -6,7 +6,6 @@ public class Noticia {
     private String urlImagem;
 
     public Noticia() {
-        // Construtor vazio necessário para o Firebase
     }
 
     public Noticia(String titulo, String texto, String urlImagem) {
@@ -15,5 +14,4 @@ public class Noticia {
         this.urlImagem = urlImagem;
     }
 
-    // getters e setters
 }

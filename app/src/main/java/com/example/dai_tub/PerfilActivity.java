@@ -25,9 +25,8 @@ public class PerfilActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.perfil); // Certifique-se de que este é o nome correto do seu layout XML
+        setContentView(R.layout.perfil);
 
-        // Referências aos elementos do layout
         TextView greetingText = findViewById(R.id.greetingText);
         TextView fullNameText = findViewById(R.id.fullNameText);
         TextView emailText = findViewById(R.id.emailText);
@@ -37,26 +36,20 @@ public class PerfilActivity extends AppCompatActivity {
         viagensCompradasText = findViewById(R.id.tripsNumberText);
         viagensCompradasValue = findViewById(R.id.tripsNumberText);
 
-        // Verifique se todas as Views foram encontradas
         if (greetingText == null || fullNameText == null || emailText == null || nifText == null || passNumberText == null || balanceText == null || viagensCompradasText == null || viagensCompradasValue == null) {
-            Log.e("PerfilActivity", "Uma ou mais Views não foram encontradas");
             return;
         }
 
-        // Obtendo a referência do usuário atual do Firebase
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
 
-            // Referência ao nó do usuário no banco de dados do Firebase
             userRef = FirebaseDatabase.getInstance().getReference().child("users").child(userId);
 
-            // Adicionando um listener para buscar os dados do usuário
             userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        // Obtendo os dados do usuário do snapshot
                         User user = dataSnapshot.getValue(User.class);
                         if (user != null) {
                             // Definindo os valores nos elementos TextView
@@ -65,19 +58,15 @@ public class PerfilActivity extends AppCompatActivity {
                             emailText.setText(user.getEmail());
                             nifText.setText(user.getNif());
 
-                            // Verificar se o número de passe está presente e não está vazio
                             if (user.getNumeroPasse() != null && !user.getNumeroPasse().isEmpty()) {
                                 passNumberText.setText(user.getNumeroPasse());
                             }
                             passNumberText.setVisibility(View.VISIBLE);
 
-                            // Exibe o saldo atual buscando-o do Firebase Realtime Database
                             displayBalanceFromDatabase();
-                            // Exibe o número de viagens compradas
+
                             displayViagensCompradasFromDatabase();
                         }
-                    } else {
-                        Log.d("PerfilActivity", "No such user exists in database");
                     }
                 }
 
@@ -90,7 +79,6 @@ public class PerfilActivity extends AppCompatActivity {
             Log.e("PerfilActivity", "Current user is null");
         }
 
-        // Adicionando um listener de clique ao botão BACK
         findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,8 +111,6 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
 
-
-    // Método para exibir o saldo do usuário buscando-o do Firebase Realtime Database
     private void displayBalanceFromDatabase() {
         userRef.child("saldo").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -137,13 +123,13 @@ public class PerfilActivity extends AppCompatActivity {
                         balanceText.setText("0.0"); // Se o saldo for nulo, exibe 0.0
                     }
                 } else {
-                    Log.d("PerfilActivity", "Saldo do usuário não encontrado no banco de dados");
+                    Log.d("PerfilActivity", "Saldo do utilizador não encontrado na base de dados");
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("PerfilActivity", "Erro ao recuperar o saldo do usuário: " + databaseError.getMessage());
+                Log.e("PerfilActivity", "Erro: " + databaseError.getMessage());
             }
         });
     }

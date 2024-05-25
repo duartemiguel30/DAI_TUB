@@ -24,16 +24,12 @@ public class NoticiasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_noticias);
 
-        // Inicializar a referência para o nó "noticias" no Realtime Database
         noticiasRef = FirebaseDatabase.getInstance().getReference().child("noticias");
 
-        // Carregar as notícias da base de dados Firebase
         carregarNoticiasFirebase();
     }
 
-    // Método para carregar as notícias da base de dados Firebase
     private void carregarNoticiasFirebase() {
-        // Adicionar um listener para ler os dados da base de dados
         noticiasRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -49,9 +49,7 @@ public class RemoverTarifasActivity extends AppCompatActivity {
         String nomeTarifaRemover = editNomeTarifaRemover.getText().toString();
         String valorTarifaRemover = editValorTarifaRemover.getText().toString();
 
-        // Verifica se os campos estão preenchidos
         if (nomeTarifaRemover.isEmpty() || valorTarifaRemover.isEmpty()) {
-            // Se algum campo estiver vazio, exibe uma mensagem de erro
             Toast.makeText(this, "Por favor, preencha o nome e o valor da tarifa.", Toast.LENGTH_SHORT).show();
             return;
         }

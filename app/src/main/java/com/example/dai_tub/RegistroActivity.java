@@ -21,7 +21,6 @@ public class RegistroActivity extends AppCompatActivity {
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Redirecionar para a tela de registro 2
                 Intent intent = new Intent(RegistroActivity.this, Registro2Activity.class);
                 startActivity(intent);
             }
@@ -30,7 +29,6 @@ public class RegistroActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Redirecionar para a tela de login
                 Intent intent = new Intent(RegistroActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
@@ -40,10 +38,9 @@ public class RegistroActivity extends AppCompatActivity {
         textSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Redirecionar diretamente para a tela do menu principal
                 Intent intent = new Intent(RegistroActivity.this, MenuPrincipalActivity.class);
                 startActivity(intent);
-                finish(); // Se desejar finalizar a atividade atual
+                finish();
             }
         });
     }

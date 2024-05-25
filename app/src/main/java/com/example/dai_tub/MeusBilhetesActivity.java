@@ -55,9 +55,8 @@ public class MeusBilhetesActivity extends AppCompatActivity {
     private void carregarBilhetesUsuario() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            String userEmail = currentUser.getEmail(); // Obter o email do usuário atual
-            Log.d(TAG, "Email do usuário: " + userEmail);
-            // Consultar a Firebase para os bilhetes do usuário atual
+            String userEmail = currentUser.getEmail();
+            Log.d(TAG, "Email do utilizador: " + userEmail);
             bilhetesRef.orderByChild("nomeUsuario").equalTo(userEmail).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -71,7 +70,7 @@ public class MeusBilhetesActivity extends AppCompatActivity {
                         }
                         bilheteAdapter.notifyDataSetChanged();
                     } else {
-                        Log.d(TAG, "Nenhum bilhete encontrado para este usuário.");
+                        Log.d(TAG, "Nenhum bilhete encontrado para este utilizador.");
                     }
                 }
 
@@ -81,6 +80,6 @@ public class MeusBilhetesActivity extends AppCompatActivity {
                 }
             });
         } else {
-            Log.d(TAG, "Usuário não está logado");
+            Log.d(TAG, "Utilizador não está logado");
         }
     }}

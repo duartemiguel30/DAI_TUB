@@ -18,19 +18,15 @@ public class QRCodeGenerator extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_code_generator);
 
-        // Obtenha o bilhete dos extras da Intent
         Bilhete bilhete = getIntent().getParcelableExtra("bilhete");
 
-        // Gere o código QR para o bilhete
         Bitmap qrCodeBitmap = gerarCodigoQR(bilhete);
 
-        // Exiba o código QR em um ImageView
         ImageView qrCodeImageView = findViewById(R.id.qrCodeImageView);
         qrCodeImageView.setImageBitmap(qrCodeBitmap);
     }
 
     private Bitmap gerarCodigoQR(Bilhete bilhete) {
-        // Lógica para gerar o código QR para o bilhete
         String bilheteData = "Nome do Usuário: " + bilhete.getNomeUsuario() + "\n"
                 + "Data: " + bilhete.getDataCompra() + "\n"
                 + "Validade: " + bilhete.getValidade() + "\n"

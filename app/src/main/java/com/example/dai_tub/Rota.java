@@ -13,8 +13,8 @@ public class Rota implements Parcelable {
     private String descricao;
     private String pontoPartida;
     private String pontoChegada;
-    private double precoNormal; // Alterado para double
-    private double precoEstudante; // Alterado para double
+    private double precoNormal;
+    private double precoEstudante;
     private List<Horario> horarios;
     private Horario primeiroHorario;
     private Horario ultimoHorario;
@@ -22,7 +22,6 @@ public class Rota implements Parcelable {
     private int viagensCompradas;
 
     public Rota() {
-        // Construtor vazio
     }
 
     public Rota(String numero, String descricao, String pontoPartida, String pontoChegada, double precoNormal, double precoEstudante, List<Horario> horarios) {
@@ -33,10 +32,10 @@ public class Rota implements Parcelable {
         this.precoNormal = precoNormal;
         this.precoEstudante = precoEstudante;
         this.horarios = horarios;
-        configurarHorarios(); // Configura os horários de partida e chegada ao criar a instância
+        configurarHorarios();
     }
 
-    // Getters e setters para todos os atributos
+
 
     public String getNumero() {
         return numero;
@@ -100,7 +99,7 @@ public class Rota implements Parcelable {
 
     public void setHorarios(List<Horario> horarios) {
         this.horarios = horarios;
-        configurarHorarios(); // Configura os horários de partida e chegada ao definir os horários
+        configurarHorarios();
     }
 
     public Horario getPrimeiroHorario() {
@@ -126,11 +125,9 @@ public class Rota implements Parcelable {
     }
 
     public int getViagensCompradas() {
-        // Implemente a lógica para obter o número de viagens compradas para esta rota
         return viagensCompradas;
     }
 
-    // Método para configurar os horários de partida e chegada
     private void configurarHorarios() {
         if (horarios != null && !horarios.isEmpty()) {
             // Ordena os horários pelo horário de partida
@@ -140,7 +137,6 @@ public class Rota implements Parcelable {
         }
     }
 
-    // Implementações Parcelable
     @Override
     public int describeContents() {
         return 0;
@@ -165,7 +161,7 @@ public class Rota implements Parcelable {
         precoNormal = in.readDouble();
         precoEstudante = in.readDouble();
         horarios = in.createTypedArrayList(Horario.CREATOR);
-        configurarHorarios(); // Configura os horários de partida e chegada ao ler os valores
+        configurarHorarios();
     }
 
     public static final Creator<Rota> CREATOR = new Creator<Rota>() {

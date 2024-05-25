@@ -27,15 +27,13 @@ public class Registro2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registro2);
 
-        // Inicializa o FirebaseAuth
         mAuth = FirebaseAuth.getInstance();
 
-        // Inicializa os EditTexts
         editTextName = findViewById(R.id.editTextName);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
         editTextNIF = findViewById(R.id.editTextNIF);
-        editTextPassNumber = findViewById(R.id.editTextPassNumber); // Adicionado
+        editTextPassNumber = findViewById(R.id.editTextPassNumber);
 
         Button buttonRegister = findViewById(R.id.buttonRegister);
         Button buttonLogin = findViewById(R.id.buttonLogin);
@@ -48,71 +46,64 @@ public class Registro2Activity extends AppCompatActivity {
                 String email = editTextEmail.getText().toString().trim();
                 String password = editTextPassword.getText().toString();
                 String nif = editTextNIF.getText().toString().trim();
-                String passNumber = editTextPassNumber.getText().toString().trim(); // Adicionado
+                String passNumber = editTextPassNumber.getText().toString().trim();
 
-                // Validar os dados (por exemplo, verificar se os campos estão vazios)
                 if (name.isEmpty() || email.isEmpty() || password.isEmpty() || nif.isEmpty()) {
                     Toast.makeText(Registro2Activity.this, "Por favor, preencha todos os campos", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                Log.d("Registro2Activity", "Dados do usuário: Name=" + name + ", Email=" + email + ", NIF=" + nif);
+                Log.d("Registro2Activity", "Dados do utilizador: Name=" + name + ", Email=" + email + ", NIF=" + nif);
 
-                // Registrar o usuário no Firebase Authentication
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(Registro2Activity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    // Registro bem-sucedido
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     String userId = user.getUid();
 
-                                    // Referência ao nó do usuário no banco de dados do Firebase
                                     DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
 
-                                    // Salvar os detalhes do usuário no banco de dados
-                                    User newUser = new User(userId, name, email, nif, passNumber, 0.0, 0); // balance inicializado como 0 e viagensCompradas inicializado como 0
+                                    User newUser = new User(userId, name, email, nif, passNumber, 0.0, 0);
                                     userRef.setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> databaseTask) {
                                             if (databaseTask.isSuccessful()) {
-                                                Log.d("Registro2Activity", "Detalhes do usuário salvos no banco de dados");
+                                                Log.d("Registro2Activity", "Detalhes do utilizador guardados na base de dados");
 
-                                                // Adicionar o número de viagens compradas à rota do usuário
+
                                                 DatabaseReference userRouteRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("viagensCompradas");
                                                 userRouteRef.setValue(0).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> viagensTask) {
                                                         if (viagensTask.isSuccessful()) {
-                                                            Log.d("Registro2Activity", "Número de viagens compradas salvo na rota do usuário");
+                                                            Log.d("Registro2Activity", "Número de viagens compradas guardados no user");
 
-                                                            // Redirecionar para a tela de perfil com os dados
                                                             Intent intent = new Intent(Registro2Activity.this, MenuPrincipalActivity.class);
                                                             intent.putExtra("nome", name);
                                                             intent.putExtra("email", email);
                                                             intent.putExtra("nif", nif);
-                                                            if (!passNumber.isEmpty()) { // Verifica se o número do passe não está vazio
-                                                                intent.putExtra("numeroPasse", passNumber); // Passa o número do passe
+                                                            if (!passNumber.isEmpty()) {
+                                                                intent.putExtra("numeroPasse", passNumber);
                                                             }
                                                             startActivity(intent);
                                                             finish();
                                                         } else {
-                                                            Log.e("Registro2Activity", "Erro ao salvar o número de viagens compradas na rota do usuário", viagensTask.getException());
-                                                            Toast.makeText(Registro2Activity.this, "Erro ao registrar. Tente novamente.", Toast.LENGTH_SHORT).show();
+                                                            Log.e("Registro2Activity", "Erro ao guardar o número de viagens compradas no user", viagensTask.getException());
+                                                            Toast.makeText(Registro2Activity.this, "Erro no registo.", Toast.LENGTH_SHORT).show();
                                                         }
                                                     }
                                                 });
                                             } else {
-                                                Log.e("Registro2Activity", "Erro ao salvar os detalhes do usuário no banco de dados", databaseTask.getException());
-                                                Toast.makeText(Registro2Activity.this, "Erro ao registrar. Tente novamente.", Toast.LENGTH_SHORT).show();
+                                                Log.e("Registro2Activity", "Erro ao guardar os detalhes do utilizador na base de dados", databaseTask.getException());
+                                                Toast.makeText(Registro2Activity.this, "Erro ao registrar. ", Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
                                 } else {
-                                    // Falha no registro
-                                    Log.e("Registro2Activity", "Erro ao registrar", task.getException());
-                                    Toast.makeText(Registro2Activity.this, "Erro ao registrar. Tente novamente.", Toast.LENGTH_SHORT).show();
+                                    Log.e("Registro2Activity", "Erro ao registar", task.getException());
+                                    Toast.makeText(Registro2Activity.this, "Erro ao registar. ", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -122,7 +113,6 @@ public class Registro2Activity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Redirecionar para a tela de login
                 Intent intent = new Intent(Registro2Activity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
@@ -132,7 +122,6 @@ public class Registro2Activity extends AppCompatActivity {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Voltar à página anterior
                 onBackPressed();
             }
         });

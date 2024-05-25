@@ -153,7 +153,6 @@ public class RecompensaActivity extends AppCompatActivity implements RotaAdapter
                         if (user != null) {
                             int viagensCompradas = user.getViagensCompradas();
                             if (viagensCompradas % 5 == 0) {
-                                // Exibir a mensagem parabenizando o usuário
                                 showToast("Parabéns! Você ganhou uma viagem grátis!");
 
                                 // Salvar o bilhete
@@ -167,7 +166,7 @@ public class RecompensaActivity extends AppCompatActivity implements RotaAdapter
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Log.e(TAG, "Erro ao acessar o banco de dados: " + databaseError.getMessage());
+                    Log.e(TAG, "Erro ao acessar a base de dados: " + databaseError.getMessage());
                 }
             });
         } else {
@@ -181,33 +180,26 @@ public class RecompensaActivity extends AppCompatActivity implements RotaAdapter
 
 
     private void salvarBilhete(Rota rota, String nomeUsuario, String userId) {
-        // Crie um ID único para o bilhete
         String bilheteId = bilhetesRef.push().getKey();
 
-        // Obtenha a data atual
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String dataAtual = dateFormat.format(new Date());
 
-        // Defina a data de validade do bilhete (por exemplo, 7 dias após a compra)
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        calendar.add(Calendar.DATE, 7); // Adicionando 7 dias à data atual
+        calendar.add(Calendar.DATE, 7);
         String dataValidade = dateFormat.format(calendar.getTime());
 
-        // Criar um novo objeto Bilhete com as informações necessárias
         Bilhete bilhete = new Bilhete(bilheteId, userId, nomeUsuario, dataAtual, dataValidade, rota.getPontoPartida(), rota.getPontoChegada(), rota);
 
-        // Salvar os detalhes do bilhete no Firebase
         bilhetesRef.child(bilheteId).setValue(bilhete).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 showToast("Bilhete salvo com sucesso");
-                // Limpar a seleção de rota
                 rotaSelecionada = null;
 
-                // Direcionar para a atividade de confirmação de pagamento
                 Intent intent = new Intent(RecompensaActivity.this, ConfirmarPagamentoActivity.class);
-                intent.putExtra("bilheteId", bilheteId); // Passar o ID do bilhete para a ConfirmarPagamentoActivity
+                intent.putExtra("bilheteId", bilheteId);
                 startActivity(intent);
             }
         }).addOnFailureListener(new OnFailureListener() {
