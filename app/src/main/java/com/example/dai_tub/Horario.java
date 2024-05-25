@@ -11,7 +11,6 @@ public class Horario implements Parcelable {
     private int minutoChegada;
 
     public Horario() {
-        // Default constructor required for calls to DataSnapshot.getValue(Horario.class)
     }
 
     public Horario(int horaPartida, int minutoPartida, int horaChegada, int minutoChegada) {

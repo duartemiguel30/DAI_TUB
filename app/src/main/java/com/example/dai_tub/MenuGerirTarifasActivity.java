@@ -18,7 +18,6 @@ public class MenuGerirTarifasActivity extends AppCompatActivity {
         adicionar_tarifas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Criar um intent para abrir a atividade da página 1
                 Intent intent = new Intent(MenuGerirTarifasActivity.this, AdicionarTarifasActivity.class);
                 startActivity(intent);
             }
@@ -28,7 +27,6 @@ public class MenuGerirTarifasActivity extends AppCompatActivity {
         remover_tarifas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Criar um intent para abrir a atividade da página 1
                 Intent intent = new Intent(MenuGerirTarifasActivity.this, RemoverTarifasActivity.class);
                 startActivity(intent);
             }
@@ -48,7 +46,6 @@ public class MenuGerirTarifasActivity extends AppCompatActivity {
         visualizar_tarifas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Criar um intent para abrir a atividade de visualização de tarifas
                 Intent intent = new Intent(MenuGerirTarifasActivity.this, VisualizarTarifasActivity.class);
                 startActivity(intent);
             }
@@ -57,7 +54,6 @@ public class MenuGerirTarifasActivity extends AppCompatActivity {
         editar_tarifas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Criar um intent para abrir a atividade da página 1
                 Intent intent = new Intent(MenuGerirTarifasActivity.this, VisualizarTarifasActivity.class);
                 startActivity(intent);
             }

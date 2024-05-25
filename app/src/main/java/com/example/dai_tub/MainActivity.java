@@ -16,50 +16,38 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private static final int SPLASH_TIMEOUT = 2000; // Tempo de espera em milissegundos (2 segundos)
+    private static final int SPLASH_TIMEOUT = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash_screen); // Exibe a tela de entrada
+        setContentView(R.layout.splash_screen);
 
-        // Aguarde por SPLASH_TIMEOUT antes de abrir a LoginActivity
         new Handler().postDelayed(() -> {
-            // Ir para a tela de escolha (Login ou Registro)
             startActivity(new Intent(MainActivity.this, RegistroActivity.class));
-            finish(); // Fecha a tela de entrada após abrir a tela de escolha
+            finish();
         }, SPLASH_TIMEOUT);
 
-        // Insere as rotas no Firebase Realtime Database
         inserirRotas();
     }
 
     private void inserirRotas() {
-        // Inicializa o Firebase Realtime Database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference rotasRef = database.getReference("rotas");
 
-        // Verifica se há dados no nó "rotas"
         rotasRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (!dataSnapshot.exists()) {
-                    // Se não houver dados, insere as rotas
                     List<Rota> rotas = criarListaRotas();
                     for (Rota rota : rotas) {
-                        // Use o número da rota como chave primária
                         DatabaseReference rotaRef = rotasRef.child(rota.getNumero());
-                        // Salva a rota no Firebase
                         rotaRef.setValue(rota);
 
-                        // Verifica se o dataSnapshot contém a lista de horários
                         if (dataSnapshot.child("horarios").getValue() instanceof List) {
-                            // Se for uma lista, salva os horários no Firebase
                             DatabaseReference horariosRef = rotaRef.child("horarios");
                             for (Horario horario : rota.getHorarios()) {
-                                // Use push() para gerar chaves únicas para os horários
                                 DatabaseReference horarioRef = horariosRef.push();
-                                // Salva o horário no Firebase
                                 horarioRef.setValue(horario);
                             }
                         } else {
@@ -238,7 +226,6 @@ public class MainActivity extends AppCompatActivity {
 // Rota 911
         List<Horario> horariosRota911 = new ArrayList<>();
         horariosRota911.add(new Horario(22, 30, 22, 55));
-// Adicione os outros horários...
         rotas.add(new Rota("911", "Descrição da Rota 911", "Ponto de Partida: Avenida Central", "Ponto de Chegada: Padim da Graça", 1.0, 2.0, horariosRota911));
 
 

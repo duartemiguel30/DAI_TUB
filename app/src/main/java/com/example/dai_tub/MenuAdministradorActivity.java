@@ -18,7 +18,6 @@ public class MenuAdministradorActivity extends AppCompatActivity {
         gerir_faturacao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Criar um intent para abrir a atividade da página 1
                 Intent intent = new Intent(MenuAdministradorActivity.this, MenuGerirTarifasActivity.class);
                 startActivity(intent);
             }

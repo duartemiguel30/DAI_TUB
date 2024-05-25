@@ -11,7 +11,7 @@ public class Bilhete implements Parcelable {
     private String validade;
     private String pontoPartida;
     private String pontoChegada;
-    private Rota rota; // Adicionando o atributo rota
+    private Rota rota;
 
     public Bilhete() {
     }

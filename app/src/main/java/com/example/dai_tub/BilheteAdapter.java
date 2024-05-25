@@ -59,25 +59,22 @@ public class BilheteAdapter extends RecyclerView.Adapter<BilheteAdapter.BilheteV
         }
 
         public void bind(Bilhete bilhete) {
-            textViewNomeUsuario.setText("Nome do Usuário: " + bilhete.getNomeUsuario());
+            textViewNomeUsuario.setText("Nome do Utilizador: " + bilhete.getNomeUsuario());
             textViewDataCompra.setText("Data de Compra: " + bilhete.getDataCompra());
             textViewValidade.setText("Validade: " + bilhete.getValidade());
             textViewPontoPartida.setText("Ponto de Partida: " + bilhete.getPontoPartida());
             textViewPontoChegada.setText("Ponto de Chegada: " + bilhete.getPontoChegada());
 
-            // Definir o listener de clique para o botão
+
             buttonShowQRCode.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Lógica para exibir o código QR correspondente ao bilhete
                     exibirQRCode(bilhete);
                 }
             });
         }
 
         private void exibirQRCode(Bilhete bilhete) {
-            // Lógica para exibir o código QR
-            // Por exemplo, abrir uma nova atividade para exibir o código QR
             Intent intent = new Intent(itemView.getContext(), QRCodeGenerator.class);
             intent.putExtra("bilhete", bilhete);
             itemView.getContext().startActivity(intent);

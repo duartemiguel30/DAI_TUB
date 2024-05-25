@@ -65,7 +65,7 @@ public class ConfirmarPagamentoActivity extends AppCompatActivity {
 
     private void gerarCodigoQR(Bilhete bilhete, String nomeUsuario) {
         try {
-            String dadosBilhete = "Nome do Usuário: " + nomeUsuario + "\n" +
+            String dadosBilhete = "Nome do Utilizador: " + nomeUsuario + "\n" +
                     "Data de Compra: " + bilhete.getDataCompra() + "\n" +
                     "Validade: " + bilhete.getValidade() + "\n" +
                     "Ponto de Partida: " + bilhete.getPontoPartida() + "\n" +
@@ -76,18 +76,17 @@ public class ConfirmarPagamentoActivity extends AppCompatActivity {
             Bitmap bitmap = barcodeEncoder.encodeBitmap(dadosBilhete, BarcodeFormat.QR_CODE, width, height);
             qrCodeImageView.setImageBitmap(bitmap);
         } catch (WriterException e) {
-            showToast("Erro ao gerar o código QR: " + e.getMessage());
+            showToast("QR Erro: " + e.getMessage());
         }
     }
 
     private void confirmarPagamento(String userId, Bilhete bilhete) {
-        Log.d(TAG, "Iniciando confirmação de pagamento para o usuário: " + userId);
+        Log.d(TAG, "Iniciando confirmação de pagamento para o utilizador: " + userId);
         if (userId != null) {
             usersRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
-                        // Acessando os dados específicos do usuário
                         String userEmail = snapshot.child("email").getValue(String.class);
                         String userName = snapshot.child("name").getValue(String.class);
                         Double userSaldo = snapshot.child("saldo").getValue(Double.class);
@@ -123,13 +122,13 @@ public class ConfirmarPagamentoActivity extends AppCompatActivity {
                                             Log.e(TAG, "Erro ao atualizar o saldo: ", e);
                                         });
                             } else {
-                                showToast("Saldo insuficiente para pagar este bilhete.");
+                                showToast("Saldo insuficiente para pagar o bilhete.");
                             }
                         } else {
-                            showToast("Saldo do usuário está armazenado de forma inadequada no banco de dados");
+                            showToast("Saldo guardado inadequadamente");
                         }
                     } else {
-                        showToast("Usuário não encontrado no banco de dados.");
+                        showToast("Utilizador não encontrado");
                     }
                 }
 
@@ -140,8 +139,8 @@ public class ConfirmarPagamentoActivity extends AppCompatActivity {
                 }
             });
         } else {
-            showToast("ID do usuário não encontrado.");
-            Log.e(TAG, "ID do usuário não encontrado.");
+            showToast("ID do utilizador não encontrado.");
+            Log.e(TAG, "ID do utilizador não encontrado.");
         }
     }
 }

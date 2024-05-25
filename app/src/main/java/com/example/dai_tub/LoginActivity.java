@@ -67,21 +67,17 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Login bem-sucedido
                             String userEmail = mAuth.getCurrentUser().getEmail();
                             if (userEmail != null && userEmail.equals("admin@admin.com")) {
-                                // O usuário autenticado é o administrador
                                 Intent intent = new Intent(LoginActivity.this, MenuAdministradorActivity.class);
                                 startActivity(intent);
                             } else {
-                                // O usuário autenticado é um usuário normal
                                 Intent intent = new Intent(LoginActivity.this, MenuPrincipalActivity.class);
                                 startActivity(intent);
                             }
                             finish();
                         } else {
-                            // Falha no login
-                            Toast.makeText(LoginActivity.this, "Falha no login. Verifique suas credenciais.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Falha no login.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
