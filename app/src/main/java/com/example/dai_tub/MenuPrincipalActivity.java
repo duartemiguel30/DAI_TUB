@@ -135,6 +135,27 @@ public class MenuPrincipalActivity extends AppCompatActivity {
             }
         });
 
+        // Configuração do botão validateTicketButton para ir para a MeusBilhetesActivity
+        Button validateTicketButton = findViewById(R.id.validateTicketButton);
+        validateTicketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuPrincipalActivity.this, MeusBilhetesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+// Configuração do botão menuItemRoutes para ir para a RotasActivity
+        Button menuItemRoutes = findViewById(R.id.menuItemRoutes);
+        menuItemRoutes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuPrincipalActivity.this, RotasActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         // Configuração do botão news2Button para ir para NoticiasActivity
         Button news2Button = findViewById(R.id.news2Button);
         news2Button.setOnClickListener(new View.OnClickListener() {

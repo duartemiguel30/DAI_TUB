@@ -3,7 +3,6 @@ package com.example.dai_tub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -157,9 +156,8 @@ public class RecompensaActivity extends AppCompatActivity implements RotaAdapter
                                 // Exibir a mensagem parabenizando o usuário
                                 showToast("Parabéns! Você ganhou uma viagem grátis!");
 
-                                // Redirecionar para a atividade de confirmação de pagamento
-                                Intent intent = new Intent(RecompensaActivity.this, ConfirmarPagamentoActivity.class);
-                                startActivity(intent);
+                                // Salvar o bilhete
+                                salvarBilhete(rotaSelecionada, user.getName(), userId);
                             } else {
                                 showToast("Você ainda não possui viagens suficientes para resgatar uma recompensa.");
                             }
@@ -176,6 +174,7 @@ public class RecompensaActivity extends AppCompatActivity implements RotaAdapter
             showToast("Selecione uma rota antes de confirmar o pagamento");
         }
     }
+
 
 
 
