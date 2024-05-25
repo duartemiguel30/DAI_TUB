@@ -11,6 +11,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class MenuPrincipalActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
 
     DatabaseReference noticiasRef; // Referência para o nó "noticias" no Realtime Database
 
@@ -31,6 +36,9 @@ public class MenuPrincipalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menuprincipal);
+
+        // Inicializar Firebase Authentication
+        mAuth = FirebaseAuth.getInstance();
 
         // Inicializar a referência para o nó "noticias" no Realtime Database
         noticiasRef = FirebaseDatabase.getInstance().getReference().child("noticias");
@@ -136,6 +144,33 @@ public class MenuPrincipalActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        // Configuração do botão para ir para a RecompensaActivity
+        // Configuração do botão para ir para a RecompensaActivity
+        // Configuração do botão para ir para a RecompensaActivity
+        Button recompensasButton = findViewById(R.id.rewardsButton);
+        recompensasButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Verificar se o usuário está logado
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                if (currentUser != null) {
+                    // O usuário está logado, então podemos permitir o acesso à RecompensaActivity
+                    Intent intent = new Intent(MenuPrincipalActivity.this, RecompensaActivity.class);
+                    startActivity(intent);
+                } else {
+                    // O usuário não está logado, exibir uma mensagem Toast
+                    Toast.makeText(MenuPrincipalActivity.this, "Faça login para acessar as recompensas.", Toast.LENGTH_SHORT).show();
+                    // Redirecionar para a atividade de login ou qualquer outra ação adequada
+                    // Exemplo:
+                    Intent intent = new Intent(MenuPrincipalActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+
+
+
 
         // Carregar as notícias da base de dados Firebase
         carregarNoticiasFirebase();

@@ -19,6 +19,8 @@ public class Rota implements Parcelable {
     private Horario primeiroHorario;
     private Horario ultimoHorario;
 
+    private int viagensCompradas;
+
     public Rota() {
         // Construtor vazio
     }
@@ -121,6 +123,11 @@ public class Rota implements Parcelable {
             return ultimoHorario.getHoraChegada() + ":" + ultimoHorario.getMinutoChegada();
         }
         return "Não disponível";
+    }
+
+    public int getViagensCompradas() {
+        // Implemente a lógica para obter o número de viagens compradas para esta rota
+        return viagensCompradas;
     }
 
     // Método para configurar os horários de partida e chegada

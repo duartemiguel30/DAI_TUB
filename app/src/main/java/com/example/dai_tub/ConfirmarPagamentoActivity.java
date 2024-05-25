@@ -83,7 +83,7 @@ public class ConfirmarPagamentoActivity extends AppCompatActivity {
     private void confirmarPagamento(String userId, Bilhete bilhete) {
         Log.d(TAG, "Iniciando confirmação de pagamento para o usuário: " + userId);
         if (userId != null) {
-            ValueEventListener userListener = new ValueEventListener() {
+            usersRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
@@ -91,6 +91,8 @@ public class ConfirmarPagamentoActivity extends AppCompatActivity {
                         String userEmail = snapshot.child("email").getValue(String.class);
                         String userName = snapshot.child("name").getValue(String.class);
                         Double userSaldo = snapshot.child("saldo").getValue(Double.class);
+                        Long viagensCompradasValue = snapshot.child("viagensCompradas").getValue(Long.class);
+                        long viagensCompradas = (viagensCompradasValue == null) ? 0 : viagensCompradasValue;
 
                         if (userSaldo != null) {
                             double precoEstudante = bilhete.getRota().getPrecoEstudante();
@@ -105,6 +107,16 @@ public class ConfirmarPagamentoActivity extends AppCompatActivity {
                                         .addOnSuccessListener(aVoid -> {
                                             showToast("Pagamento confirmado! Saldo atualizado.");
                                             Log.d(TAG, "Atualização do saldo bem-sucedida.");
+                                            // Incrementar o número de viagens compradas
+                                            usersRef.child(userId).child("viagensCompradas").setValue(viagensCompradas + 1)
+                                                    .addOnSuccessListener(aVoid2 -> {
+                                                        showToast("Número de viagens compradas atualizado.");
+                                                        Log.d(TAG, "Viagens compradas atualizadas para: " + (viagensCompradas + 1));
+                                                    })
+                                                    .addOnFailureListener(e -> {
+                                                        showToast("Erro ao atualizar o número de viagens compradas: " + e.getMessage());
+                                                        Log.e(TAG, "Erro ao atualizar o número de viagens compradas: ", e);
+                                                    });
                                         })
                                         .addOnFailureListener(e -> {
                                             showToast("Erro ao atualizar o saldo: " + e.getMessage());
@@ -126,14 +138,10 @@ public class ConfirmarPagamentoActivity extends AppCompatActivity {
                     showToast("Erro ao confirmar pagamento: " + error.getMessage());
                     Log.e(TAG, "Erro ao confirmar pagamento: ", error.toException());
                 }
-            };
-
-            // Adicionando o listener ao DatabaseReference
-            usersRef.child(userId).addListenerForSingleValueEvent(userListener);
+            });
         } else {
             showToast("ID do usuário não encontrado.");
             Log.e(TAG, "ID do usuário não encontrado.");
         }
     }
-
 }

@@ -19,6 +19,8 @@ public class PerfilActivity extends AppCompatActivity {
 
     private DatabaseReference userRef;
     private TextView balanceText;
+    private TextView viagensCompradasText;
+    private TextView viagensCompradasValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +34,11 @@ public class PerfilActivity extends AppCompatActivity {
         TextView nifText = findViewById(R.id.nifText);
         TextView passNumberText = findViewById(R.id.passNumberText);
         balanceText = findViewById(R.id.balanceText);
+        viagensCompradasText = findViewById(R.id.tripsNumberText);
+        viagensCompradasValue = findViewById(R.id.tripsNumberText);
 
         // Verifique se todas as Views foram encontradas
-        if (greetingText == null || fullNameText == null || emailText == null || nifText == null || passNumberText == null || balanceText == null) {
+        if (greetingText == null || fullNameText == null || emailText == null || nifText == null || passNumberText == null || balanceText == null || viagensCompradasText == null || viagensCompradasValue == null) {
             Log.e("PerfilActivity", "Uma ou mais Views não foram encontradas");
             return;
         }
@@ -69,6 +73,8 @@ public class PerfilActivity extends AppCompatActivity {
 
                             // Exibe o saldo atual buscando-o do Firebase Realtime Database
                             displayBalanceFromDatabase();
+                            // Exibe o número de viagens compradas
+                            displayViagensCompradasFromDatabase();
                         }
                     } else {
                         Log.d("PerfilActivity", "No such user exists in database");
@@ -93,10 +99,30 @@ public class PerfilActivity extends AppCompatActivity {
         });
     }
 
-    // Método para exibir uma mensagem de toast
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    private void displayViagensCompradasFromDatabase() {
+        userRef.child("viagensCompradas").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Long viagensCompradas = dataSnapshot.getValue(Long.class);
+                    if (viagensCompradas != null) {
+                        viagensCompradasText.setVisibility(View.VISIBLE);
+                        viagensCompradasValue.setVisibility(View.VISIBLE);
+                        viagensCompradasValue.setText(String.valueOf(viagensCompradas));
+                    } else {
+                        Log.d("PerfilActivity", "Viagens compradas não encontradas no banco de dados");
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("PerfilActivity", "Erro ao recuperar as viagens compradas: " + databaseError.getMessage());
+            }
+        });
     }
+
+
 
     // Método para exibir o saldo do usuário buscando-o do Firebase Realtime Database
     private void displayBalanceFromDatabase() {
