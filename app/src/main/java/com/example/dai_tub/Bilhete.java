@@ -13,11 +13,9 @@ public class Bilhete implements Parcelable {
     private String pontoChegada;
     private Rota rota; // Adicionando o atributo rota
 
-    // Construtor padrão sem argumentos (necessário para Firebase)
     public Bilhete() {
     }
 
-    // Construtor com argumentos
     public Bilhete(String bilheteId, String userId, String nomeUsuario, String dataCompra, String validade, String pontoPartida, String pontoChegada, Rota rota) {
         this.bilheteId = bilheteId;
         this.userId = userId;
@@ -26,10 +24,9 @@ public class Bilhete implements Parcelable {
         this.validade = validade;
         this.pontoPartida = pontoPartida;
         this.pontoChegada = pontoChegada;
-        this.rota = rota; // Atribuindo o objeto rota
+        this.rota = rota;
     }
 
-    // Métodos getter e setter
 
     protected Bilhete(Parcel in) {
         bilheteId = in.readString();
@@ -39,7 +36,7 @@ public class Bilhete implements Parcelable {
         validade = in.readString();
         pontoPartida = in.readString();
         pontoChegada = in.readString();
-        rota = in.readParcelable(Rota.class.getClassLoader()); // Lendo o objeto Rota do Parcel
+        rota = in.readParcelable(Rota.class.getClassLoader());
     }
 
     public static final Creator<Bilhete> CREATOR = new Creator<Bilhete>() {
@@ -82,12 +79,11 @@ public class Bilhete implements Parcelable {
         return pontoChegada;
     }
 
-    public Rota getRota() {
-        return rota; // Retornando o objeto Rota
+    public Rota getRota() {return rota;
     }
 
     public void setRota(Rota rota) {
-        this.rota = rota; // Definindo o objeto Rota
+        this.rota = rota;
     }
 
     @Override
@@ -104,6 +100,6 @@ public class Bilhete implements Parcelable {
         dest.writeString(validade);
         dest.writeString(pontoPartida);
         dest.writeString(pontoChegada);
-        dest.writeParcelable(rota, flags); // Escrever o objeto Rota no Parcel
+        dest.writeParcelable(rota, flags);
     }
 }

@@ -1,4 +1,4 @@
-// BilheteAdapter.java
+
 package com.example.dai_tub;
 
 import android.content.Intent;
@@ -46,7 +46,7 @@ public class BilheteAdapter extends RecyclerView.Adapter<BilheteAdapter.BilheteV
         private TextView textViewValidade;
         private TextView textViewPontoPartida;
         private TextView textViewPontoChegada;
-        private Button buttonShowQRCode; // Alterando para Button
+        private Button buttonShowQRCode;
 
         public BilheteViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -55,7 +55,7 @@ public class BilheteAdapter extends RecyclerView.Adapter<BilheteAdapter.BilheteV
             textViewValidade = itemView.findViewById(R.id.textViewValidade);
             textViewPontoPartida = itemView.findViewById(R.id.textViewPontoPartida);
             textViewPontoChegada = itemView.findViewById(R.id.textViewPontoChegada);
-            buttonShowQRCode = itemView.findViewById(R.id.buttonShowQRCode); // Alteração para Button
+            buttonShowQRCode = itemView.findViewById(R.id.buttonShowQRCode);
         }
 
         public void bind(Bilhete bilhete) {
