@@ -4,17 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_blue_to_white">
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="BACK"
-        android:textSize="18sp"
-        android:textColor="#000000"
-        android:layout_margin="0dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="@android:color/transparent"/>
+
 
     <TextView
         android:id="@+id/greetingText"
@@ -25,22 +15,20 @@
         android:textStyle="bold"
         android:textColor="#000000"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/backButton"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="24dp"/>
 
     <TextView
-        android:id="@+id/chooseOptionText"
+        android:id="@+id/chooseActionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Escolha o que deseja fazer:"
-        android:textSize="16sp"
-        android:textColor="#808080"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:textColor="#000000"
         android:layout_below="@id/greetingText"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="4dp"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"/>
+
 
     <LinearLayout
         android:layout_width="225dp"

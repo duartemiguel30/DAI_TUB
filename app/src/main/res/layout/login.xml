@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/fundo">
+    android:background="@drawable/tub4">
 
     <!-- Ícone de voltar -->
     <Button
@@ -20,7 +20,7 @@
         android:id="@+id/imageViewLogoTub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/logotub"
+        android:src="@drawable/tub_logo_branco"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp" />

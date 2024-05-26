@@ -152,7 +152,7 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         menuItemNotifications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MenuPrincipalActivity.this, ListarNotificacoesActivity.class);
+                Intent intent = new Intent(MenuPrincipalActivity.this, NotificacoesActivity.class);
                 startActivity(intent);
             }
         });

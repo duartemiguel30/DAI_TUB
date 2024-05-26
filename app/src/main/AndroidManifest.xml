@@ -112,6 +112,12 @@
         <activity android:name=".VisualizarRotasHorariosActivity" />
 
         <activity android:name=".AdicionarRotaHorarioActivity" />
+
+        <activity android:name=".NotificacoesActivity" />
+
+        <activity android:name=".RemoverRotaHorarioActivity" />
+
+
     </application>
 
 </manifest>

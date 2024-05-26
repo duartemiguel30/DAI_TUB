@@ -32,7 +32,8 @@ public class MenuGerirRotasHorariosActivity extends AppCompatActivity {
         removerRotasHorariosButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Implemente a lógica para remover rotas e horários
+                Intent intent = new Intent(MenuGerirRotasHorariosActivity.this, RemoverRotaHorarioActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -55,18 +56,14 @@ public class MenuGerirRotasHorariosActivity extends AppCompatActivity {
 
     // Implemente os métodos abaixo conforme necessário
     public void adicionarRotaHorarios(View view) {
-        // Implemente a lógica para adicionar rotas e horários
     }
 
     public void removerRotasHorarios(View view) {
-        // Implemente a lógica para remover rotas e horários
     }
 
     public void editarRotasHorarios(View view) {
-        // Implemente a lógica para editar rotas e horários
     }
 
-    public void VisualizarRotasHorariosActivity(View view) {
-        // Implemente a lógica para visualizar rotas e horários
+    public void VisualizarRotasHorarios(View view) {
     }
 }
