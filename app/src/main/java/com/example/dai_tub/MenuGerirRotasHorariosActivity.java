@@ -15,7 +15,6 @@ public class MenuGerirRotasHorariosActivity extends AppCompatActivity {
 
         Button adicionarRotasHorariosButton = findViewById(R.id.adicionar_rota_horarios);
         Button removerRotasHorariosButton = findViewById(R.id.removerRotasHorarios);
-        Button editarRotasHorariosButton = findViewById(R.id.editarRotasHorarios);
         Button visualizarRotasHorariosButton = findViewById(R.id.visualizarRotasHorarios);
 
 
@@ -35,12 +34,6 @@ public class MenuGerirRotasHorariosActivity extends AppCompatActivity {
             }
         });
 
-        editarRotasHorariosButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Implemente a lógica para editar rotas e horários
-            }
-        });
 
         visualizarRotasHorariosButton.setOnClickListener(new View.OnClickListener() {
             @Override

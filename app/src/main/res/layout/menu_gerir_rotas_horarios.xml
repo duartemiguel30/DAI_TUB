@@ -73,18 +73,6 @@
             android:onClick="removerRotasHorarios" />
 
         <Button
-            android:id="@+id/editarRotasHorarios"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Editar Rotas e Horários"
-            android:textSize="16sp"
-            android:background="@drawable/button_background"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="16dp"
-            android:onClick="editarRotasHorarios" />
-
-        <Button
             android:id="@+id/visualizarRotasHorarios"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
