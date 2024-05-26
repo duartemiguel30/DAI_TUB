@@ -17,12 +17,12 @@
         android:layout_alignParentTop="true"
         android:background="@android:color/transparent"/>
 
-    <!-- Texto "Visualizar Tarifas" -->
+    <!-- Texto "Visualizar Utilizadores" -->
     <TextView
         android:id="@+id/greetingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Visualizar Tarifas"
+        android:text="Visualizar Utilizadores"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#000000"
@@ -31,9 +31,9 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="24dp"/>
 
-    <!-- ScrollView para listar as tarifas -->
+    <!-- ScrollView para listar os utilizadores -->
     <ScrollView
-        android:id="@+id/tarifasScrollView"
+        android:id="@+id/utilizadoresScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/greetingText"
@@ -43,7 +43,7 @@
         android:padding="16dp">
 
         <LinearLayout
-            android:id="@+id/tarifasContainer"
+            android:id="@+id/usersContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

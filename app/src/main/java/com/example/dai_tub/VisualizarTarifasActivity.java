@@ -1,6 +1,5 @@
 package com.example.dai_tub;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,41 +25,57 @@ public class VisualizarTarifasActivity extends AppCompatActivity {
 
         tarifasRef = FirebaseDatabase.getInstance().getReference().child("tarifas");
         tarifasContainer = findViewById(R.id.tarifasContainer);
-    }
 
-    // Método chamado pelo botão no layout XML
-    public void visualizarTarifas(View view) {
-        tarifasContainer.removeAllViews(); // Limpar quaisquer tarifas existentes antes de carregar novas
+        // Carregar as tarifas da base de dados Firebase
         carregarTarifasFirebase();
     }
 
     private void carregarTarifasFirebase() {
-        tarifasRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        tarifasRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                tarifasContainer.removeAllViews();  // Limpa as tarifas antigas antes de carregar as novas
                 if (dataSnapshot.exists()) {
+                    int count = 0;
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        String titulo = snapshot.child("titulo").getValue(String.class);
-                        String descricao = snapshot.child("descricao").getValue(String.class);
+                        if (count >= 6) break;
+                        String nome = snapshot.child("nome").getValue(String.class);
+                        Object valorObject = snapshot.child("valor").getValue();
 
-                        View tarifaView = getLayoutInflater().inflate(R.layout.tarifa_item, null);
+                        Double valor = null;
+                        if (valorObject instanceof Double) {
+                            valor = (Double) valorObject;
+                        } else if (valorObject instanceof String) {
+                            try {
+                                valor = Double.parseDouble((String) valorObject);
+                            } catch (NumberFormatException e) {
+                                Log.e("VisualizarTarifasActivity", "Erro ao converter valor para Double: " + valorObject);
+                            }
+                        }
 
-                        TextView nomeTextView = tarifaView.findViewById(R.id.nomeTarifaTextView);
-                        TextView valorTextView = tarifaView.findViewById(R.id.valorTarifaTextView);
+                        if (nome != null && valor != null) {
+                            View tarifaView = getLayoutInflater().inflate(R.layout.tarifa_item, null);
 
-                        nomeTextView.setText(titulo);
-                        valorTextView.setText(descricao);
+                            TextView nomeTextView = tarifaView.findViewById(R.id.nomeTarifaTextView);
+                            TextView valorTextView = tarifaView.findViewById(R.id.valorTarifaTextView);
 
-                        tarifasContainer.addView(tarifaView);
+                            nomeTextView.setText(nome);
+                            valorTextView.setText(String.valueOf(valor));
+
+                            tarifasContainer.addView(tarifaView);
+                            count++;
+                        } else {
+                            Log.e("VisualizarTarifasActivity", "Tarifa com dados incompletos ou valor nulo encontrada.");
+                        }
                     }
                 } else {
-                    Log.d("TarifasActivity", "Nenhuma tarifa encontrada na base de dados.");
+                    Log.d("VisualizarTarifasActivity", "Nenhuma tarifa encontrada na base de dados.");
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("TarifasActivity", "Erro ao carregar as tarifas: " + databaseError.getMessage());
+                Log.e("VisualizarTarifasActivity", "Erro ao carregar as tarifas: " + databaseError.getMessage());
             }
         });
     }

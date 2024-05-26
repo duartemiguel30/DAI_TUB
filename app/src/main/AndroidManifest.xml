@@ -94,7 +94,24 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".VisualizarUtilizadorActivity" />
 
+
+        <activity android:name=".MenuGerirNotificacoesActivity" />
+
+        <activity android:name=".AdicionarNotificacoesActivity" />
+
+        <activity android:name=".RemoverNotificacoesActivity" />
+
+        <activity android:name=".EditarNotificacoesActivity" />
+
+        <activity android:name=".ListarNotificacoesActivity" />
+
+        <activity android:name=".MenuGerirRotasHorariosActivity" />
+
+        <activity android:name=".VisualizarRotasHorariosActivity" />
+
+        <activity android:name=".AdicionarRotaHorarioActivity" />
     </application>
 
 </manifest>

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_blue_to_white">
 
+    <!-- Botão Back -->
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
@@ -16,11 +17,12 @@
         android:layout_alignParentTop="true"
         android:background="@android:color/transparent"/>
 
+    <!-- Texto "Remover Notificações" -->
     <TextView
         android:id="@+id/greetingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bem-vindo Administrador!"
+        android:text="Remover Notificações"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#000000"
@@ -29,18 +31,19 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="24dp"/>
 
+    <!-- Texto "Selecione a notificação para remover:" -->
     <TextView
         android:id="@+id/chooseOptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Escolha o que deseja fazer:"
+        android:text="Selecione a notificação para remover:"
         android:textSize="16sp"
         android:textColor="#808080"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/greetingText"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="4dp"/>
+        android:layout_marginBottom="8dp"/>
 
     <LinearLayout
         android:layout_width="225dp"
@@ -48,54 +51,37 @@
         android:layout_centerInParent="true"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/gerir_tarifas"
+        <Spinner
+            android:id="@+id/spinner_notificacoes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gerir Tarifas"
-            android:textSize="16sp"
-            android:background="@drawable/button_background"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="10dp"
-            android:onClick="gerirTarifas" />
+            android:layout_marginBottom="16dp"/>
 
-        <Button
-            android:id="@+id/gerirRotas"
+        <EditText
+            android:id="@+id/edit_text_mensagem_notificacao_remover"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gerir Rotas e Horários"
-            android:textSize="16sp"
-            android:background="@drawable/button_background"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="10dp"
-            android:onClick="gerirRotas" />
+            android:hint="Mensagem da Notificação"
+            android:inputType="textMultiLine"
+            android:gravity="start|top"
+            android:minLines="3"
+            android:maxLines="5"
+            android:layout_marginBottom="16dp"/>
 
+        <!-- Botão para confirmar remoção da notificação -->
         <Button
-            android:id="@+id/visualizar_utilizador"
+            android:id="@+id/confirmar_remover_notificacao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Visualizar Utlizadores"
+            android:text="Confirmar Remoção"
             android:textSize="16sp"
             android:background="@drawable/button_background"
             android:textStyle="bold"
             android:gravity="center"
-            android:layout_marginBottom="10dp"
-            android:onClick="visualizarUtentes" />
-
-        <Button
-            android:id="@+id/gerir_notificacoes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Gerir notificacões"
-            android:textSize="16sp"
-            android:background="@drawable/button_background"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:onClick="gerirNotificacoes" />
+            android:layout_marginBottom="10dp" />
     </LinearLayout>
 
+    <!-- Imagem TUB -->
     <ImageView
         android:id="@+id/tubImage"
         android:layout_width="wrap_content"
@@ -104,5 +90,4 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/profileinfolayout"
         android:layout_marginTop="550dp"/>
-
 </RelativeLayout>

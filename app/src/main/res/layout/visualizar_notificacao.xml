@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_blue_to_white">
 
-    <!-- BotÃ£o Back -->
+    <!-- Botão Back -->
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
@@ -17,12 +17,11 @@
         android:layout_alignParentTop="true"
         android:background="@android:color/transparent"/>
 
-    <!-- Texto "Visualizar Tarifas" -->
     <TextView
         android:id="@+id/greetingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Visualizar Tarifas"
+        android:text="Notificações em tempo real"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#000000"
@@ -31,24 +30,17 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="24dp"/>
 
-    <!-- ScrollView para listar as tarifas -->
-    <ScrollView
-        android:id="@+id/tarifasScrollView"
+    <!-- ListView para exibir notificações -->
+    <ListView
+        android:id="@+id/list_view_notificacoes"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/greetingText"
-        android:layout_above="@id/tubImage"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:padding="16dp">
-
-        <LinearLayout
-            android:id="@+id/tarifasContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-        </LinearLayout>
-    </ScrollView>
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"/>
 
     <!-- Imagem TUB -->
     <ImageView

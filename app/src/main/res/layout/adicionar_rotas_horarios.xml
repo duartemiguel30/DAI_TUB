@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editNumeroRota"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Número da Rota"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/editDescricao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editNumeroRota"
+        android:layout_marginTop="16dp"
+        android:hint="Descrição da Rota"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/editPontoPartida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editDescricao"
+        android:layout_marginTop="16dp"
+        android:hint="Ponto de Partida"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/editPontoChegada"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editPontoPartida"
+        android:layout_marginTop="16dp"
+        android:hint="Ponto de Chegada"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/editPrecoEstudante"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editPontoChegada"
+        android:layout_marginTop="16dp"
+        android:hint="Preço Estudante"
+        android:inputType="numberDecimal"/>
+
+    <EditText
+        android:id="@+id/editPrecoNormal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editPrecoEstudante"
+        android:layout_marginTop="16dp"
+        android:hint="Preço Normal"
+        android:inputType="numberDecimal"/>
+
+    <EditText
+        android:id="@+id/editHorarioPartida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editPrecoNormal"
+        android:layout_marginTop="16dp"
+        android:hint="Horário de Partida (HH:MM)"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/editHorarioChegada"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editHorarioPartida"
+        android:layout_marginTop="16dp"
+        android:hint="Horário de Chegada (HH:MM)"
+        android:inputType="text"/>
+
+    <Button
+        android:id="@+id/buttonAdicionarRota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editHorarioChegada"
+        android:layout_marginTop="16dp"
+        android:text="Adicionar Rota"/>
+
+</RelativeLayout>

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_blue_to_white">
 
+    <!-- Botão Back -->
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
@@ -16,11 +17,12 @@
         android:layout_alignParentTop="true"
         android:background="@android:color/transparent"/>
 
+    <!-- Texto "Adicionar Notificação" -->
     <TextView
         android:id="@+id/greetingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bem-vindo Administrador!"
+        android:text="Adicionar Notificação"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#000000"
@@ -29,18 +31,19 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="24dp"/>
 
+    <!-- Texto "Adicione os dados da nova notificação:" -->
     <TextView
         android:id="@+id/chooseOptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Escolha o que deseja fazer:"
+        android:text="Adicione os dados da nova notificação:"
         android:textSize="16sp"
         android:textColor="#808080"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/greetingText"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="4dp"/>
+        android:layout_marginBottom="8dp"/>
 
     <LinearLayout
         android:layout_width="225dp"
@@ -48,54 +51,37 @@
         android:layout_centerInParent="true"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/gerir_tarifas"
+        <EditText
+            android:id="@+id/edit_text_titulo_notificacao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gerir Tarifas"
+            android:hint="Título"
+            android:inputType="text"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/edit_text_mensagem_notificacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mensagem"
+            android:inputType="text"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Botão para confirmar nova notificação -->
+        <Button
+            android:id="@+id/confirmar_nova_notificacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirmar Nova Notificação"
             android:textSize="16sp"
             android:background="@drawable/button_background"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginBottom="10dp"
-            android:onClick="gerirTarifas" />
-
-        <Button
-            android:id="@+id/gerirRotas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Gerir Rotas e Horários"
-            android:textSize="16sp"
-            android:background="@drawable/button_background"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="10dp"
-            android:onClick="gerirRotas" />
-
-        <Button
-            android:id="@+id/visualizar_utilizador"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Visualizar Utlizadores"
-            android:textSize="16sp"
-            android:background="@drawable/button_background"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="10dp"
-            android:onClick="visualizarUtentes" />
-
-        <Button
-            android:id="@+id/gerir_notificacoes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Gerir notificacões"
-            android:textSize="16sp"
-            android:background="@drawable/button_background"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:onClick="gerirNotificacoes" />
+            android:onClick="confirmarNovaNotificacao" />
     </LinearLayout>
 
+    <!-- Imagem TUB -->
     <ImageView
         android:id="@+id/tubImage"
         android:layout_width="wrap_content"
@@ -104,5 +90,4 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/profileinfolayout"
         android:layout_marginTop="550dp"/>
-
 </RelativeLayout>

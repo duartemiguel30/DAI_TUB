@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/card_background">
+
+    <TextView
+        android:id="@+id/nomeUtenteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nome do Utilizador"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/emailUtenteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email do Utilizador"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/nifUtenteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nif do Utilizador"
+        android:textSize="16sp"
+        android:textColor="#808080"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/numeroPasseUtenteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NÃºmero do Passe do Utilizador"
+        android:textSize="16sp"
+        android:textColor="#808080"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/saldoUtenteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Saldo do Utilizador"
+        android:textSize="16sp"
+        android:textColor="#808080"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/idUtenteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ID do Utilizador"
+        android:textSize="16sp"
+        android:textColor="#808080"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/viagensCompradasUtenteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Viagens Compradas pelo Utilizador"
+        android:textSize="16sp"
+        android:textColor="#808080"
+        android:layout_marginBottom="8dp"/>
+
+</LinearLayout>

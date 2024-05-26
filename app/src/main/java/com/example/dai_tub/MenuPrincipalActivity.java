@@ -148,6 +148,16 @@ public class MenuPrincipalActivity extends AppCompatActivity {
             }
         });
 
+        Button menuItemNotifications = findViewById(R.id.menuItemNotifications);
+        menuItemNotifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuPrincipalActivity.this, ListarNotificacoesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         Button recompensasButton = findViewById(R.id.rewardsButton);
         recompensasButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -37,8 +37,8 @@ public class MenuGerirTarifasActivity extends AppCompatActivity {
         editar_tarifas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Criar um intent para abrir a atividade da página 1
-                Intent intent = new Intent(MenuGerirTarifasActivity.this, EditarTarifasActivity.class);
+                // Criar um intent para abrir a atividade da pÃ¡gina 1
+                Intent intent = new Intent(MenuGerirTarifasActivity.this, VisualizarTarifasActivity.class);
                 startActivity(intent);
             }
         });

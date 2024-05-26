@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_blue_to_white">
+
+    <!-- Botão Back -->
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BACK"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_margin="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"/>
+
+    <!-- Texto "Editar Notificações" -->
+    <TextView
+        android:id="@+id/greetingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar Notificações"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/backButton"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="24dp"/>
+
+    <LinearLayout
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/spinner_notificacoes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/edit_text_titulo_notificacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Título"
+            android:inputType="text"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/edit_text_mensagem_notificacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mensagem"
+            android:inputType="text"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Botão para confirmar edição da notificação -->
+        <Button
+            android:id="@+id/confirmar_editar_notificacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirmar Edição"
+            android:textSize="16sp"
+            android:background="@drawable/button_background"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="10dp" />
+    </LinearLayout>
+</RelativeLayout>
