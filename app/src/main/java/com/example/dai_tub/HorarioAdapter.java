@@ -1,4 +1,3 @@
-// HorarioAdapter.java
 package com.example.dai_tub;
 
 import android.view.LayoutInflater;

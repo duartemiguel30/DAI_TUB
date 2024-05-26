@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_blue_to_white">
 
-    <!-- Botão Back -->
+
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:background="@android:color/transparent"/>
 
-    <!-- Texto "Gerir Notificações" -->
+
     <TextView
         android:id="@+id/greetingText"
         android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="24dp"/>
 
-    <!-- Texto "Escolha uma ação:" -->
+
     <TextView
         android:id="@+id/chooseOptionText"
         android:layout_width="wrap_content"
@@ -101,7 +101,6 @@
 
     </LinearLayout>
 
-    <!-- Imagem TUB -->
     <ImageView
         android:id="@+id/tubImage"
         android:layout_width="wrap_content"

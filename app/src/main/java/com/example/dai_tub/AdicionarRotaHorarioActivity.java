@@ -32,7 +32,6 @@ public class AdicionarRotaHorarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.adicionar_rotas_horarios);
 
-        // Inicialize os componentes de UI
         editNumeroRota = findViewById(R.id.editNumeroRota);
         editDescricao = findViewById(R.id.editDescricao);
         editPontoPartida = findViewById(R.id.editPontoPartida);
@@ -43,10 +42,8 @@ public class AdicionarRotaHorarioActivity extends AppCompatActivity {
         editHorarioChegada = findViewById(R.id.editHorarioChegada);
         buttonAdicionarRota = findViewById(R.id.buttonAdicionarRota);
 
-        // Inicialize o Firebase Database
         databaseReference = FirebaseDatabase.getInstance().getReference("rotas");
 
-        // Defina o listener de clique para o botão Adicionar Rota
         buttonAdicionarRota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,35 +60,28 @@ public class AdicionarRotaHorarioActivity extends AppCompatActivity {
         double precoEstudante = Double.parseDouble(editPrecoEstudante.getText().toString());
         double precoNormal = Double.parseDouble(editPrecoNormal.getText().toString());
 
-        // Obtenha os horários de partida e chegada inseridos
         String horarioPartidaString = editHorarioPartida.getText().toString().trim();
         String horarioChegadaString = editHorarioChegada.getText().toString().trim();
 
-        // Verifique se os campos não estão vazios
         if (!numeroRota.isEmpty() && !descricao.isEmpty() && !pontoPartida.isEmpty() && !pontoChegada.isEmpty() && !horarioPartidaString.isEmpty() && !horarioChegadaString.isEmpty()) {
-            // Parse dos horários de partida e chegada
             String[] partesHorarioPartida = horarioPartidaString.split(":");
             String[] partesHorarioChegada = horarioChegadaString.split(":");
 
-            // Verifique se os horários foram inseridos corretamente
             if (partesHorarioPartida.length == 2 && partesHorarioChegada.length == 2) {
                 int horaPartida = Integer.parseInt(partesHorarioPartida[0]);
                 int minutoPartida = Integer.parseInt(partesHorarioPartida[1]);
                 int horaChegada = Integer.parseInt(partesHorarioChegada[0]);
                 int minutoChegada = Integer.parseInt(partesHorarioChegada[1]);
 
-                // Crie uma nova lista de horários
+
                 List<Horario> horariosList = new ArrayList<>();
                 horariosList.add(new Horario(horaPartida, minutoPartida, horaChegada, minutoChegada)); // Adiciona o horário de partida e chegada fornecidos pelo administrador
 
-                // Crie uma nova rota
-                String id = databaseReference.push().getKey(); // Gere um ID único para a rota
+                String id = databaseReference.push().getKey();
                 Rota rota = new Rota(numeroRota, descricao, pontoPartida, pontoChegada, precoEstudante, precoNormal, horariosList);
 
-                // Adicione a rota ao Firebase Database
                 databaseReference.child(id).setValue(rota);
 
-                // Limpe os campos após adicionar a rota
                 editNumeroRota.setText("");
                 editDescricao.setText("");
                 editPontoPartida.setText("");
@@ -106,7 +96,6 @@ public class AdicionarRotaHorarioActivity extends AppCompatActivity {
                 Log.e(TAG, "Formato de horário de partida ou de chegada inválido.");
             }
         } else {
-            // Mostre uma mensagem de erro indicando que todos os campos são obrigatórios
             Log.e(TAG, "Todos os campos são obrigatórios.");
         }
     }

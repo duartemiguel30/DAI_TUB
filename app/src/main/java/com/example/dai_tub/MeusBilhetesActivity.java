@@ -1,4 +1,3 @@
-// MeusBilhetesActivity.java
 package com.example.dai_tub;
 
 import android.os.Bundle;

@@ -45,14 +45,11 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
         holder.btnVerPrecos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Obtém os preços da rota
                 double precoNormal = rota.getPrecoNormal();
                 double precoEstudante = rota.getPrecoEstudante();
 
-                // Constrói a mensagem com os preços
                 String mensagem = "Preço Normal: €" + precoNormal + "\nPreço Estudante: €" + precoEstudante;
 
-                // Mostra a mensagem
                 Toast.makeText(holder.itemView.getContext(), mensagem, Toast.LENGTH_SHORT).show();
             }
         });
@@ -60,7 +57,6 @@ public class RotaAdapter extends RecyclerView.Adapter<RotaAdapter.RotaViewHolder
         holder.btnVerHorarios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navega para a atividade de detalhes da rota, passando a rota inteira
                 Intent intent = new Intent(context, DetalhesRotaActivity.class);
                 intent.putExtra("rota", rota); // Passa a rota inteira
                 context.startActivity(intent);

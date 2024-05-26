@@ -30,10 +30,8 @@ public class VisualizarRotasHorariosActivity extends AppCompatActivity {
         adapter = new RotaHorarioAdapter(this, R.layout.list_item_rota, listData);
         listView.setAdapter(adapter);
 
-        // Initialize Firebase Database
         databaseReference = FirebaseDatabase.getInstance().getReference("rotas");
 
-        // Read from the database
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -58,7 +56,6 @@ public class VisualizarRotasHorariosActivity extends AppCompatActivity {
                     }
 
                     if (descricaoRota != null && pontoPartida != null && pontoChegada != null) {
-                        // Aqui está a correção
                         Rota rota = new Rota("", descricaoRota, pontoPartida, pontoChegada, 0.0, 0.0, horarios);
                         listData.add(rota);
                     }
@@ -69,7 +66,6 @@ public class VisualizarRotasHorariosActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle possible errors
                 Log.e(TAG, "Database error: " + databaseError.getMessage());
             }
         });

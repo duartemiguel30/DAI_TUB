@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_blue_to_white">
 
-    <!-- Botão Back -->
+
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
 
-    <!-- Título -->
+
     <TextView
         android:id="@+id/titulo_text_view"
         android:layout_width="wrap_content"
@@ -33,7 +33,6 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/backButton"/>
 
-    <!-- Spinner -->
     <Spinner
         android:id="@+id/spinner_rotas_horarios"
         android:layout_width="match_parent"
@@ -43,7 +42,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"/>
 
-    <!-- Botão Confirmar Remover -->
     <Button
         android:id="@+id/confirmar_remover_rota_horario"
         android:layout_width="wrap_content"

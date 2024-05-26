@@ -16,50 +16,38 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private static final int SPLASH_TIMEOUT = 2000; // Tempo de espera em milissegundos (2 segundos)
+    private static final int SPLASH_TIMEOUT = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash_screen); // Exibe a tela de entrada
+        setContentView(R.layout.splash_screen);
 
-        // Aguarde por SPLASH_TIMEOUT antes de abrir a LoginActivity
         new Handler().postDelayed(() -> {
-            // Ir para a tela de escolha (Login ou Registro)
             startActivity(new Intent(MainActivity.this, RegistroActivity.class));
-            finish(); // Fecha a tela de entrada após abrir a tela de escolha
+            finish();
         }, SPLASH_TIMEOUT);
 
-        // Insere as rotas no Firebase Realtime Database
         inserirRotas();
     }
 
     private void inserirRotas() {
-        // Inicializa o Firebase Realtime Database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference rotasRef = database.getReference("rotas");
 
-        // Verifica se há dados no nó "rotas"
         rotasRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (!dataSnapshot.exists()) {
-                    // Se não houver dados, insere as rotas
                     List<Rota> rotas = criarListaRotas();
                     for (Rota rota : rotas) {
-                        // Use o número da rota como chave primária
                         DatabaseReference rotaRef = rotasRef.child(rota.getNumero());
-                        // Salva a rota no Firebase
                         rotaRef.setValue(rota);
 
-                        // Verifica se o dataSnapshot contém a lista de horários
                         if (dataSnapshot.child("horarios").getValue() instanceof List) {
-                            // Se for uma lista, salva os horários no Firebase
                             DatabaseReference horariosRef = rotaRef.child("horarios");
                             for (Horario horario : rota.getHorarios()) {
-                                // Use push() para gerar chaves únicas para os horários
                                 DatabaseReference horarioRef = horariosRef.push();
-                                // Salva o horário no Firebase
                                 horarioRef.setValue(horario);
                             }
                         } else {
@@ -72,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Trate o erro, se necessário
                 Log.e(TAG, "Erro ao verificar dados de rotas: " + databaseError.getMessage());
             }
         });
@@ -83,29 +70,23 @@ public class MainActivity extends AppCompatActivity {
     private List<Rota> criarListaRotas() {
         List<Rota> rotas = new ArrayList<>();
 
-        // Rota 2
+
         List<Horario> horariosRota2 = new ArrayList<>();
         horariosRota2.add(new Horario(6, 45, 7, 30));
         horariosRota2.add(new Horario(7, 15, 8, 0));
-        // Adicione os outros horários...
         rotas.add(new Rota("2", "Descrição da Rota 2", "Ponto de Partida: Ponte de Prado", "Ponto de Chegada: Bom Jesus", 1.0, 2.0, horariosRota2));
 
-        // Rota 3
         List<Horario> horariosRota3 = new ArrayList<>();
         horariosRota3.add(new Horario(19, 55, 20, 25));
-        // Adicione os outros horários...
         rotas.add(new Rota("3", "Descrição da Rota 3", "Ponto de Partida: Avenida Central", "Ponto de Chegada: Ruães", 1.0, 2.0, horariosRota3));
 
-        // Rota 5
         List<Horario> horariosRota5 = new ArrayList<>();
         horariosRota5.add(new Horario(7, 30, 8, 0));
         horariosRota5.add(new Horario(8, 30, 9, 0));
         horariosRota5.add(new Horario(17, 30, 18, 0));
         horariosRota5.add(new Horario(18, 30, 19, 0));
-        // Adicione os outros horários...
         rotas.add(new Rota("5", "Descrição da Rota 5", "Ponto de Partida: Dume", "Ponto de Chegada: Quinta da Capela", 1.0, 2.0, horariosRota5));
 
-        // Rota 6
         List<Horario> horariosRota6 = new ArrayList<>();
         horariosRota6.add(new Horario(7, 25, 7, 45));
         horariosRota6.add(new Horario(10, 0, 10, 25));
@@ -113,27 +94,21 @@ public class MainActivity extends AppCompatActivity {
         horariosRota6.add(new Horario(16, 0, 16, 25));
         horariosRota6.add(new Horario(18, 15, 18, 45));
         horariosRota6.add(new Horario(19, 15, 19, 40));
-        // Adicione os outros horários...
         rotas.add(new Rota("6", "Descrição da Rota 6", "Ponto de Partida: Avenida General Norton de Matos", "Ponto de Chegada: Gondizalves/Semelhe", 1.0, 2.0, horariosRota6));
 
-        // Rota 7
         List<Horario> horariosRota7 = new ArrayList<>();
         horariosRota7.add(new Horario(6, 15, 7, 15));
         horariosRota7.add(new Horario(6, 45, 7, 45));
-        // Adicione os outros horários...
         rotas.add(new Rota("7", "Descrição da Rota 7", "Ponto de Partida: S. Mamede d`Este", "Ponto de Chegada: Celeirós", 1.0, 2.0, horariosRota7));
 
-        // Rota 8
         List<Horario> horariosRota8 = new ArrayList<>();
         horariosRota8.add(new Horario(8, 15, 8, 30));
         horariosRota8.add(new Horario(9, 15, 9, 30));
         horariosRota8.add(new Horario(12, 30, 12, 45));
         horariosRota8.add(new Horario(14, 15, 14, 30));
         horariosRota8.add(new Horario(17, 15, 17, 30));
-// Adicione os outros horários...
         rotas.add(new Rota("8", "Descrição da Rota 8", "Ponto de Partida: Rua 25 de Abril", "Ponto de Chegada: Sete Fontes", 1.0, 2.0, horariosRota8));
 
-// Rota 9
         List<Horario> horariosRota9 = new ArrayList<>();
         horariosRota9.add(new Horario(7, 25, 8, 25));
         horariosRota9.add(new Horario(8, 25, 9, 25));
@@ -148,19 +123,15 @@ public class MainActivity extends AppCompatActivity {
         horariosRota9.add(new Horario(17, 25, 18, 25));
         horariosRota9.add(new Horario(18, 25, 19, 25));
         horariosRota9.add(new Horario(19, 25, 20, 25));
-// Adicione os outros horários...
         rotas.add(new Rota("9", "Descrição da Rota 9", "Ponto de Partida: Ruães", "Ponto de Chegada: Nogueira(Barral)", 1.0, 2.0, horariosRota9));
 
-// Rota 12
         List<Horario> horariosRota12 = new ArrayList<>();
         horariosRota12.add(new Horario(7, 30, 7, 55));
         horariosRota12.add(new Horario(8, 45, 9, 10));
         horariosRota12.add(new Horario(12, 5, 12, 25));
         horariosRota12.add(new Horario(18, 25, 18, 50));
-// Adicione os outros horários...
         rotas.add(new Rota("12", "Descrição da Rota 12", "Ponto de Partida: Avenida Liberdade", "Ponto de Chegada: Lageosa/Pedralva via Gualtar", 1.0, 2.0, horariosRota12));
 
-// Rota 13
         List<Horario> horariosRota13 = new ArrayList<>();
         horariosRota13.add(new Horario(6, 0, 6, 40));
         horariosRota13.add(new Horario(6, 40, 7, 20));
@@ -176,16 +147,12 @@ public class MainActivity extends AppCompatActivity {
         horariosRota13.add(new Horario(18, 0, 18, 40));
         horariosRota13.add(new Horario(18, 40, 19, 20));
         horariosRota13.add(new Horario(20, 0, 20, 40));
-// Adicione os outros horários...
         rotas.add(new Rota("13", "Descrição da Rota 13", "Ponto de Partida: Avenida General Norton de Matos", "Ponto de Chegada: Lageosa/Pedralva", 1.0, 2.0, horariosRota13));
 
-// Rota 14
         List<Horario> horariosRota14 = new ArrayList<>();
         horariosRota14.add(new Horario(7, 5, 7, 40));
-// Adicione os outros horários...
         rotas.add(new Rota("14", "Descrição da Rota 14", "Ponto de Partida: Praça Conde de Agrolongo", "Ponto de Chegada: Priscos", 1.0, 2.0, horariosRota14));
 
-// Rota 18
         List<Horario> horariosRota18 = new ArrayList<>();
         horariosRota18.add(new Horario(7, 0, 7, 15));
         horariosRota18.add(new Horario(7, 35, 7, 50));
@@ -208,37 +175,28 @@ public class MainActivity extends AppCompatActivity {
         horariosRota18.add(new Horario(19, 10, 19, 25));
         horariosRota18.add(new Horario(19, 50, 20, 05));
         horariosRota18.add(new Horario(20, 25, 20, 40));
-// Adicione os outros horários...
         rotas.add(new Rota("18", "Descrição da Rota 18", "Ponto de Partida: Rua do Raio", "Ponto de Chegada: Pinheiro do Bicho via Esporões", 1.0, 2.0, horariosRota18));
 
-// Rota 24
         List<Horario> horariosRota24 = new ArrayList<>();
         horariosRota24.add(new Horario(6, 50, 7, 40));
         horariosRota24.add(new Horario(7, 25, 8, 20));
         horariosRota24.add(new Horario(8, 20, 9, 20));
         horariosRota24.add(new Horario(17, 20, 18, 20));
         horariosRota24.add(new Horario(19, 40, 20, 40));
-// Adicione os outros horários...
         rotas.add(new Rota("24", "Descrição da Rota 24", "Ponto de Partida: Sequeira", "Ponto de Chegada: Gualtar", 1.0, 2.0, horariosRota24));
 
-// Rota 900
         List<Horario> horariosRota900 = new ArrayList<>();
         horariosRota900.add(new Horario(21, 40, 21, 55));
-// Adicione os outros horários...
         rotas.add(new Rota("900", "Descrição da Rota 900", "Ponto de Partida: Avenida Central", "Ponto de Chegada: Hospital", 1.0, 2.0, horariosRota900));
 
-// Rota 907
         List<Horario> horariosRota907 = new ArrayList<>();
         horariosRota907.add(new Horario(21, 15, 21, 45));
         horariosRota907.add(new Horario(22, 15, 22, 45));
         horariosRota907.add(new Horario(23, 15, 23, 45));
-// Adicione os outros horários...
         rotas.add(new Rota("907", "Descrição da Rota 907", "Ponto de Partida: Misericórdia", "Ponto de Chegada:S.Mamede D'Este", 1.0, 2.0, horariosRota907));
 
-// Rota 911
         List<Horario> horariosRota911 = new ArrayList<>();
         horariosRota911.add(new Horario(22, 30, 22, 55));
-// Adicione os outros horários...
         rotas.add(new Rota("911", "Descrição da Rota 911", "Ponto de Partida: Avenida Central", "Ponto de Chegada: Padim da Graça", 1.0, 2.0, horariosRota911));
 
 

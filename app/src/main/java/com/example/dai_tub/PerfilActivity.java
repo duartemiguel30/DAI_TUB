@@ -52,7 +52,6 @@ public class PerfilActivity extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         User user = dataSnapshot.getValue(User.class);
                         if (user != null) {
-                            // Definindo os valores nos elementos TextView
                             greetingText.setText(getString(R.string.greeting_text, user.getName()));
                             fullNameText.setText(user.getName());
                             emailText.setText(user.getEmail());

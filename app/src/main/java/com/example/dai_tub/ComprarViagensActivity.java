@@ -27,8 +27,6 @@ public class ComprarViagensActivity extends AppCompatActivity {
         saldoLayout = findViewById(R.id.saldoLayout);
 
 
-
-        // "prosseguir
         Button continueButton = findViewById(R.id.continueButton);
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override

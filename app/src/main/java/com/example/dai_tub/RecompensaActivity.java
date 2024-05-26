@@ -175,10 +175,6 @@ public class RecompensaActivity extends AppCompatActivity implements RotaAdapter
     }
 
 
-
-
-
-
     private void salvarBilhete(Rota rota, String nomeUsuario, String userId) {
         String bilheteId = bilhetesRef.push().getKey();
 

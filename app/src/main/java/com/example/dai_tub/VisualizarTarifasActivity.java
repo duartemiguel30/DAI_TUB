@@ -26,7 +26,6 @@ public class VisualizarTarifasActivity extends AppCompatActivity {
         tarifasRef = FirebaseDatabase.getInstance().getReference().child("tarifas");
         tarifasContainer = findViewById(R.id.tarifasContainer);
 
-        // Carregar as tarifas da base de dados Firebase
         carregarTarifasFirebase();
     }
 
@@ -34,7 +33,7 @@ public class VisualizarTarifasActivity extends AppCompatActivity {
         tarifasRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                tarifasContainer.removeAllViews();  // Limpa as tarifas antigas antes de carregar as novas
+                tarifasContainer.removeAllViews();
                 if (dataSnapshot.exists()) {
                     int count = 0;
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {

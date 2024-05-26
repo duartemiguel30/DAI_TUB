@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Opção de pagamento: Multibanco -->
+
             <RelativeLayout
                 android:id="@+id/multibancoLayout"
                 android:layout_width="match_parent"
@@ -60,7 +60,6 @@
                     android:layout_marginStart="8dp" />
             </RelativeLayout>
 
-            <!-- Opção de pagamento: MB Way -->
             <RelativeLayout
                 android:id="@+id/mbwayLayout"
                 android:layout_width="match_parent"
@@ -92,7 +91,6 @@
                     android:layout_marginStart="8dp" />
             </RelativeLayout>
 
-            <!-- Opção de pagamento: PayPal -->
             <RelativeLayout
                 android:id="@+id/paypalLayout"
                 android:layout_width="match_parent"
@@ -127,7 +125,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Campo para inserir o valor do saldo a ser carregado -->
     <EditText
         android:id="@+id/loadBalanceEditText"
         android:layout_width="match_parent"
@@ -140,7 +137,6 @@
         android:padding="12dp"
         android:background="@drawable/gradient_background" />
 
-    <!-- Botão "Carregar Saldo" movido para o canto superior direito -->
     <Button
         android:id="@+id/loadBalanceButton"
         android:layout_width="wrap_content"

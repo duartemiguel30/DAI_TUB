@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_blue_to_white">
 
-    <!-- Botão Back -->
+
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="24dp"/>
 
-    <!-- ListView para exibir notificações -->
+
     <ListView
         android:id="@+id/list_view_notificacoes"
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp"/>
 
-    <!-- Imagem TUB -->
+
     <ImageView
         android:id="@+id/tubImage"
         android:layout_width="wrap_content"

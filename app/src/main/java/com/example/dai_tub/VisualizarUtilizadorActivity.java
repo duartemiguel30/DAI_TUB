@@ -26,7 +26,6 @@ public class VisualizarUtilizadorActivity extends AppCompatActivity {
         usersRef = FirebaseDatabase.getInstance().getReference().child("users");
         usersContainer = findViewById(R.id.usersContainer);
 
-        // Carregar os utentes da base de dados Firebase
         carregarUtentesFirebase();
     }
 
@@ -34,7 +33,7 @@ public class VisualizarUtilizadorActivity extends AppCompatActivity {
         usersRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                usersContainer.removeAllViews();  // Limpa os utentes antigos antes de carregar os novos
+                usersContainer.removeAllViews();
                 if (dataSnapshot.exists()) {
                     int count = 0;
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -58,7 +57,6 @@ public class VisualizarUtilizadorActivity extends AppCompatActivity {
                             TextView userIdTextView = utenteView.findViewById(R.id.idUtenteTextView);
                             TextView viagensCompradasTextView = utenteView.findViewById(R.id.viagensCompradasUtenteTextView);
 
-                            // Adiciona rótulos aos dados
                             nomeTextView.setText("Nome: " + nome);
                             emailTextView.setText("Email: " + email);
                             if (nif != null) {

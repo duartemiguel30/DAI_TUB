@@ -60,8 +60,7 @@ public class NotificacoesActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle database error
-                Log.e("NotificacoesActivity", "Erro no banco de dados: " + databaseError.getMessage());
+                Log.e("NotificacoesActivity", "Erro na base de dados: " + databaseError.getMessage());
             }
         });
     }

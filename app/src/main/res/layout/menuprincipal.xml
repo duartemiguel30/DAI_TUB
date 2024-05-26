@@ -6,7 +6,6 @@
     android:background="@drawable/gradient_darkblue">
 
 
-    <!-- Barra de ferramentas -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -16,7 +15,7 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <!-- Texto para abrir o menu -->
+
         <TextView
             android:id="@+id/menuText"
             android:layout_width="wrap_content"
@@ -27,7 +26,6 @@
             android:padding="10dp"
             android:onClick="toggleMenu" />
 
-        <!-- Botão de perfil -->
         <Button
             android:id="@+id/profileButton"
             android:layout_width="wrap_content"
@@ -40,7 +38,7 @@
             android:background="@android:color/transparent"/>
     </androidx.appcompat.widget.Toolbar>
 
-    <!-- ScrollView para o conteúdo -->
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -53,7 +51,6 @@
             android:paddingBottom="16dp">
 
 
-            <!-- LinearLayout para botões "Comprar Bilhetes" e "Validar Bilhetes" -->
             <LinearLayout
                 android:id="@+id/ticketButtonsLayout"
                 android:layout_width="match_parent"
@@ -91,7 +88,7 @@
                     android:background="@drawable/gradient_button" />
             </LinearLayout>
 
-            <!-- Linha separadora -->
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -99,7 +96,6 @@
                 android:layout_below="@id/ticketButtonsLayout"
                 android:layout_marginTop="16dp"/>
 
-            <!-- Barra de pesquisa -->
             <LinearLayout
                 android:id="@+id/searchBar"
                 android:layout_width="match_parent"
@@ -152,7 +148,7 @@
                 android:layout_marginTop="5dp" />
 
 
-            <!-- LinearLayout para conter as notificações -->
+
             <LinearLayout
                 android:id="@+id/newsLayout"
                 android:layout_width="match_parent"
@@ -161,7 +157,6 @@
                 android:layout_below="@id/newsTab"
                 android:layout_marginTop="16dp">
 
-                <!-- Notificação 1 -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -170,7 +165,6 @@
                     android:background="@drawable/news_border"
                     android:padding="16dp">
 
-                    <!-- Imagem da notificação 1 -->
                     <ImageView
                         android:id="@+id/imagemNoticia1ImageView"
                         android:layout_width="match_parent"
@@ -178,7 +172,7 @@
                         android:scaleType="centerCrop"
                         android:contentDescription="Imagem da Notificação 1" />
 
-                    <!-- Texto da notificação 1 -->
+
                     <TextView
                         android:id="@+id/tituloNoticia1TextView"
                         android:layout_width="match_parent"
@@ -198,7 +192,7 @@
 
                 </LinearLayout>
 
-                <!-- Notificação 2 -->
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -207,7 +201,7 @@
                     android:background="@drawable/news_border"
                     android:padding="16dp">
 
-                    <!-- Imagem da notificação 2 -->
+
                     <ImageView
                         android:id="@+id/imagemNoticia2ImageView"
                         android:layout_width="match_parent"
@@ -215,7 +209,7 @@
                         android:scaleType="centerCrop"
                         android:contentDescription="Imagem da Notícia 2" />
 
-                    <!-- Texto da notificação 2 -->
+
                     <TextView
                         android:id="@+id/tituloNoticia2TextView"
                         android:layout_width="match_parent"
@@ -237,7 +231,7 @@
 
             </LinearLayout>
 
-            <!-- LinearLayout com Recompensas e Notícias -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -246,7 +240,7 @@
                 android:layout_marginTop="32dp"
                 android:gravity="center">
 
-                <!-- Recompensas -->
+
                 <Button
                     android:id="@+id/rewardsButton"
                     android:layout_width="0dp"
@@ -260,12 +254,10 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <!-- Espaço entre Recompensas e Notícias -->
                 <View
                     android:layout_width="16dp"
                     android:layout_height="match_parent"/>
 
-                <!-- Notícias -->
                 <Button
                     android:id="@+id/news2Button"
                     android:layout_width="0dp"
@@ -280,7 +272,7 @@
                     android:gravity="center"/>
             </LinearLayout>
 
-            <!-- Texto informativo para os botões -->
+
             <TextView
                 android:id="@+id/rewardsDescription"
                 android:layout_width="match_parent"
@@ -290,7 +282,6 @@
                 android:layout_below="@id/rewardsButton"
                 android:gravity="center"/>
 
-            <!-- Texto informativo para os botões -->
             <TextView
                 android:id="@+id/newsDescription"
                 android:layout_width="match_parent"
@@ -300,7 +291,7 @@
                 android:layout_below="@id/news2Button"
                 android:gravity="center"/>
 
-            <!-- Barra fixa para dividir FAQs e Suporte -->
+
             <View
                 android:id="@+id/dividerBarFaqSupport"
                 android:layout_width="match_parent"
@@ -313,7 +304,6 @@
         </RelativeLayout>
     </ScrollView>
 
-    <!-- Menu que se sobrepõe -->
     <LinearLayout
         android:id="@+id/menuOverlay"
         android:layout_width="match_parent"
@@ -323,7 +313,7 @@
         android:visibility="gone"
         android:background="#80ADD8E6">
 
-        <!-- Adicione itens de menu aqui -->
+
         <Button
             android:id="@+id/menuItemHome"
             android:layout_width="match_parent"
@@ -378,7 +368,6 @@
             android:background="#AA4286F4"
             android:textColor="@android:color/white"/>
 
-        <!-- Adicione mais itens de menu conforme necessário -->
 
     </LinearLayout>
 

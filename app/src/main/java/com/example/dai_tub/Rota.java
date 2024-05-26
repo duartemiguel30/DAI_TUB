@@ -130,7 +130,6 @@ public class Rota implements Parcelable {
 
     private void configurarHorarios() {
         if (horarios != null && !horarios.isEmpty()) {
-            // Ordena os horários pelo horário de partida
             Collections.sort(horarios, Comparator.comparingInt(Horario::getHoraPartida).thenComparingInt(Horario::getMinutoPartida));
             primeiroHorario = horarios.get(0);
             ultimoHorario = horarios.get(horarios.size() - 1);

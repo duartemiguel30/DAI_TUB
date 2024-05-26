@@ -25,15 +25,12 @@ public class RotaHorarioAdapter extends ArrayAdapter<Rota> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        // Inflate the layout for each list item
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(mResource, parent, false);
         }
 
-        // Get the rota object for the current position
         Rota rota = getItem(position);
 
-        // Set the text for each TextView in the layout
         TextView descricaoRota = convertView.findViewById(R.id.descricaoRota);
         TextView pontoPartida = convertView.findViewById(R.id.pontoPartida);
         TextView pontoChegada = convertView.findViewById(R.id.pontoChegada);
@@ -50,7 +47,6 @@ public class RotaHorarioAdapter extends ArrayAdapter<Rota> {
             horariosBuilder.append(horaPartida).append(" - ").append(horaChegada).append("\n");
         }
 
-        // Remove the last newline character
         if (horariosBuilder.length() > 0) {
             horariosBuilder.setLength(horariosBuilder.length() - 1);
         }

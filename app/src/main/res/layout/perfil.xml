@@ -4,7 +4,7 @@
     android:background="@drawable/gradient_blue_to_white"
     android:padding="16dp">
 
-    <!-- Botão Voltar -->
+
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
@@ -17,7 +17,7 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/button_background"/>
 
-    <!-- Cartão de Saudação e Saldo -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
         android:radius="50dp"
         android:gravity="center">
 
-        <!-- Saudação -->
+
         <TextView
             android:id="@+id/greetingText"
             android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
             android:paddingBottom="16dp"
             android:gravity="center"/>
 
-        <!-- Cartão de Saldo -->
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
         android:layout_centerInParent="true"
         android:layout_marginBottom="16dp">
 
-        <!-- Nome Completo -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
                 android:padding="8dp"/>
         </LinearLayout>
 
-        <!-- Email -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
                 android:padding="8dp"/>
         </LinearLayout>
 
-        <!-- NIF -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -159,7 +159,7 @@
                 android:padding="8dp"/>
         </LinearLayout>
 
-        <!-- Número de Passe -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -185,7 +185,7 @@
                 android:padding="8dp"/>
         </LinearLayout>
 
-        <!-- Número de Viagens Compradas -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -211,7 +211,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Imagem TUB -->
+
     <ImageView
         android:id="@+id/tubImage"
         android:layout_width="wrap_content"

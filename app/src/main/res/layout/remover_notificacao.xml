@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_blue_to_white">
 
-    <!-- Botão Back -->
+
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:background="@android:color/transparent"/>
 
-    <!-- Texto "Remover Notificações" -->
+
     <TextView
         android:id="@+id/greetingText"
         android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="24dp"/>
 
-    <!-- Texto "Selecione a notificação para remover:" -->
+
     <TextView
         android:id="@+id/chooseOptionText"
         android:layout_width="wrap_content"
@@ -68,7 +68,7 @@
             android:maxLines="5"
             android:layout_marginBottom="16dp"/>
 
-        <!-- Botão para confirmar remoção da notificação -->
+
         <Button
             android:id="@+id/confirmar_remover_notificacao"
             android:layout_width="match_parent"
@@ -81,7 +81,7 @@
             android:layout_marginBottom="10dp" />
     </LinearLayout>
 
-    <!-- Imagem TUB -->
+
     <ImageView
         android:id="@+id/tubImage"
         android:layout_width="wrap_content"

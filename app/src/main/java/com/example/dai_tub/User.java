@@ -7,10 +7,9 @@ public class User {
     private String nif;
     private String numeroPasse;
     private double saldo;
-    private int viagensCompradas; // Novo campo para armazenar o número de viagens compradas
+    private int viagensCompradas;
 
     public User() {
-        // Construtor vazio necessário para Firebase
     }
 
     public User(String userId, String name, String email, String nif, String numeroPasse, double saldo, int viagensCompradas) {
@@ -23,7 +22,6 @@ public class User {
         this.viagensCompradas = viagensCompradas;
     }
 
-    // Métodos getters e setters
     public String getUserId() {
         return userId;
     }

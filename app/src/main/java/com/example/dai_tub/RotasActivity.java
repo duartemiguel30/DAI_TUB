@@ -56,10 +56,8 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
         adapter = new RotaAdapter(this, listaRotasFiltradas, this); // Passando o contexto e a atividade como listener
         recyclerView.setAdapter(adapter);
 
-        // Inicializar Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
 
-        // Inicializar DatabaseReference para "rotas" e "bilhetes"
         rotasRef = FirebaseDatabase.getInstance().getReference().child("rotas");
         bilhetesRef = FirebaseDatabase.getInstance().getReference().child("bilhetes");
 
@@ -80,7 +78,7 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
         });
 
         btnConfirmarPagamento = findViewById(R.id.btnConfirmarPagamento);
-        btnConfirmarPagamento.setEnabled(false); // Desabilitar o botão de pagamento inicialmente
+        btnConfirmarPagamento.setEnabled(false);
         btnConfirmarPagamento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +88,6 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
     }
 
     private void carregarTodasRotas() {
-        // Limpar a lista de rotas antes de adicionar novos dados
         listaRotas.clear();
 
         rotasRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -105,10 +102,7 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
                     }
                 }
 
-                // Atualizar a lista de rotas
                 listaRotas.addAll(rotas);
-
-                // Atualizar a lista de rotas filtradas
                 filtrarRotas("");
                 Log.d(TAG, "Rotas carregadas com sucesso. Total de rotas: " + listaRotas.size());
             }
@@ -135,27 +129,22 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
     public void onItemClick(Rota rota, int position) {
         rotaSelecionada = rota;
         adapter.setSelectedPosition(position);
-        // Habilitar o botão de pagamento quando uma rota for selecionada
         btnConfirmarPagamento.setEnabled(true);
     }
 
     private void onConfirmarPagamentoClick() {
         if (rotaSelecionada != null) {
-            // Verificar se o usuário está autenticado
             FirebaseUser currentUser = mAuth.getCurrentUser();
             if (currentUser != null) {
-                // Usuário está autenticado, então proceda com o salvamento do bilhete
                 String nomeUsuario = currentUser.getDisplayName();
-                String emailUsuario = currentUser.getEmail(); // Adicione esta linha para obter o e-mail do usuário
+                String emailUsuario = currentUser.getEmail();
                 if (nomeUsuario == null) {
-                    nomeUsuario = emailUsuario; // Use o e-mail se o nome do usuário não estiver disponível
+                    nomeUsuario = emailUsuario;
                 }
-                String userId = currentUser.getUid(); // Obter o ID do usuário autenticado
-                salvarBilhete(rotaSelecionada, nomeUsuario, userId); // Passar userId para o método salvarBilhete
+                String userId = currentUser.getUid();
+                salvarBilhete(rotaSelecionada, nomeUsuario, userId);
             } else {
-                // Usuário não está autenticado, redirecione para a tela de login
                 Toast.makeText(this, "Você precisa estar logado para confirmar o pagamento", Toast.LENGTH_SHORT).show();
-                // Redirecionar para a tela de login
                 startActivity(new Intent(this, LoginActivity.class));
             }
         } else {
@@ -164,33 +153,26 @@ public class RotasActivity extends AppCompatActivity implements RotaAdapter.OnIt
     }
 
     private void salvarBilhete(Rota rota, String nomeUsuario, String userId) {
-        // Crie um ID único para o bilhete
         String bilheteId = bilhetesRef.push().getKey();
 
-        // Obtenha a data atual
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String dataAtual = dateFormat.format(new Date());
 
-        // Defina a data de validade do bilhete (por exemplo, 7 dias após a compra)
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        calendar.add(Calendar.DATE, 7); // Adicionando 7 dias à data atual
+        calendar.add(Calendar.DATE, 7);
         String dataValidade = dateFormat.format(calendar.getTime());
 
-        // Criar um novo objeto Bilhete com as informações necessárias
         Bilhete bilhete = new Bilhete(bilheteId, userId, nomeUsuario, dataAtual, dataValidade, rota.getPontoPartida(), rota.getPontoChegada(), rota);
 
-        // Salvar os detalhes do bilhete no Firebase
         bilhetesRef.child(bilheteId).setValue(bilhete).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(RotasActivity.this, "Bilhete salvo com sucesso", Toast.LENGTH_SHORT).show();
-                // Limpar a seleção de rota
                 rotaSelecionada = null;
 
-                // Direcionar para a atividade de exibição do código QR
                 Intent intent = new Intent(RotasActivity.this, ConfirmarPagamentoActivity.class);
-                intent.putExtra("bilheteId", bilheteId); // Passar o ID do bilhete para a ConfirmarPagamentoActivity
+                intent.putExtra("bilheteId", bilheteId);
                 startActivity(intent);
             }
         }).addOnFailureListener(new OnFailureListener() {

@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_blue_to_white">
 
-    <!-- Botão Back -->
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
@@ -17,7 +16,6 @@
         android:layout_alignParentTop="true"
         android:background="@android:color/transparent"/>
 
-    <!-- Texto "Adicionar Notificação" -->
     <TextView
         android:id="@+id/greetingText"
         android:layout_width="wrap_content"
@@ -31,7 +29,6 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="24dp"/>
 
-    <!-- Texto "Adicione os dados da nova notificação:" -->
     <TextView
         android:id="@+id/chooseOptionText"
         android:layout_width="wrap_content"
@@ -67,7 +64,6 @@
             android:inputType="text"
             android:layout_marginBottom="8dp"/>
 
-        <!-- Botão para confirmar nova notificação -->
         <Button
             android:id="@+id/confirmar_nova_notificacao"
             android:layout_width="match_parent"
@@ -81,7 +77,6 @@
             android:onClick="confirmarNovaNotificacao" />
     </LinearLayout>
 
-    <!-- Imagem TUB -->
     <ImageView
         android:id="@+id/tubImage"
         android:layout_width="wrap_content"

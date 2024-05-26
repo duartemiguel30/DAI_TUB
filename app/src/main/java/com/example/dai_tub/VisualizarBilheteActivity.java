@@ -65,7 +65,6 @@ public class VisualizarBilheteActivity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    // Tratamento de erro ao carregar os bilhetes do usuário
                 }
             });
         }

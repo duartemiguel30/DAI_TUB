@@ -16,7 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- Template for a single news item -->
             <LinearLayout
                 android:id="@+id/newsItem1"
                 android:orientation="vertical"
@@ -58,7 +57,6 @@
                     android:textColor="@android:color/black" />
             </LinearLayout>
 
-            <!-- Repeat the above block for other news items (newsItem2 to newsItem6) -->
 
             <LinearLayout
                 android:id="@+id/newsItem2"
